@@ -33,7 +33,7 @@
                         <div class="form-group position-relative mb-xl-4 mb-md-3 mb-2">
                             <input type="password" class="form-control border-top-0 border-right-0 border-left-0 rounded-0
                                     shadow-none bg-transparent {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" id="password" placeholder="Type Password">
-                            <i class="fa fa-key" aria-hidden="true"></i>
+                            <i class="fa fa-eye" onclick="showPassword()" aria-hidden="true" style="cursor: pointer"></i>
                         </div>
                         <div class="row my-2">
                             <div class="col-md-6">
@@ -102,6 +102,14 @@
         function autoFillCustomer(){
             $('#email').val('customer@example.com');
             $('#password').val('123456');
+        }
+        function showPassword() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
         }
     </script>
 @endsection
