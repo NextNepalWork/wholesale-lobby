@@ -49,52 +49,52 @@
     <!-- Favicon -->
     <link type="image/x-icon" href="{{ asset(\App\GeneralSetting::first()->favicon) }}" rel="shortcut icon" />
 
-    <!-- Fonts -->
-    {{-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet" media="none" onload="if(media!='all')media='all'"> --}}
 
-    <!-- Bootstrap -->
-    {{-- <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}" type="text/css" media="all"> --}}
-
-    <link rel="stylesheet" href="{{ asset('frontend/assets/bootstrap-4.3.1/css/bootstrap.min.css') }}" />
-
-    <link rel="stylesheet" href="{{ asset('frontend/assets/bootstrap-4.3.1/css/bootstrap.min.css.map') }}" />
-
-    <!-- Font Awesome Link Starts -->
-    <link rel="stylesheet" href="{{ asset('frontend/css/font-awesome.min.css') }}" type="text/css" media="none" onload="if(media!='all')media='all'">
-    <!-- Font Awesome Link Ends -->
-    <!-- Slick Css -->
-    <link rel="stylesheet" href="{{ asset('frontend/assets/slick/slick.css') }}" />
-    <link rel="stylesheet" href="{{ asset('frontend/assets/slick/slick-theme.css') }}" />
-    <!-- Slick Css Ends-->
 
     <!-- Custom Links -->
-    <!-- Font Link -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- google font  -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Readex+Pro:wght@200&display=swap" rel="stylesheet" />
+    {{-- <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Readex+Pro:wght@200&display=swap" rel="stylesheet" /> --}}
+
+
     <!-- Font Link Ends -->
 
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/style.css') }}" />
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/responsive.css') }}" />
+    <!-- Bootstrap link Starts -->
+    <link rel="stylesheet" href="{{asset('frontend/assets/bootstrap-4.3.1/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/assets/bootstrap-4.3.1/css/bootstrap.min.css.map')}}">
+    <!-- Bootstrap link Ends -->
+    <!-- Font Awesome Link Starts -->
+    <link rel="stylesheet" href="{{asset('frontend/assets/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+    <!-- Font Awesome Link Ends -->
+    <!-- Slick Css -->
+    <link rel="stylesheet" href="{{asset('frontend/assets/slick/slick.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/assets/slick/slick-theme.css')}}">
+    <!-- Slick Css Ends-->
+    <!-- Custom Links -->
+    <!-- Font Link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ledger&display=swap" rel="stylesheet">
+    <!-- Font Link Ends -->
+    <!-- Bootstrap range slider -->
+    <link rel="stylesheet" href="{{asset('frontend/assets/bootstrap-range-slider-js/css/bootstrap-slider.min.css')}}">
+    <!-- Bootstrap range slider Ends -->
+    <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
+    <!-- Custom Links Ends -->
+    <!-- Countdown start -->
+    <link rel="stylesheet" href="{{asset('frontend/assets/countdown/css/flipclock.css')}}" />
+    <!-- Countdown end -->
+
+    
+
     <link rel="stylesheet" href="{{ asset('frontend/css/dashboard.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/css/dashboard-responsive.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/css/dashboard-two.css') }}" />
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/style2.css') }}" />
-    <!-- Countdown start -->
-    <link rel="stylesheet" href="{{ asset('frontend/assets/countdown/css/flipclock.css') }}" />
-    <!-- Countdown end -->
-
-    <link rel="stylesheet" href="{{ asset('frontend/assets/swiper/drift-basic.css') }}" />
-    <link rel="stylesheet" href="{{ asset('frontend/assets/swiper/swiper.min.css') }}" />
-
-
-    {{-- <link rel="stylesheet" href="https://k1ngzed.com/dist/swiper/swiper.min.css" />
-    <link rel="stylesheet" href="https://k1ngzed.com/dist/EasyZoom/easyzoom.css" /> --}}
 
 
     <!-- Icons -->
-    {{-- <link rel="stylesheet" href="{{ asset('frontend/css/font-awesome.min.css') }}" type="text/css" media="none" onload="if(media!='all')media='all'"> --}}
     <link rel="stylesheet" href="{{ asset('frontend/css/line-awesome.min.css') }}" type="text/css" media="none" onload="if(media!='all')media='all'">
 
     <link type="text/css" href="{{ asset('frontend/css/bootstrap-tagsinput.css') }}" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
@@ -110,241 +110,31 @@
     <!-- Global style (main) -->
     <link type="text/css" href="{{ asset('frontend/css/active-shop.css') }}" rel="stylesheet" media="all">
 
-    {{-- martin edit css --}}
-    {{-- <link type="text/css" href="{{ asset('frontend/css/martinedit.css') }}" rel="stylesheet" media="all"> --}}
-
-
 
 
 
     <link type="text/css" href="{{ asset('frontend/css/main.css') }}" rel="stylesheet" media="all">
-
-    {{-- style-new css --}}
-    {{-- <link type="text/css" href="{{ asset('frontend/css/style-new.css') }}" rel="stylesheet" media="all"> --}}
 
 
     @if(\App\Language::where('code', Session::get('locale', Config::get('app.locale')))->first()->rtl == 1)
     <!-- RTL -->
     <link type="text/css" href="{{ asset('frontend/css/active.rtl.css') }}" rel="stylesheet" media="all">
     @endif
-
-    <!-- color theme -->
-    {{-- <link href="{{ asset('frontend/css/colors/'.\App\GeneralSetting::first()->frontend_color.'.css')}}" rel="stylesheet" media="all"> --}}
-
-    <!-- Custom style -->
-    {{-- <link type="text/css" href="{{ asset('frontend/css/custom-style.css') }}" rel="stylesheet" media="all"> --}}
-
-    <!-- jQuery -->
-    {{-- <script src="{{ asset('frontend/js/vendor/jquery.min.js') }}"></script> --}}
-
-
-    {{-- @if (\App\BusinessSetting::where('type', 'google_analytics')->first()->value == 1)  --}}
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    {{-- <script async src="https://www.googletagmanager.com/gtag/js?id={{ env('TRACKING_ID') }}"></script>
-
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', '{{ env('
-            TRACKING_ID ') }}');
-    </script> --}}
-    {{-- @endif --}}
-
-    {{-- @if (\App\BusinessSetting::where('type', 'facebook_pixel')->first()->value == 1) --}}
-    {{-- Facebook Pixel Code  --}}
-    {{-- <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', {{ env('FACEBOOK_PIXEL_ID') }});
-    fbq('track', 'PageView');
-    </script> --}}
-    {{-- <noscript>
-  <img height="1" width="1" style="display:none"
-       src="https://www.facebook.com/tr?id={{ env('FACEBOOK_PIXEL_ID') }}/&ev=PageView&noscript=1"/>
-</noscript> --}}
-<!-- End Facebook Pixel Code -->
- {{-- @endif  --}}
- 
 <style>
-    .multi-level{
-        min-height: auto!important;
+    #loading {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: #fff url("{{asset('frontend/assets/images/preloader.gif')}}") no-repeat center center;
+        z-index: 99999;
     }
-</style>
-<style>
-    section#category_section{
-        margin-bottom: 0!important;
-    }
-    section#productlist .grid-item {
-        margin: 3px!important;
-    /* box-shadow: 0 0 2px 0 rgb(1 1 1 / 30%); */
-        /* border: 0.5px solid rgb(1 1 1 / 8%); */
-    }
-    section#productlist .product-grid-item .product-grid-image img {
-        width: 100%!important;
-    }
-    section#category_section{
-        margin-bottom: 0!important;
-    }
-    .pb-15{
-        padding-bottom: 15px!important;
-    }
-    .min-height-20{
-        min-height: 20px!important;
-    }
-    .d-table-cell .btn-styled::before{
-        background: #258aff !important;
-
-    }
-    .d-table-cell .btn-styled::hover{
-        color: #ffffff!important;
-    }
-    .total-amount-seller{
-        background: #f78035;
-    }
-    .title{
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        width: 200px;
-    }
-    /* preloader */
-#loading {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    background: #fff;
-    background-size: 50px;
-    background-repeat: no-repeat;
-    background-position: center;
-    z-index: 99999;
-    background-image: url('{{asset("frontend/preloader/2.gif")}}');
-
-}
-.hidden{
-    display: none;
-}
-.custom-close {
-  position: absolute;
-  right: 25px;
-}
-.height-95vh{
-    height: 95vh;
-}
-#loading div img {
-    max-height: 90px;
-    min-height: 90px;
-    object-fit: contain;
-    object-position: center;
-}
-.fa-search{
-    color: white;
-}
-.category_title_top{
-    margin: auto;
-}
-.cus-price{
-    color: #f78035!important;
-    font-size: 20px!important;
-}
-#search-content .title{
-    width: 100%;
-    text-align: center;
-}
-#search-content li{
-    text-align: center;
-}
-.slider_feature .product-grid-item{
-    margin: 2px;
-}
-
-/* Swiper Slider */
-.zoom {
-    width: 100%;
-    height: 39%;
-    left: 100%;
-    top: 15px;
-    position: absolute;
-    z-index: 1;
-}
-
-
-.img-responsive {
-    max-width: 100;
-    height: auto;
-}
-
-.swiper-container {
-    width: 100%;
-    height: 300px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.swiper-slide {
-    background-size: cover;
-    background-position: center;
-}
-
-.gallery-top {
-    height: 80%;
-    width: 100%;
-}
-
-.gallery-thumbs {
-    height: 20%;
-    box-sizing: border-box;
-    padding: 10px 0;
-}
-
-.gallery-thumbs .swiper-slide {
-    width: 25%;
-    height: 100%;
-    opacity: 0.4;
-}
-
-.gallery-thumbs .swiper-slide-thumb-active {
-    opacity: 1;
-}
-
-/* Swiper Slider Ends */
-
-.product-carousel .swiper-button-next.swiper-button-white,
-.product-carousel .swiper-button-prev.swiper-button-white {
-    color: white;
-    background-color: var(--theme_color);
-}
-.xzoom-preview{
-    z-index: 99999;
-}
-.xzoom-source{
-    z-index: 99999;
-}
+    
 </style>
 </head>
-@php
-// dd(session()->get('cart'));
-@endphp
 
 <body onload="myFunction()">
-
-    {{-- @php
-        echo '<pre>';
-        dd(Auth::check());
-        echo '</pre>';
-    @endphp --}}
-    <div id="loading">
-        <div class="d-flex justify-content-center align-items-center h-75"> <img src="{{asset('frontend/preloader/logo.jpeg')}}" alt=""></div>
-    </div>
+    <div id="loading"></div>
+    <section id="index-wrapper">
     @php
         $generalsetting = \App\GeneralSetting::first();
     @endphp
@@ -366,7 +156,6 @@
 
     @endif
     <!-- MAIN WRAPPER -->
-    <div class="body-wrap shop-default shop-cards shop-tech">
 
         <!-- Header -->
         @include('frontend.inc.nav')
@@ -377,35 +166,6 @@
 
         @include('frontend.partials.modal')
 
-                {{-- @if (\App\BusinessSetting::where('type', 'facebook_chat')->first()->value == 1)
-                    <div id="fb-root"></div>
-                    <!-- Your customer chat code -->
-                    <div id="fb-customer-chat" class="fb-customerchat"
-                    attribution=setup_tool
-                    page_id="442591509240170">
-                    </div>
-                @endif --}}
-                {{-- <script>
-                    var chatbox = document.getElementById('fb-customer-chat');
-                    chatbox.setAttribute("page_id", "PAGE-ID");
-                    chatbox.setAttribute("attribution", "biz_inbox");
-                  </script> --}}
-                  <!-- Your SDK code -->
-    {{-- <script>
-        window.fbAsyncInit = function() {
-          FB.init({
-            xfbml            : true,
-          });
-        };
-  
-        (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-      </script> --}}
                 <div class="modal fade" id="addToCart">
                     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-zoom product-modal" id="modal-size" role="document">
                         <div class="modal-content position-relative">
@@ -428,45 +188,50 @@
     </div><!-- END: body-wrap -->
 
 
-    <!-- SCRIPTS -->
-    <!-- <a href="#" class="back-to-top btn-back-to-top"></a> -->
-    <!-- jQuery -->
-    <script src="{{ asset('frontend/assets/jquery-3.5.1/jquery-3.5.1.js') }}"></script>
-    <!-- Popper -->
-    <script src="{{ asset('frontend/assets/popper/popper.min.js') }}"></script>
-    <!-- Popper Ends-->
+    </section>
+    <!-- Scroll Button -->
+    <section id="scroll-btn">
+        <a href="#"><i class="fa fa-chevron-up" aria-hidden="true"></i></a>
+    </section>
+    <!-- Scroll Button Ends -->
+    <!-- Whole Body Wrapper Ends -->
+    <!-- 1st Jquery Link Starts-->
+    <script src="{{asset('frontend/assets/jquery-3.5.1/jquery-3.5.1.js')}}"></script>
+    <!-- Jquery Link Ends-->
+    <!-- 2nd Popper Js Starts -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+    <!-- Popper Js Ends -->
     <!-- 3rd Bootstrap Js Link Starts -->
-    <script src="{{ asset('frontend/assets/bootstrap-4.3.1/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('frontend/assets/bootstrap-4.3.1/js/bootstrap.min.js.map') }}"></script>
+    <script src="{{asset('frontend/assets/bootstrap-4.3.1/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('frontend/assets/bootstrap-4.3.1/js/bootstrap.min.js.map')}}"></script>
     <!-- Bootstrap Js Link Ends -->
     <!-- Slick Js -->
-    <script src="{{ asset('frontend/assets/slick/slick.min.js') }}"></script>
+    <script src="{{asset('frontend/assets/slick/slick.min.js')}}"></script>
     <!-- Slick Js Ends-->
+    <!-- Isotope Js -->
+    <script src="{{asset('frontend/assets/isotope-js/isotope.pkgd.min.js')}}"></script>
+    <!-- Isotope Js Ends-->
+    <!-- Bootstrap range slider js -->
+    <script src="{{asset('frontend/assets/bootstrap-range-slider-js/bootstrap-slider.min.js')}}"></script>
+    <!-- Bootstrap range slider js Ends-->
+    <!-- Toastr -->
+    <script src="{{asset('frontend/assets/toastr/toastr.min.js')}}"></script>
+    <!-- Toastr Ends -->
     <!-- Magnific Popup -->
-    <script src="{{ asset('frontend/assets/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{asset('frontend/assets/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
     <!-- Magnific Popup Ends-->
-    <!-- Countdown start -->
-    <script src="{{ asset('frontend/assets/countdown/js/flipclock.js') }}"></script>
-
     <!-- Custom Js Starts -->
-
-    
-    <script src="{{ asset('frontend/assets/swiper/drift.min.js') }}"></script>
-
-    <script src="{{ asset('frontend/assets/swiper/swiper.min.js') }}"></script>
-    <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
-
-
-    <script src="{{ asset('frontend/assets/js/secondary.js') }}"></script>
+    <!-- Countdown start -->
+    <script src="{{asset('frontend/assets/countdown/js/flipclock.js')}}"></script>
+    <!-- Countdown end -->
+    <!-- Custom Js  -->
+    <script src="{{asset('frontend/js/main.js')}}"></script>
+    <!-- Custom Js Ends -->
 
 
 
-    {{-- <script src="https://k1ngzed.com/dist/swiper/swiper.min.js"></script>
-    <script src="https://k1ngzed.com/dist/EasyZoom/easyzoom.js"></script> --}}
-
-    <!-- Core -->
-    {{-- <script src="{{ asset('frontend/js/vendor/popper.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('frontend/js/vendor/bootstrap.min.js') }}"></script> --}}
 
     <!-- Plugins: Sorted A-Z -->
     <script src="{{ asset('frontend/js/jquery.countdown.min.js') }}"></script>
@@ -484,7 +249,6 @@
     <!-- rating star -->
     <script src="{{asset('plugins/rating/rating.js')}}"></script>
 
-    {{-- <script src="https://use.fontawesome.com/f90dcc1da9.js"></script> --}}
     <script src="https://use.fontawesome.com/79d6e010ae.js"></script>
 
 
@@ -493,8 +257,6 @@
     <script src="{{ asset('frontend/js/active-shop.js') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
 
-    {{-- script-new js --}}
-    {{-- <script src="{{ asset('frontend/js/script-new.js') }}"></script> --}}
     @if ($generalsetting->pop_status == 1)
     <script type="text/javascript">
         $(window).on('load', function() {
