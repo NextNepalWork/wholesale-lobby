@@ -25,12 +25,12 @@
                         <input type="text" placeholder="{{__('Address')}}" name="address" value="{{ $location->name }}" class="form-control" required>
                     </div>
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label class="col-sm-3 control-label" for="delivery_charge">{{__('Delivery Charge')}}</label>
                     <div class="col-sm-9">
                         <input type="number" min="0" value="{{$location->delivery_charge}}" step="0.01" placeholder="{{__('Delivery Charge')}}" name="delivery_charge" class="form-control" required>
                     </div>
-                </div>
+                </div> --}}
                 <div class="form-group">
                     <label class="col-lg-3 control-label" for="name">{{__('District')}}</label>
                     <div class="col-lg-9">

@@ -44,7 +44,7 @@ class LocationController extends Controller
         $location=new Location;
         $location->name=$request->address;
         $location->district=$request->state;
-        $location->delivery_charge=$request->delivery_charge;
+        $location->delivery_charge=0;
         $location->created_by=Auth::user()->name;
         // $location->save();
 
@@ -96,7 +96,7 @@ class LocationController extends Controller
         $location=Location::findOrFail($id);
         $location->name=$request->address;
         $location->district=$request->state;
-        $location->delivery_charge=$request->delivery_charge;
+        $location->delivery_charge=0;
         $location->created_by=Auth::user()->name;
         // $location->save();
 

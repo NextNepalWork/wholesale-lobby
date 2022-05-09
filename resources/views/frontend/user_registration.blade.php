@@ -66,9 +66,10 @@
                                 </div>
                             {{-- @endif --}}
                             <div class="form-group position-relative mb-xl-4 mb-md-3 mb-2">
-                                <input type="password" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none bg-transparent {{ $errors->has('password') ? ' is-invalid' : '' }}" id="username" placeholder="Password" name="password">
+                                <input type="password" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none bg-transparent {{ $errors->has('password') ? ' is-invalid' : '' }}" id="password" placeholder="Password" name="password">
                                 <span class="input-group-addon">
-                                    <i class="fa fa-key" ></i>
+                                <i class="fa fa-eye" onclick="showPassword()" aria-hidden="true" style="cursor: pointer"></i>
+
                                 </span>
                                 @if ($errors->has('password'))
                                 <script> $('.input-group-addon').hide(); </script>
@@ -78,9 +79,10 @@
                                 @endif
                             </div>
                             <div class="form-group position-relative mb-xl-4 mb-md-3 mb-2">
-                                <input type="password" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none bg-transparent" id="username" placeholder="Re-type Password" name="password_confirmation">
+                                <input type="password" class="form-control border-top-0 border-right-0 border-left-0 rounded-0 shadow-none bg-transparent" id="password_confirm" placeholder="Re-type Password" name="password_confirmation">
                                 <span class="input-group-addon">
-                                    <i class="fa fa-key" ></i>
+                                <i class="fa fa-eye" onclick="showConfirmPassword()" aria-hidden="true" style="cursor: pointer"></i>
+
                                 </span>
                             </div>
                             <!-- <div class="row my-2">
@@ -182,6 +184,22 @@
                 $('.email-form-group').hide();
                 isPhoneShown = true;
                 $(el).html('Use Email Instead');
+            }
+        }
+        function showPassword() {
+            var x = document.getElementById("password");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+        function showConfirmPassword() {
+            var x = document.getElementById("password_confirm");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
             }
         }
     </script>

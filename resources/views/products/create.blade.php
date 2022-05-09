@@ -38,14 +38,14 @@
 							</select>
 						</div>
 					</div>
-					<div class="form-group" id="subsubcategory">
+					{{-- <div class="form-group" id="subsubcategory">
 						<label class="col-lg-2 control-label">{{__('Sub Subcategory')}}</label>
 						<div class="col-lg-7">
 							<select class="form-control demo-select2-placeholder" name="subsubcategory_id" id="subsubcategory_id">
 
 							</select>
 						</div>
-					</div>
+					</div> --}}
 					<div class="form-group" id="brand">
 						<label class="col-lg-2 control-label">{{__('Brand')}}</label>
 						<div class="col-lg-7">
@@ -297,7 +297,7 @@
 					<div class="form-group" id="quantity">
 						<label class="col-lg-2 control-label">{{__('Quantity')}}</label>
 						<div class="col-lg-7">
-							<input type="number" min="0" value="0" step="1" placeholder="{{__('Quantity')}}" name="current_stock" class="form-control" required>
+							<input type="number" min="10" value="0" step="1" placeholder="{{__('Quantity')}}" name="current_stock" class="form-control" required>
 						</div>
 					</div>
 					<br>

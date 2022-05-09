@@ -100,9 +100,9 @@
                                     <li class="{{ areActiveRoutes(['subcategories.index', 'subcategories.create', 'subcategories.edit'])}}">
                                         <a class="nav-link" href="{{route('subcategories.index')}}">{{__('Subcategory')}}</a>
                                     </li>
-                                    <li class="{{ areActiveRoutes(['subsubcategories.index', 'subsubcategories.create', 'subsubcategories.edit'])}}">
+                                    {{-- <li class="{{ areActiveRoutes(['subsubcategories.index', 'subsubcategories.create', 'subsubcategories.edit'])}}">
                                         <a class="nav-link" href="{{route('subsubcategories.index')}}">{{__('Sub Subcategory')}}</a>
-                                    </li>
+                                    </li> --}}
                                     <li class="{{ areActiveRoutes(['products.admin', 'products.create', 'products.admin.edit'])}}">
                                         <a class="nav-link" href="{{route('products.admin')}}">{{__('In House Products')}}</a>
                                     </li>
@@ -459,10 +459,10 @@
                                 <li class="{{ areActiveRoutes(['career.index'])}}">
                                     <a class="nav-link" href="{{route('career.index')}}">{{__('Career')}}</a>
                                 </li>
-                                {{-- 
+                                
                                 <li class="{{ areActiveRoutes(['pages.testimonialindex'])}}">
                                     <a class="nav-link" href="{{route('pages.testimonialindex')}}">{{__('Testimonial')}}</a>
-                                </li> --}}
+                                </li>
                             </ul>
                         </li>
                         @endif

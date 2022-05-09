@@ -1,0 +1,334 @@
+@media (min-width: 1400px) {
+
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl,
+    .container-xxl {
+        max-width: 1400px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container.custom-container {
+        max-width: 1250px !important;
+    }
+}
+
+@media (max-width: 1050px) {
+    #navigation-wrapper .nav-item span {
+        width: 4rem;
+        font-size: 0.7rem;
+        align-items: center;
+    }
+
+    #navigation-wrapper .nav-link {
+        padding: 10px;
+    }
+
+    .mega-menu-wrapper {
+        width: 60rem;
+    }
+
+}
+
+@media (max-width: 992px) {}
+
+@media (max-width: 769px) {
+    .zoom {
+        display: none;
+    }
+
+    /* Top Header */
+    #top-header-navigation-wrapper .top-header ul li:nth-child(3),
+    .top-header ul li:nth-child(4) {
+        display: none;
+    }
+
+    /* Top Header Ends */
+    /* Navbar */
+    #top-header-navigation-wrapper {
+
+        position: fixed;
+        top: 0px;
+        width: 100%;
+        z-index: 100;
+    }
+
+    #navigation-wrapper .navbar .image {
+        width: 50%;
+        overflow: hidden;
+    }
+
+    .navbar.justify-content-around {
+        justify-content: unset !important;
+    }
+
+    .search-button {
+        position: absolute;
+        right: 10px;
+        font-size: 18px !important;
+        line-height: 0.5rem !important;
+    }
+
+    /* Navbar Ends */
+    /* Testimonial */
+    .testimonial-content {
+        align-items: center !important;
+        margin-top: 10px;
+    }
+
+    /* Testimonial eNDS */
+    /* Leftsidebar Filter */
+    #leftsidebarfilter .modal-content {
+        height: 100vh;
+        overflow-y: scroll;
+    }
+
+    .modal-header .close {
+        margin: unset;
+    }
+
+    .modal-header {
+        align-items: center !important;
+    }
+
+    .cart-wishlist {
+        width: 50%;
+        overflow: hidden;
+    }
+
+    /* Leftsidebar Filter Ends */
+    #vendor-profile-wrapper .dashboard-content {
+        background-color: unset;
+        box-shadow: unset;
+        justify-content: center;
+    }
+
+    #vendor-profile-wrapper .dashboard-content .d-user-avater {
+        background-color: white;
+        padding: .9rem;
+        border-radius: 5px;
+    }
+
+    #vendor-profile-wrapper .vendor-profile-content {
+        transform: translateY(0px);
+    }
+
+    #vendor-profile-wrapper .profile-side-detail-edit {
+        position: absolute;
+        transform: translateY(-175px);
+        /* margin: auto; */
+        left: 30%;
+    }
+}
+
+@media (max-width: 600px) {
+
+
+    h3,
+    h4,
+    h5,
+    h6,
+    a {
+        font-size: 0.8rem !important;
+    }
+
+    /* Breadcrumb */
+    #breadcrumb ol li a {
+        font-size: 0.8rem;
+    }
+
+    /* Breadcrumb Ends */
+
+    #cart_user .product-list {
+        width: 92vw;
+        overflow-x: scroll;
+    }
+
+    /* Index */
+
+    #banner-categories-wrapper .description {
+        width: 80%;
+    }
+
+    #banner-categories-wrapper .description h4 {
+        font-size: 1rem;
+    }
+
+    .heading .head h4,
+    .navigator a {
+        font-size: 0.9rem;
+    }
+
+    #full-ads-banner-wrapper .image img {
+        max-height: 130px;
+        min-height: 130px;
+    }
+
+    /* Index Ends */
+    .dashboard-content {
+        padding: 1em;
+    }
+
+    #accordion .card-body {
+        padding: 10px;
+    }
+
+    #accordion {
+        padding: 15px;
+    }
+
+    #checkout-wrapper #accordion .card h5 {
+        font-size: 13px;
+    }
+
+    .custom-control-label {
+        font-size: 13px;
+    }
+
+    #contact-us-wrapper .contact-us-form {
+        position: relative;
+        transform: unset;
+    }
+
+    #contact-us-wrapper .contact-us-form:hover {
+        transform: unset;
+    }
+
+    /* Footer */
+    .footer-nav-list {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+
+    #footer-wrapper {
+        text-align: center;
+    }
+
+    #footer-wrapper .image img {
+        margin: auto;
+    }
+
+    /* Footer Ends */
+    /* Popup Cart */
+    #nav-cart .modal-body table .head {
+        font-size: 15px;
+    }
+
+    #nav-cart .price {
+        font-size: 15px;
+    }
+
+    .swiper-container .swiper-slide img {
+        max-height: 250px;
+        min-height: 250px;
+    }
+
+    .product-carousel .gallery-top {
+        border: 1px solid #ebebeb;
+        border-radius: 3px;
+        height: unset !important;
+    }
+
+    .sidebar-heading {
+        font-size: 1.3rem !important;
+    }
+
+    #leftsidebarfilterlabel {
+        font-size: 1.5rem !important;
+    }
+
+    /* Popup Cart Ends */
+}
+
+@media (max-width: 450px) {
+    #vendor-profile-wrapper .profile-side-detail-edit {
+        position: relative;
+        transform: unset;
+        /* margin: auto; */
+        left: unset;
+    }
+
+    .sidebarcus:nth-child(1) {
+        position: absolute;
+        transform: translateY(-175px);
+    }
+}
+
+@media (max-width: 376px) {
+
+    /* Search Popup */
+    #searchpopupmodal .modal-title {
+        font-size: 15px;
+    }
+
+    #searchpopupmodal .modal-body input {
+        font-size: 20px;
+    }
+
+    #about-us-wrapper h2 {
+        font-size: 26px;
+    }
+
+    /* Search Popup Ends */
+    /* Banner */
+    #banner-categories-wrapper .slick-slider .slick-item img {
+        max-height: 12.8rem;
+        min-height: 12.8rem;
+    }
+
+    #banner-categories-wrapper .slick-slider {
+        height: 12.8rem;
+    }
+
+    /* Banner Ends */
+    /* Breadcrumb  */
+    #breadcrumb-wrapper .image img {
+        max-height: 150px;
+        min-height: 150px;
+    }
+
+    /* Breadcrumb Ends */
+    /* Abouts Us Page */
+    #about-us-wrapper .about-us-image img {
+        max-height: 200px;
+        min-height: 200px;
+    }
+
+    /* Abouts Us Page Ends */
+    /* Blog Details  */
+    #blog-detail-wrapper .image-block img {
+        min-height: 200px;
+        max-height: 200px;
+    }
+
+    #blog-detail-wrapper .blog-comment-section {
+        padding: 10px !important;
+        text-align: center;
+    }
+
+    #blog-detail-wrapper .blog-comment-bg {
+        padding: 25px 10px !important;
+    }
+
+    /* Blog Details Ends */
+    /* Righsidebar Mobile Nav */
+    /* #rightsidebarfilter.fade.show .modal-dialog {
+    right: -25px;
+  } */
+    /* Righsidebar Mobile Nav Ends */
+    /* Blockquotes */
+    blockquote p,
+    .blockquote p {
+        font-size: 12px;
+    }
+
+    /* Blockquotes Ends */
+    /* Vendor List */
+    /* Vendor List Ends */
+}

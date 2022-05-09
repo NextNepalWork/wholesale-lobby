@@ -3,7 +3,7 @@
 /* Slider */
 
 .slick-loading .slick-list {
-    /* background: #fff url('./ajax-loader.gif') center center no-repeat; */
+    background: #fff url('./ajax-loader.gif') center center no-repeat;
 }
 
 
@@ -27,17 +27,18 @@
     position: absolute;
     top: 50%;
     display: block;
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
     padding: 0;
     -webkit-transform: translate(0, -50%);
     -ms-transform: translate(0, -50%);
     transform: translate(0, -50%);
     cursor: pointer;
-    color: transparent;
+    color: var(--main-color);
+    background-color: transparent;
     border: none;
     outline: none;
-    background: var(--main-color);
+
     z-index: 2;
     box-shadow: none;
 }
@@ -75,7 +76,7 @@
 }
 
 .slick-prev {
-    left: 30px;
+    left: 0px;
 }
 
 [dir='rtl'] .slick-prev {
@@ -92,7 +93,7 @@
 }
 
 .slick-next {
-    right: 30px;
+    right: -12px;
 }
 
 [dir='rtl'] .slick-next {

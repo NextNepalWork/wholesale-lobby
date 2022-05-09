@@ -3,8 +3,6 @@
 @section('content')
 @php
     $story = DB::table('testimonial')->get();
-
-
 @endphp
 <div class="row">
     <div class="col-sm-12">
@@ -49,7 +47,7 @@
                     <tr>
 
                         <td>{{$flash_deal->name}}</td>
-                        <td><img class="img-md" src="{{ asset($flash_deal->image) }}" alt="banner"></td>
+                        <td><img class="img-md" src="{{ asset('img/'.$flash_deal->image) }}" alt="banner"></td>
                         <td>{{$flash_deal->title}}</td>
                         <td>{{$flash_deal->about}}</td>
                         <td><label class="switch">

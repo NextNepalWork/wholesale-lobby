@@ -398,7 +398,7 @@
                                             <label>{{__('Quantity')}} <span class="required-star">*</span></label>
                                         </div>
                                         <div class="col-md-10">
-                                            <input type="number" min="0" value="0" step="1" class="form-control mb-3" name="current_stock" placeholder="{{__('Quantity')}}" required>
+                                            <input type="number" min="10" value="0" step="1" class="form-control mb-3" name="current_stock" placeholder="{{__('Quantity')}}" required>
                                         </div>
                                     </div>
                                     <div class="row">

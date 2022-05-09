@@ -40,14 +40,14 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group" id="subsubcategory">
+                    {{-- <div class="form-group" id="subsubcategory">
                         <label class="col-lg-2 control-label">{{__('Sub Subcategory')}}</label>
                         <div class="col-lg-7">
                             <select class="form-control demo-select2-placeholder" name="subsubcategory_id" id="subsubcategory_id">
 
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group" id="brand">
                         <label class="col-lg-2 control-label">{{__('Brand')}}</label>
                         <div class="col-lg-7">
@@ -97,7 +97,6 @@
 							</div>
 						</div>
 					@endif
-
 					<div class="form-group">
 						<label for="made_in_nepal" class="col-lg-2 control-label">{{ __('Made in Nepal') }}</label>
 						<div class="col-lg-7">
@@ -342,7 +341,7 @@
 					<div class="form-group" id="quantity">
 						<label class="col-lg-2 control-label">{{__('Quantity')}}</label>
 						<div class="col-lg-7">
-							<input type="text" value="{{ $product->current_stock }}" placeholder="{{__('Quantity')}}" name="current_stock" class="form-control" id="current_stock" onkeypress="return isNumber(event)" required>
+							<input type="number" value="{{ $product->current_stock }}" placeholder="{{__('Quantity')}}" min="10" name="current_stock" class="form-control" id="current_stock" required>
 
 						</div>
 					</div>
