@@ -244,91 +244,105 @@
     }
 
     /* Popup Cart Ends */
-}
-
-@media (max-width: 450px) {
-    #vendor-profile-wrapper .profile-side-detail-edit {
-        position: relative;
-        transform: unset;
-        /* margin: auto; */
-        left: unset;
-    }
-
-    .sidebarcus:nth-child(1) {
-        position: absolute;
-        transform: translateY(-175px);
-    }
-}
-
-@media (max-width: 376px) {
-
-    /* Search Popup */
-    #searchpopupmodal .modal-title {
-        font-size: 15px;
-    }
-
-    #searchpopupmodal .modal-body input {
-        font-size: 20px;
-    }
-
-    #about-us-wrapper h2 {
-        font-size: 26px;
-    }
-
-    /* Search Popup Ends */
-    /* Banner */
-    #banner-categories-wrapper .slick-slider .slick-item img {
-        max-height: 12.8rem;
-        min-height: 12.8rem;
-    }
-
-    #banner-categories-wrapper .slick-slider {
-        height: 12.8rem;
-    }
-
-    /* Banner Ends */
-    /* Breadcrumb  */
-    #breadcrumb-wrapper .image img {
-        max-height: 150px;
-        min-height: 150px;
-    }
-
-    /* Breadcrumb Ends */
-    /* Abouts Us Page */
-    #about-us-wrapper .about-us-image img {
-        max-height: 200px;
-        min-height: 200px;
-    }
-
-    /* Abouts Us Page Ends */
-    /* Blog Details  */
-    #blog-detail-wrapper .image-block img {
-        min-height: 200px;
-        max-height: 200px;
-    }
-
-    #blog-detail-wrapper .blog-comment-section {
-        padding: 10px !important;
+    #banner-categories-wrapper input {
         text-align: center;
+        font-size: 10px;
     }
 
-    #blog-detail-wrapper .blog-comment-bg {
-        padding: 25px 10px !important;
+    #banner-categories-wrapper .slick-list {
+        overflow-y: unset;
+        overflow-x: hidden;
     }
 
-    /* Blog Details Ends */
-    /* Righsidebar Mobile Nav */
-    /* #rightsidebarfilter.fade.show .modal-dialog {
+    banner-categories-wrapper .banner-item img {
+        max-height: 23rem;
+        min-height: 23rem;
+    }
+
+    @media (max-width: 450px) {
+        #vendor-profile-wrapper .profile-side-detail-edit {
+            position: relative;
+            transform: unset;
+            /* margin: auto; */
+            left: unset;
+        }
+
+        .sidebarcus:nth-child(1) {
+            position: absolute;
+            transform: translateY(-175px);
+        }
+    }
+
+    @media (max-width: 376px) {
+
+        /* Search Popup */
+        #searchpopupmodal .modal-title {
+            font-size: 15px;
+        }
+
+        #searchpopupmodal .modal-body input {
+            font-size: 20px;
+        }
+
+        #about-us-wrapper h2 {
+            font-size: 26px;
+        }
+
+        /* Search Popup Ends */
+        /* Banner */
+        #banner-categories-wrapper .slick-slider .slick-item img {
+            max-height: 12.8rem;
+            min-height: 12.8rem;
+        }
+
+        /* #banner-categories-wrapper .slick-slider {
+            height: 12.8rem;
+        } */
+
+        /* Banner Ends */
+        /* Breadcrumb  */
+        #breadcrumb-wrapper .image img {
+            max-height: 150px;
+            min-height: 150px;
+        }
+
+        /* Breadcrumb Ends */
+        /* Abouts Us Page */
+        #about-us-wrapper .about-us-image img {
+            max-height: 200px;
+            min-height: 200px;
+        }
+
+        /* Abouts Us Page Ends */
+        /* Blog Details  */
+        #blog-detail-wrapper .image-block img {
+            min-height: 200px;
+            max-height: 200px;
+        }
+
+        #blog-detail-wrapper .blog-comment-section {
+            padding: 10px !important;
+            text-align: center;
+        }
+
+        #blog-detail-wrapper .blog-comment-bg {
+            padding: 25px 10px !important;
+        }
+
+        /* Blog Details Ends */
+        /* Righsidebar Mobile Nav */
+        /* #rightsidebarfilter.fade.show .modal-dialog {
     right: -25px;
   } */
-    /* Righsidebar Mobile Nav Ends */
-    /* Blockquotes */
-    blockquote p,
-    .blockquote p {
-        font-size: 12px;
-    }
+        /* Righsidebar Mobile Nav Ends */
+        /* Blockquotes */
+        blockquote p,
+        .blockquote p {
+            font-size: 12px;
+        }
 
-    /* Blockquotes Ends */
-    /* Vendor List */
-    /* Vendor List Ends */
+        /* Blockquotes Ends */
+        /* Vendor List */
+        /* Vendor List Ends */
+    }
 }

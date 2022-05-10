@@ -38,6 +38,8 @@ $(window).on('shown.bs.modal', function () {
     });
 });
 // Brand Slick Slider On Modal Popup End
+
+
 // Banner Slick Slider Starts
 $('.slick-slider').slick({
     infinite: true,
@@ -775,3 +777,24 @@ $(function () {
     $('[data-toggle="tooltip"]').tooltip();
 });
 // Shipping, delivery cart Ends 
+// Banner Slick Slider Starts
+$('.banner-search').slick({
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    fade: true,
+    speed: 300,
+    arrows: true,
+    // centerMode: true,
+    autoplay: true,
+    dots: false,
+    responsive: [{
+        breakpoint: 325,
+        settings: {
+            arrows: false,
+            dots: true
+
+        }
+    }]
+});
+// Banner Slick Slider Ends
