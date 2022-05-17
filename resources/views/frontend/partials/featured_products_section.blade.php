@@ -7,185 +7,53 @@
                         <div class="head">
                             <h4 class="font-weight-bold">
                                 Featured Products</h4>
-                            <!-- <p class="m-0">THERE'S SOMETHING FOR EVERYONE</p> -->
                         </div>
-                        <div class="navigator"> <a href="product-list.html">See all</a> </div>
+                        {{-- <div class="navigator"> <a href="product-list.html">See all</a> </div> --}}
                     </div>
                 </div>
             </div>
             <div class="slick-slider-listing2">
+                @foreach (\App\Product::where('featured',1)->get() as $product)
                 <div class="slick-item position-relative py-4">
                     <div class="product-grid-item">
                         <div class="product-grid-image">
-                            <a href="product-list.html"> <img
-                                    src="https://5.imimg.com/data5/NT/DP/MY-4226038/submersible-pump-sets-250x250.jpg"
-                                    alt="img" class="img-fluid pic-1"> </a>
-                            <!-- <ul class="social">
-                                <li>
-                                    <a href="" class="fa fa-shopping-bag"></a>
-                                </li>
-                                <li>
-                                    <a class="fa fa-heart" onclick="successMsg();"></a>
-                                </li>
-                                <li>
-                                    <a href="" class="fa fa-exchange"></a>
-                                </li>
-                            </ul> <span class="product-discount-label">-20%</span> -->
+                            <a href="{{route('product',$product->slug)}}"> 
+                                @if (!empty($product->thumbnail_img))
+                                    @if(file_exists($product->thumbnail_img))
+                                        <img src="{{asset($product->thumbnail_img)}}" alt="img" class="img-fluid pic-1">
+                                    @else
+                                    <img src="https://5.imimg.com/data5/NT/DP/MY-4226038/submersible-pump-sets-250x250.jpg" alt="img" class="img-fluid pic-1">
+
+                                    @endif
+                                @else
+                                <img src="https://5.imimg.com/data5/NT/DP/MY-4226038/submersible-pump-sets-250x250.jpg" alt="img" class="img-fluid pic-1">
+                                    
+                                @endif
+ 
+                            </a>
                         </div>
                         <div class="product-content mx-auto text-center">
-                            <h3 class="title text-center"> <a href="product-list.html" class="">Saftey
-                                    Essentials </a></h3>
-                            <div class="price text-center mb-1"> £ 8.00 </div>
-                            <div class="enterprise text-center mb-2">Sold by: <span
-                                    class="font-weight-bold">Shah Enterprise</span>
+                            <h3 class="title text-center"> <a href="{{route('product',$product->slug)}}" class="">{{$product->name}} </a></h3>
+                            <div class="price text-center mb-1"> 
+                                @if(home_base_price($product->id) != home_discounted_base_price($product->id))
+                                    <del class="old-product-price strong-400">{{ home_base_price($product->id) }}</del>
+                                @endif
+                                <span class="product-price strong-600">{{ home_discounted_base_price($product->id) }}</span>    
                             </div>
-                            <a href="product-detail.html" class="anchor-btn2 mb-3">View</a>
+                            <div class="enterprise text-center mb-2">Sold by: <span
+                                    class="font-weight-bold">
+                                    @if ($product->added_by == 'seller' && \App\BusinessSetting::where('type', 'vendor_system_activation')->first()->value == 1)
+                                        <a href="{{ route('shop.visit', $product->user->shop->slug) }}">{{ $product->user->shop->name }}</a>
+                                    @else
+                                        {{ __('Inhouse product') }}
+                                    @endif
+                                </span>
+                            </div>
+                            <a href="{{route('product',$product->slug)}}" class="anchor-btn2 mb-3">View</a>
                         </div>
                     </div>
                 </div>
-                <div class="slick-item position-relative py-4">
-                    <div class="product-grid-item">
-                        <div class="product-grid-image">
-                            <a href="product-list.html"> <img
-                                    src="https://5.imimg.com/data5/GE/KQ/MY-1456501/submersible-pump-set-250x250.jpg"
-                                    alt="img" class="img-fluid pic-1"> </a>
-                            <!-- <ul class="social">
-                                <li>
-                                    <a href="" class="fa fa-shopping-bag"></a>
-                                </li>
-                                <li>
-                                    <a class="fa fa-heart" onclick="successMsg();"></a>
-                                </li>
-                                <li>
-                                    <a href="" class="fa fa-exchange"></a>
-                                </li>
-                            </ul> <span class="product-discount-label">-20%</span> -->
-                        </div>
-                        <div class="product-content mx-auto text-center">
-                            <h3 class="title text-center"> <a href="product-list.html" class="">Saftey
-                                    Essentials </a></h3>
-                            <div class="price text-center mb-1"> £ 8.00 </div>
-                            <div class="enterprise text-center mb-2">Sold by: <span
-                                    class="font-weight-bold">Shah Enterprise</span>
-                            </div>
-                            <a href="product-detail.html" class="anchor-btn2 mb-3">View</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="slick-item position-relative py-4">
-                    <div class="product-grid-item">
-                        <div class="product-grid-image">
-                            <a href="product-list.html"> <img
-                                    src="https://5.imimg.com/data5/JI/KG/HS/SELLER-3087351/0v1a3508-125x125.JPG"
-                                    alt="img" class="img-fluid pic-1"> </a>
-                            <!-- <ul class="social">
-                                <li>
-                                    <a href="" class="fa fa-shopping-bag"></a>
-                                </li>
-                                <li>
-                                    <a class="fa fa-heart" onclick="successMsg();"></a>
-                                </li>
-                                <li>
-                                    <a href="" class="fa fa-exchange"></a>
-                                </li>
-                            </ul> <span class="product-discount-label">-20%</span> -->
-                        </div>
-                        <div class="product-content mx-auto text-center">
-                            <h3 class="title text-center"> <a href="product-list.html" class="">Saftey
-                                    Essentials </a></h3>
-                            <div class="price text-center mb-1"> £ 8.00 </div>
-                            <div class="enterprise text-center mb-2">Sold by: <span
-                                    class="font-weight-bold">Shah Enterprise</span>
-                            </div>
-                            <a href="product-detail.html" class="anchor-btn2 mb-3">View</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="slick-item position-relative py-4">
-                    <div class="product-grid-item">
-                        <div class="product-grid-image">
-                            <a href="product-list.html"> <img
-                                    src="https://5.imimg.com/data5/JO/JT/LI/SELLER-675662/honeywell-ff2100-ffp1s-mask-125x125.jpg"
-                                    alt="img" class="img-fluid pic-1"> </a>
-                            <!-- <ul class="social">
-                                <li>
-                                    <a href="" class="fa fa-shopping-bag"></a>
-                                </li>
-                                <li>
-                                    <a class="fa fa-heart" onclick="successMsg();"></a>
-                                </li>
-                                <li>
-                                    <a href="" class="fa fa-exchange"></a>
-                                </li>
-                            </ul> <span class="product-discount-label">-20%</span> -->
-                        </div>
-                        <div class="product-content mx-auto text-center">
-                            <h3 class="title text-center"> <a href="product-list.html" class="">Saftey
-                                    Essentials </a></h3>
-                            <div class="price text-center mb-1"> £ 8.00 </div>
-                            <div class="enterprise text-center mb-2">Sold by: <span
-                                    class="font-weight-bold">Shah Enterprise</span>
-                            </div>
-                            <a href="product-detail.html" class="anchor-btn2 mb-3">View</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="slick-item position-relative py-4">
-                    <div class="product-grid-item">
-                        <div class="product-grid-image">
-                            <a href="product-list.html"> <img src="frontend/assets/images/product-images/9.jpg"
-                                    alt="img" class="img-fluid pic-1"> </a>
-                            <!-- <ul class="social">
-                                <li>
-                                    <a href="" class="fa fa-shopping-bag"></a>
-                                </li>
-                                <li>
-                                    <a class="fa fa-heart" onclick="successMsg();"></a>
-                                </li>
-                                <li>
-                                    <a href="" class="fa fa-exchange"></a>
-                                </li>
-                            </ul> <span class="product-discount-label">-20%</span> -->
-                        </div>
-                        <div class="product-content mx-auto text-center">
-                            <h3 class="title text-center"> <a href="product-list.html" class="">Saftey
-                                    Essentials </a></h3>
-                            <div class="price text-center mb-1"> £ 8.00 </div>
-                            <div class="enterprise text-center mb-2">Sold by: <span
-                                    class="font-weight-bold">Shah Enterprise</span>
-                            </div>
-                            <a href="product-detail.html" class="anchor-btn2 mb-3">View</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="slick-item position-relative py-4">
-                    <div class="product-grid-item">
-                        <div class="product-grid-image">
-                            <a href="product-list.html"> <img src="frontend/assets/images/product-images/9.jpg"
-                                    alt="img" class="img-fluid pic-1"> </a>
-                            <!-- <ul class="social">
-                                <li>
-                                    <a href="" class="fa fa-shopping-bag"></a>
-                                </li>
-                                <li>
-                                    <a class="fa fa-heart" onclick="successMsg();"></a>
-                                </li>
-                                <li>
-                                    <a href="" class="fa fa-exchange"></a>
-                                </li>
-                            </ul> <span class="product-discount-label">-20%</span> -->
-                        </div>
-                        <div class="product-content mx-auto text-center">
-                            <h3 class="title text-center"> <a href="product-list.html" class="">Saftey
-                                    Essentials </a></h3>
-                            <div class="price text-center mb-1"> £ 8.00 </div>
-                            <div class="enterprise text-center mb-2">Sold by: <span
-                                    class="font-weight-bold">Shah Enterprise</span>
-                            </div>
-                            <a href="product-detail.html" class="anchor-btn2 mb-3">View</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

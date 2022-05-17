@@ -4,13 +4,21 @@
         <div class="row">
             <div class="col-xl-3 col-lg-3 col-md-6 col-12 mb-2">
                 <div class="image">
-                    <a href="index.html" class="justify-content-center"> <img
-                            src="frontend/assets/images/comingsoon.png" alt="footer-logo-image"
-                            class="img-fluid"></a>
+                    <a href="{{route('home')}}" class="justify-content-center"> 
+                        @php
+                        $generalsetting = \App\GeneralSetting::first();
+                        
+                        @endphp
+                        @if($generalsetting->logo != null)
+                            <img src="{{ asset($generalsetting->logo) }}" class="img-fluid" alt="{{ env('APP_NAME') }}">
+                        @else
+                            <img src="{{ asset('frontend/assets/images/comingsoon.png') }}"  class="img-fluid" alt="{{ env('APP_NAME') }}">
+                        @endif
+                    </a>
                 </div>
                 <div class="content mt-3 text-center">
                     <p class="font-weight-normal m-0">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi, quia accusantium.
+                        {{$generalsetting->description}}
                     </p>
                 </div>
             </div>
@@ -24,18 +32,18 @@
                         </div>
                     </div>
                     <li>
-                        <a href=" mailto:webmaster@example.com"><span class="mr-2"><i
+                        <a href=" mailto:{{$generalsetting->email}}"><span class="mr-2"><i
                                     class="fa fa-envelope-square"
-                                    aria-hidden="true"></i></span>wholesale@gmail.com</a>
+                                    aria-hidden="true"></i></span>{{$generalsetting->email}}</a>
                         </h5>
                     </li>
                     <li>
-                        <a href="tel:+4733378901"><span class="mr-2"><i class="fa fa-phone"
-                                    aria-hidden="true"></i></span>01-123456789</a></h5>
+                        <a href="tel:{{$generalsetting->phone}}"><span class="mr-2"><i class="fa fa-phone"
+                                    aria-hidden="true"></i></span>{{$generalsetting->phone}}</a></h5>
                     </li>
                     <li>
                         <a href=""><span class="mr-2"><i class="fa fa-map"
-                                    aria-hidden="true"></i></span>Kathmandu, Nepal</a></h5>
+                                    aria-hidden="true"></i></span>{{$generalsetting->address}}</a></h5>
                     </li>
                 </ul>
             </div>

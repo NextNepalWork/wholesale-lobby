@@ -81,27 +81,49 @@
     </div>
 </header>
 <!-- Top Header Navigation Ends --> --}}
-
+@php
+$generalsetting = \App\GeneralSetting::first();
+@endphp
         <!-- Top Header Navigation -->
         <header id="top-header-navigation-wrapper">
             <div class="container">
                 <div class="top-header d-flex justify-content-between py-1">
                     <div class="image">
-                        <a class="navbar-brand" href="index.html">
-                            <img src="frontend/assets/images/comingsoon.png" alt="navigation-logo" class="img-fluid">
+                        <a class="navbar-brand" href="{{route('home')}}">
+                            
+                        @if($generalsetting->logo != null)
+                            <img src="{{ asset($generalsetting->logo) }}" class="img-fluid" alt="{{ env('APP_NAME') }}">
+                        @else
+                            <img src="{{ asset('frontend/assets/images/comingsoon.png') }}"  class="img-fluid" alt="{{ env('APP_NAME') }}">
+                        @endif
+
                         </a>
                     </div>
                     <ul class="d-lg-flex d-none justify-content-end align-items-center m-0">
-                        <li>
-                            <a class="nav-link" href="login-register.html">
-                                <span class=" mr-2">
-                                    <i class=" fa fa-sign-in" aria-hidden="true"></i></span>Login</a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="register.html">
-                                <span class="mr-2">
-                                    <i class="fa fa-paper-plane" aria-hidden="true"></i></span>Register</a>
-                        </li>
+                        @auth
+                            <li>
+                                <a class="nav-link" href="{{route('dashboard')}}">
+                                    <span class=" mr-2">
+                                        <i class="fa fa-home" aria-hidden="true"></i></span>Dashboard</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="{{route('logout')}}">
+                                    <span class="mr-2">
+                                        <i class="fa fa-sign-in" aria-hidden="true"></i></span>Logout</a>
+                            </li>
+                        @else
+                            <li>
+                                <a class="nav-link" href="{{route('user.login')}}">
+                                    <span class=" mr-2">
+                                        <i class=" fa fa-sign-in" aria-hidden="true"></i></span>Login</a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="{{route('user.registration')}}">
+                                    <span class="mr-2">
+                                        <i class="fa fa-paper-plane" aria-hidden="true"></i></span>Register</a>
+                            </li>
+                        @endauth
+                        
                         <!-- <li>
                             <a class="nav-link" href="">Save more on Purchase</a>
                         </li>
@@ -116,14 +138,23 @@
                                             data-target="#nav-cart">
                                             <span class="mr-1"><i class="fa fa-shopping-bag"
                                                     aria-hidden="true"></i></span>
-                                            <sup class="cart-items text-white">2</sup>
+                                            {{-- <sup class="cart-items text-white">2</sup> --}}
+                                            @if(Session::has('cart'))
+                                                <sup class="cart-items text-white">{{ count(Session::get('cart'))}}</sup>
+                                            @else
+                                                <sup class="cart-items text-white">0</sup>
+                                            @endif
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="nav-link add-on px-xl-2 px-lg-1 px-md-2 px-2" data-toggle="modal"
-                                            data-target="#nav-cart">
+                                        <a class="nav-link add-on px-xl-2 px-lg-1 px-md-2 px-2" href="{{ route('wishlists.index') }}">
                                             <span class="mr-1"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
-                                            <sup class="cart-items text-white">2</sup>
+                                            @if(Auth::check())
+                                                <sup class="cart-items text-white">{{ count(Auth::user()->wishlists)}}</sup>
+                                            @else
+                                                <sup class="cart-items text-white">0</sup>
+                                                @endif
+                                            {{-- <sup class="cart-items text-white">2</sup> --}}
                                         </a>
                                     </li>
                                 </ul>

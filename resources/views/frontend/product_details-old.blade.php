@@ -1,5 +1,9 @@
 @extends('frontend.layouts.app')
 
+{{-- @section('meta_title')
+{{ $detailedProduct->meta_title }}
+@endsection --}}
+
 @section('meta_title'){{ $detailedProduct->name }}@endsection
 
 @section('meta_description'){{ $detailedProduct->meta_description }}@stop
@@ -33,7 +37,11 @@
 @endsection
 
 @section('content')
+<style>
+    /* .fa-star.active{
 
+    } */
+</style>
     <!-- Breadcrumbs -->
     <section id="breadcrumb-wrapper" class="position-relative bg-light">
         {{-- <div class="image">
