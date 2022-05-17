@@ -1,57 +1,59 @@
-<section class="mb-4">
+<section id="product-listing-wrapper" class="position-relative py-5">
     <div class="container">
-        <div class="px-2 py-4 p-md-4 bg-white shadow-sm">
-            <div class="section-title-1 clearfix">
-                <h3 class="heading-5 strong-700 mb-0 float-left">
-                    <span class="mr-4">{{__('Featured Products')}}</span>
-                </h3>
+        <div class="product-lists">
+            <div class="row">
+                <div class="col-12">
+                    <div class="heading d-flex justify-content-between align-items-center flex-wrap">
+                        <div class="head">
+                            <h4 class="font-weight-bold">
+                                Featured Products</h4>
+                        </div>
+                        {{-- <div class="navigator"> <a href="product-list.html">See all</a> </div> --}}
+                    </div>
+                </div>
             </div>
-            <div class="caorusel-box arrow-round gutters-5">
-                <div class="slick-carousel" data-slick-items="6" data-slick-xl-items="5" data-slick-lg-items="4"  data-slick-md-items="3" data-slick-sm-items="2" data-slick-xs-items="2">
-                    @foreach (filter_products(\App\Product::where('published', 1)->where('featured', '1'))->limit(12)->get() as $key => $product)
-                    <div class="caorusel-card">
-                        <div class="product-box-2 bg-white alt-box my-2">
-                            <div class="position-relative overflow-hidden">
-                                <a href="{{ route('product', $product->slug) }}" class="d-block product-image h-100 text-center">
-                                    <img class="img-fit lazyload mx-auto" src="{{ asset('frontend/images/placeholder.jpg') }}" data-src="{{ asset($product->featured_img) }}" alt="{{ __($product->name . '-' . $product->unit_price ) }}">
-                                </a>
-                                <div class="product-btns clearfix">
-                                    <button class="btn add-wishlist" title="Add to Wishlist" onclick="addToWishList({{ $product->id }})" tabindex="0">
-                                        <i class="la la-heart-o"></i>
-                                    </button>
-                                    <button class="btn add-compare" title="Add to Compare" onclick="addToCompare({{ $product->id }})" tabindex="0">
-                                        <i class="la la-refresh"></i>
-                                    </button>
-                                    <button class="btn quick-view" title="Quick view" onclick="showAddToCartModal({{ $product->id }})" tabindex="0">
-                                        <i class="la la-eye"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="p-md-3 p-2">
-                                <div class="price-box">
-                                    @if(home_base_price($product->id) != home_discounted_base_price($product->id))
-                                        <del class="old-product-price strong-400">{{ home_base_price($product->id) }}</del>
-                                    @endif
-                                    <span class="product-price strong-600">{{ home_discounted_base_price($product->id) }}</span>
-                                </div>
-                                <div class="star-rating star-rating-sm mt-1">
-                                    {{ renderStarRating($product->rating) }}
-                                </div>
-                                <h2 class="product-title p-0">
-                                    <a href="{{ route('product', $product->slug) }}" class="text-truncate">{{ __($product->name) }}</a>
-                                </h2>
+            <div class="slick-slider-listing2">
+                @foreach (\App\Product::where('featured',1)->get() as $product)
+                <div class="slick-item position-relative py-4">
+                    <div class="product-grid-item">
+                        <div class="product-grid-image">
+                            <a href="{{route('product',$product->slug)}}"> 
+                                @if (!empty($product->thumbnail_img))
+                                    @if(file_exists($product->thumbnail_img))
+                                        <img src="{{asset($product->thumbnail_img)}}" alt="img" class="img-fluid pic-1">
+                                    @else
+                                    <img src="https://5.imimg.com/data5/NT/DP/MY-4226038/submersible-pump-sets-250x250.jpg" alt="img" class="img-fluid pic-1">
 
-                                @if (\App\Addon::where('unique_identifier', 'club_point')->first() != null && \App\Addon::where('unique_identifier', 'club_point')->first()->activated)
-                                    <div class="club-point mt-2 bg-soft-base-1 border-light-base-1 border">
-                                        {{ __('Club Point') }}:
-                                        <span class="strong-700 float-right">{{ $product->earn_point }}</span>
-                                    </div>
+                                    @endif
+                                @else
+                                <img src="https://5.imimg.com/data5/NT/DP/MY-4226038/submersible-pump-sets-250x250.jpg" alt="img" class="img-fluid pic-1">
+                                    
                                 @endif
+ 
+                            </a>
+                        </div>
+                        <div class="product-content mx-auto text-center">
+                            <h3 class="title text-center"> <a href="{{route('product',$product->slug)}}" class="">{{$product->name}} </a></h3>
+                            <div class="price text-center mb-1"> 
+                                @if(home_base_price($product->id) != home_discounted_base_price($product->id))
+                                    <del class="old-product-price strong-400">{{ home_base_price($product->id) }}</del>
+                                @endif
+                                <span class="product-price strong-600">{{ home_discounted_base_price($product->id) }}</span>    
                             </div>
+                            <div class="enterprise text-center mb-2">Sold by: <span
+                                    class="font-weight-bold">
+                                    @if ($product->added_by == 'seller' && \App\BusinessSetting::where('type', 'vendor_system_activation')->first()->value == 1)
+                                        <a href="{{ route('shop.visit', $product->user->shop->slug) }}">{{ $product->user->shop->name }}</a>
+                                    @else
+                                        {{ __('Inhouse product') }}
+                                    @endif
+                                </span>
+                            </div>
+                            <a href="{{route('product',$product->slug)}}" class="anchor-btn2 mb-3">View</a>
                         </div>
                     </div>
-                    @endforeach
                 </div>
+                @endforeach
             </div>
         </div>
     </div>

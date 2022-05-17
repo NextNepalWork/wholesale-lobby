@@ -120,20 +120,14 @@
     <!-- RTL -->
     <link type="text/css" href="{{ asset('frontend/css/active.rtl.css') }}" rel="stylesheet" media="all">
     @endif
-<style>
-    #loading {
-        position: fixed;
-        width: 100%;
-        height: 100vh;
-        background: #fff url("{{asset('frontend/assets/images/preloader.gif')}}") no-repeat center center;
-        z-index: 99999;
-    }
-    
-</style>
 </head>
 
 <body onload="myFunction()">
-    <div id="loading"></div>
+    <div id="loading">
+        <div class="d-flex justify-content-center align-items-center h-75"> <img
+                src="{{asset('frontend/assets/images/comingsoon.png')}}" alt="">
+        </div>
+    </div>
     <section id="index-wrapper">
     @php
         $generalsetting = \App\GeneralSetting::first();
