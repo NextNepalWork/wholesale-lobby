@@ -1,4 +1,7 @@
-    <!-- Popup Search Modal -->
+@php
+$generalsetting = \App\GeneralSetting::first();
+@endphp
+  <!-- Popup Search Modal -->
     <!-- Modal -->
     <div class="modal fade" id="searchpopupmodal" tabindex="-1" role="dialog" aria-labelledby="searchpopupmodallabel"
         aria-hidden="true">
@@ -405,9 +408,12 @@
                 <div class="modal-header px-3 py-3 align-items-center">
                     <div class="cart-wishlist">
                         <div class="image">
-                            <a class="navbar-brand" href="index.html">
-                                <img src="frontend/assets/images/comingsoon.png" alt="navigation-logo"
-                                    class="img-fluid">
+                            <a class="navbar-brand" href="{{route('home')}}">
+                                @if($generalsetting->logo != null)
+                                    <img src="{{ asset($generalsetting->logo) }}" class="img-fluid" alt="{{ env('APP_NAME') }}">
+                                @else
+                                    <img src="{{ asset('frontend/assets/images/comingsoon.png') }}"  class="img-fluid" alt="{{ env('APP_NAME') }}">
+                                @endif
                             </a>
                         </div>
                     </div>
@@ -417,7 +423,7 @@
                 <div class="modal-body d-flex justify-content-between h-100 px-4">
                     <ul class="navbar-nav w-100">
                         <li class="nav-item">
-                            <a class="nav-link active" href="index.html"> <span class="nav-indication mr-2"><i
+                            <a class="nav-link active" href="{{route('home')}}"> <span class="nav-indication mr-2"><i
                                         class="fa fa-eercast" aria-hidden="true"></i></span> Home</a>
                         </li>
                         <li class="nav-item d-flex align-items-center">
@@ -429,18 +435,26 @@
                                 <span class="mx-2">
                                     <i class="fa fa-shopping-bag" aria-hidden="true"></i>
                                 </span>
-                                <sup class="cart-items text-white">2</sup>
+                                @if(Session::has('cart'))
+                                    <sup class="cart-items text-white">{{ count(Session::get('cart'))}}</sup>
+                                @else
+                                    <sup class="cart-items text-white">0</sup>
+                                @endif
                             </a>
                         </li>
                         <li class=" nav-item d-flex align-items-center">
                             <a class="nav-link add-on" data-toggle="modal" data-target="#nav-cart">
                                 <span class="nav-indication mr-2"><i class="fa fa-eercast"
                                         aria-hidden="true"></i></span>Wishlist <span class="mx-2"><i
-                                        class="fa fa-heart-o" aria-hidden="true"></i></span> <sup
-                                    class="cart-items text-white">2</sup>
+                                        class="fa fa-heart-o" aria-hidden="true"></i></span> 
+                                    @if(Auth::check())
+                                        <sup class="cart-items text-white">{{ count(Auth::user()->wishlists)}}</sup>
+                                    @else
+                                        <sup class="cart-items text-white">0</sup>
+                                    @endif
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
+                        {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 <span class="nav-indication mr-2"><i class="fa fa-eercast"
@@ -575,7 +589,7 @@
                                 </div>
                                 <!--  /.container  -->
                             </div>
-                        </li>
+                        </li> --}}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
@@ -712,7 +726,7 @@
                                 <!--  /.container  -->
                             </div>
                         </li>
-                        <li class="nav-item dropdown">
+                        {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 <span class="nav-indication mr-2"><i class="fa fa-eercast"
@@ -851,14 +865,18 @@
                         <li class="nav-item">
                             <a class="nav-link" href="contact-us.html"> <span class="nav-indication mr-2"><i
                                         class="fa fa-eercast" aria-hidden="true"></i></span> Contact Us</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
                 <div class="modal-footer py-3">
-                    <a class="w-50 text-center text-white href=" under-construction.html"> <span class="mr-2"><i
-                                class="fa fa-sign-in" aria-hidden="true"></i></span>Login</a>
-                    <a class="w-50 text-center text-white href=" under-construction.html"> <span class="mr-2"><i
-                                class="fa fa-paper-plane" aria-hidden="true"></i></span>Register</a>
+                    @auth
+                        <a class="w-50 text-center text-white" href="{{route('dashboard')}}"> <span class="mr-2"><i class="fa fa-home" aria-hidden="true"></i></span>Dashboard</a>
+                        <a class="w-50 text-center text-white" href="{{route('logout')}}"> <span class="mr-2"><i class="fa fa-sign-in" aria-hidden="true"></i></span>Logout</a>
+                    @else
+                        <a class="w-50 text-center text-white" href="{{route('user.login')}}"> <span class="mr-2"><i class="fa fa-sign-in" aria-hidden="true"></i></span>Login</a>
+                        <a class="w-50 text-center text-white" href="{{route('user.registration')}}"> <span class="mr-2"><i class="fa fa-paper-plane" aria-hidden="true"></i></span>Register</a>
+                    @endauth
+
                 </div>
             </div>
         </div>
