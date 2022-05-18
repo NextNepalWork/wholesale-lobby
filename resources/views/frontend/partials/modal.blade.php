@@ -13,10 +13,14 @@ $generalsetting = \App\GeneralSetting::first();
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <input type="text">
+                <div class="modal-body sub_search">
+                    <form action="{{ route('search') }}" method="GET" class="d-flex">
+                        <input class="input_box" type="text" aria-label="Search" id="search" name="q" placeholder="Search..." autocomplete="off"/>
+                        
+                     </form>
+                     </form>
                 </div>
-                <div class="modal-footer my-auto border-0 w-100">
+                {{-- <div class="modal-footer my-auto border-0 w-100">
                     <ul class="search-list-wrapper w-100">
                         <li class="mb-2 p-1">
                             <a href="product-detail.html">
@@ -58,7 +62,7 @@ $generalsetting = \App\GeneralSetting::first();
                             </a>
                         </li>
                     </ul>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -601,21 +605,25 @@ $generalsetting = \App\GeneralSetting::first();
                             <div class="dropdown-menu">
                                 <div class="container d-block">
                                     <div class="row">
+                                        @foreach (\App\Category::all()->take(6) as $key => $category)
+                                            
+                                        
                                         <div class="col-md-12">
                                             <ul class="nav flex-column">
                                                 <li class="nav-item">
                                                     <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 29</a>
+                                                        href="{{ route('products.category', $category->slug) }}">{{$category->name}}</a>
                                                 </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
+                                                @foreach ($category->subcategories as $sub)
+                                                <li class="nav-item p-0 d-none">
+                                                    <a class="nav-link" href="{{ route('products.subcategory', $sub->slug) }}">{{$sub->name}}</a>
                                                 </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
+                                                @endforeach
+                                                
                                             </ul>
                                         </div>
-                                        <!-- /.col-md-12  -->
+                                        @endforeach
+                                        {{-- <!-- /.col-md-12  -->
                                         <div class="col-md-12">
                                             <ul class="nav flex-column">
                                                 <li class="nav-item">
@@ -719,7 +727,7 @@ $generalsetting = \App\GeneralSetting::first();
                                                     <a class="nav-link" href="under-construction.html">Item 2</a>
                                                 </li>
                                             </ul>
-                                        </div>
+                                        </div> --}}
                                         <!-- /.col-md-12  -->
                                     </div>
                                 </div>

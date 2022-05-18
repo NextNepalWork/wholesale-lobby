@@ -460,9 +460,9 @@
                                     <a class="nav-link" href="{{route('career.index')}}">{{__('Career')}}</a>
                                 </li>
                                 
-                                <li class="{{ areActiveRoutes(['pages.testimonialindex'])}}">
+                                {{-- <li class="{{ areActiveRoutes(['pages.testimonialindex'])}}">
                                     <a class="nav-link" href="{{route('pages.testimonialindex')}}">{{__('Testimonial')}}</a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </li>
                         @endif
