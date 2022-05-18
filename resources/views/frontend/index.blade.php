@@ -2,7 +2,7 @@
 @section('content')
 
     <!-- Banner Categories Slider -->
-    <section id="banner-categories-wrapper" class="position-relative">
+    {{-- <section id="banner-categories-wrapper" class="position-relative">
         <div class="banner-search">
             <div class="banner-item position-relative">
                 <img src="frontend/assets/images/banner/1.jpg" class="img-fluid w-100">
@@ -172,6 +172,23 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section> --}}
+    <section id="banner-categories-wrapper" class="position-relative">
+        <div class="banner-search">
+            @foreach (\App\Slider::where('published',1)->get() as $slider)  
+                <div class="banner-item position-relative">
+                    @if (file_exists($slider->photo))
+                        <img src="{{asset($slider->photo)}}" class="img-fluid w-100">
+                    @else
+                        <img src="{{asset('frontend/assets/images/banner/1.jpg')}}" class="img-fluid w-100">
+                    @endif
+                    {{-- <div class="description text-center text-capitalize">
+                        <h3>Search for products &amp; find verified sellers near you</h3>
+                    </div> --}}
+                </div>
+            @endforeach
+            
         </div>
     </section>
     <!-- Banner Categories Slider Ends-->

@@ -80,46 +80,57 @@
     <!-- Bootstrap range slider -->
     <link rel="stylesheet" href="{{asset('frontend/assets/bootstrap-range-slider-js/css/bootstrap-slider.min.css')}}">
     <!-- Bootstrap range slider Ends -->
+
+    <link rel="stylesheet" href="{{asset('frontend/assets/swiper/swiper.min.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/assets/swiper/drift-basic.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
     <!-- Custom Links Ends -->
     <!-- Countdown start -->
-    <link rel="stylesheet" href="{{asset('frontend/assets/countdown/css/flipclock.css')}}" />
+    <link rel="stylesheet" href="{{asset('frontend-old/assets/countdown/css/flipclock.css')}}" />
     <!-- Countdown end -->
 
     
 
-    <link rel="stylesheet" href="{{ asset('frontend/css/dashboard.css') }}" />
-    <link rel="stylesheet" href="{{ asset('frontend/css/dashboard-responsive.css') }}" />
-    <link rel="stylesheet" href="{{ asset('frontend/css/dashboard-two.css') }}" />
+    {{-- <link rel="stylesheet" href="{{ asset('frontend-old/css/dashboard.css') }}" />
+    <link rel="stylesheet" href="{{ asset('frontend-old/css/dashboard-responsive.css') }}" />
+    <link rel="stylesheet" href="{{ asset('frontend-old/css/dashboard-two.css') }}" /> --}}
 
 
     <!-- Icons -->
-    <link rel="stylesheet" href="{{ asset('frontend/css/line-awesome.min.css') }}" type="text/css" media="none" onload="if(media!='all')media='all'">
+    <link rel="stylesheet" href="{{ asset('frontend-old/css/line-awesome.min.css') }}" type="text/css" media="none" onload="if(media!='all')media='all'">
 
-    <link type="text/css" href="{{ asset('frontend/css/bootstrap-tagsinput.css') }}" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
-    <link type="text/css" href="{{ asset('frontend/css/jodit.min.css') }}" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
-    <link type="text/css" href="{{ asset('frontend/css/sweetalert2.min.css') }}" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
-    {{-- <link type="text/css" href="{{ asset('frontend/css/slick.css') }}" rel="stylesheet" media="all"> --}}
-    <link type="text/css" href="{{ asset('frontend/css/xzoom.css') }}" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
-    <link type="text/css" href="{{ asset('frontend/css/jssocials.css') }}" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
-    <link type="text/css" href="{{ asset('frontend/css/jssocials-theme-flat.css') }}" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
-    <link type="text/css" href="{{ asset('frontend/css/intlTelInput.min.css') }}" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+    <link type="text/css" href="{{ asset('frontend-old/css/bootstrap-tagsinput.css') }}" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+    <link type="text/css" href="{{ asset('frontend-old/css/jodit.min.css') }}" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+    <link type="text/css" href="{{ asset('frontend-old/css/sweetalert2.min.css') }}" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+    {{-- <link type="text/css" href="{{ asset('frontend-old/css/slick.css') }}" rel="stylesheet" media="all"> --}}
+    <link type="text/css" href="{{ asset('frontend-old/css/xzoom.css') }}" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+    <link type="text/css" href="{{ asset('frontend-old/css/jssocials.css') }}" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+    <link type="text/css" href="{{ asset('frontend-old/css/jssocials-theme-flat.css') }}" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+    <link type="text/css" href="{{ asset('frontend-old/css/intlTelInput.min.css') }}" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
     <link type="text/css" href="{{ asset('css/spectrum.css')}}" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
 
     <!-- Global style (main) -->
-    <link type="text/css" href="{{ asset('frontend/css/active-shop.css') }}" rel="stylesheet" media="all">
+    <link type="text/css" href="{{ asset('frontend-old/css/active-shop.css') }}" rel="stylesheet" media="all">
 
 
 
 
-    <link type="text/css" href="{{ asset('frontend/css/main.css') }}" rel="stylesheet" media="all">
+    <link type="text/css" href="{{ asset('frontend-old/css/main.css') }}" rel="stylesheet" media="all">
 
 
     @if(\App\Language::where('code', Session::get('locale', Config::get('app.locale')))->first()->rtl == 1)
     <!-- RTL -->
-    <link type="text/css" href="{{ asset('frontend/css/active.rtl.css') }}" rel="stylesheet" media="all">
+    <link type="text/css" href="{{ asset('frontend-old/css/active.rtl.css') }}" rel="stylesheet" media="all">
     @endif
+    <style>
+        .nav-link{
+            color:#666 !important;
+        }
+        .nav-link:hover{
+            color:#666 !important;
+        }
+    </style>
 </head>
 
 <body onload="myFunction()">
@@ -201,6 +212,8 @@
     <script src="{{asset('frontend/assets/bootstrap-4.3.1/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('frontend/assets/bootstrap-4.3.1/js/bootstrap.min.js.map')}}"></script>
     <!-- Bootstrap Js Link Ends -->
+
+
     <!-- Slick Js -->
     <script src="{{asset('frontend/assets/slick/slick.min.js')}}"></script>
     <!-- Slick Js Ends-->
@@ -217,6 +230,8 @@
     <script src="{{asset('frontend/assets/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
     <!-- Magnific Popup Ends-->
     <!-- Custom Js Starts -->
+    <script src="{{asset('frontend/assets/swiper/swiper.min.js')}}"></script>
+    <script src="{{asset('frontend/assets/swiper/drift.min.js')}}"></script>
     <!-- Countdown start -->
     <script src="{{asset('frontend/assets/countdown/js/flipclock.js')}}"></script>
     <!-- Countdown end -->
@@ -226,20 +241,19 @@
 
 
 
-
     <!-- Plugins: Sorted A-Z -->
-    <script src="{{ asset('frontend/js/jquery.countdown.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/select2.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/nouislider.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/sweetalert2.min.js') }}"></script>
-    {{-- <script src="{{ asset('frontend/js/slick.min.js') }}"></script> --}}
-    <script src="{{ asset('frontend/js/jssocials.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/bootstrap-tagsinput.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/jodit.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/xzoom.min.js') }}"></script>
-    <!-- <script src="{{ asset('frontend/js/fb-script.js') }}"></script> -->
-    <script src="{{ asset('frontend/js/lazysizes.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/intlTelInput.min.js') }}"></script>
+    <script src="{{ asset('frontend-old/js/jquery.countdown.min.js') }}"></script>
+    <script src="{{ asset('frontend-old/js/select2.min.js') }}"></script>
+    <script src="{{ asset('frontend-old/js/nouislider.min.js') }}"></script>
+    <script src="{{ asset('frontend-old/js/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('frontend-old/js/slick.min.js') }}"></script>
+    <script src="{{ asset('frontend-old/js/jssocials.min.js') }}"></script>
+    <script src="{{ asset('frontend-old/js/bootstrap-tagsinput.min.js') }}"></script>
+    <script src="{{ asset('frontend-old/js/jodit.min.js') }}"></script>
+    <script src="{{ asset('frontend-old/js/xzoom.min.js') }}"></script>
+    <!-- <script src="{{ asset('frontend-old/js/fb-script.js') }}"></script> -->
+    <script src="{{ asset('frontend-old/js/lazysizes.min.js') }}"></script>
+    <script src="{{ asset('frontend-old/js/intlTelInput.min.js') }}"></script>
     <!-- rating star -->
     <script src="{{asset('plugins/rating/rating.js')}}"></script>
 
@@ -248,8 +262,8 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- App JS -->
-    <script src="{{ asset('frontend/js/active-shop.js') }}"></script>
-    <script src="{{ asset('frontend/js/main.js') }}"></script>
+    <script src="{{ asset('frontend-old/js/active-shop.js') }}"></script>
+    {{-- <script src="{{ asset('frontend-old/js/main.js') }}"></script> --}}
 
     @if ($generalsetting->pop_status == 1)
     <script type="text/javascript">

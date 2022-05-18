@@ -13,7 +13,7 @@ function myFunction() {
 $(window).scroll(function () {
     var scroll = $(window).scrollTop();
     if (scroll > 350) {
-        $(".navigation-wrap").css("border-bottom", "0.5px solid #FF6A00");
+        $(".navigation-wrap").css("border-bottom", "0.5px solid #41B54A");
     } else {
         $(".navigation-wrap").css("border-bottom", "unset");
     }
