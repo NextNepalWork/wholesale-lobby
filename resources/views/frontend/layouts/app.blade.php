@@ -83,8 +83,8 @@
 
     <link rel="stylesheet" href="{{asset('frontend/assets/swiper/swiper.min.css')}}">
     <link rel="stylesheet" href="{{asset('frontend/assets/swiper/drift-basic.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/style.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/responsive.css')}}">
     <!-- Custom Links Ends -->
     <!-- Countdown start -->
     <link rel="stylesheet" href="{{asset('frontend-old/assets/countdown/css/flipclock.css')}}" />
