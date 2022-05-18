@@ -124,12 +124,27 @@
     <link type="text/css" href="{{ asset('frontend-old/css/active.rtl.css') }}" rel="stylesheet" media="all">
     @endif
     <style>
+        #loading {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: #fff url("{{asset('frontend/assets/images/preloader.gif')}}") no-repeat center center;
+            z-index: 99999;
+        }
+
+        #loading div img {
+            max-height: 90px;
+            min-height: 90px;
+            object-fit: contain;
+            object-position: center;
+        }
         .nav-link{
             color:#666 !important;
         }
         .nav-link:hover{
             color:#666 !important;
         }
+
     </style>
 </head>
 
@@ -237,6 +252,7 @@
     <!-- Countdown end -->
     <!-- Custom Js  -->
     <script src="{{asset('frontend/js/main.js')}}"></script>
+
     <!-- Custom Js Ends -->
 
 
@@ -263,7 +279,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- App JS -->
     <script src="{{ asset('frontend-old/js/active-shop.js') }}"></script>
-    {{-- <script src="{{ asset('frontend-old/js/main.js') }}"></script> --}}
+    <script src="{{ asset('frontend-old/js/main.js') }}"></script>
+    <script src="{{asset('frontend-old/js/script-new.js')}}"></script>
 
     @if ($generalsetting->pop_status == 1)
     <script type="text/javascript">
