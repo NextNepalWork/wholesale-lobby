@@ -258,7 +258,7 @@
             $.post('{{ route('wishlists.remove') }}',{_token:'{{ csrf_token() }}', id:id}, function(data){
                 $('#wishlist').html(data);
                 $('#wishlist_'+id).hide();
-                showFrontendAlert('success', 'Item has been renoved from wishlist');
+                showFrontendAlert('success', 'Item has been removed from wishlist');
             })
         }
     </script>

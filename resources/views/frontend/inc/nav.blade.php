@@ -108,28 +108,38 @@ $generalsetting = \App\GeneralSetting::first();
                 <li>
                     <div class="cart-wishlist desk-nav d-xl-block d-lg-block d-none">
                         <ul class="d-flex align-items-center justify-content-between m-0">
-                            <li>
-                                <a class="nav-link add-on px-xl-2 px-lg-1 px-md-2 px-2" data-toggle="modal"
-                                    data-target="#nav-cart">
-                                    <span class="mr-1"><i class="fa fa-shopping-bag"
-                                            aria-hidden="true"></i></span>
-                                    @if(Session::has('cart'))
-                                        <sup class="cart-items text-white" id="cart_items_sidenav">{{ count(Session::get('cart'))}}</sup>
-                                    @else
-                                        <sup class="cart-items text-white" id="cart_items_sidenav">0</sup>
-                                    @endif
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link add-on px-xl-2 px-lg-1 px-md-2 px-2" href="{{ route('wishlists.index') }}">
-                                    <span class="mr-1"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
-                                    @if(Auth::check())
-                                        <sup class="cart-items text-white">{{ count(Auth::user()->wishlists)}}</sup>
-                                    @else
-                                        <sup class="cart-items text-white">0</sup>
-                                    @endif
-                                </a>
-                            </li>
+                            
+                            <div class="d-none d-lg-inline-block" data-hover="dropdown">
+                                <div class="nav-cart-box dropdown" id="cart_items">
+                                    <li>
+                                        <a class="nav-link add-on px-xl-2 px-lg-1 px-md-2 px-2" data-toggle="modal"
+                                            data-target="#nav-cart">
+                                            <span class="mr-1"><i class="fa fa-shopping-bag"
+                                                    aria-hidden="true"></i></span>
+                                            @if(Session::has('cart'))
+                                                <sup class="cart-items text-white" id="cart_items_sidenav">{{ count(Session::get('cart'))}}</sup>
+                                            @else
+                                                <sup class="cart-items text-white" id="cart_items_sidenav">0</sup>
+                                            @endif
+                                        </a>
+                                    </li>
+                                </div>
+                            </div>
+                            <div class="d-none d-lg-inline-block">
+                                <div class="nav-wishlist-box" id="wishlist">
+                                    <li>
+                                        <a class="nav-link add-on px-xl-2 px-lg-1 px-md-2 px-2" href="{{ route('wishlists.index') }}">
+                                            <span class="mr-1"><i class="fa fa-heart-o" aria-hidden="true"></i></span>
+                                            @if(Auth::check())
+                                                <sup class="cart-items text-white">{{ count(Auth::user()->wishlists)}}</sup>
+                                            @else
+                                                <sup class="cart-items text-white">0</sup>
+                                            @endif
+                                        </a>
+                                    </li>
+                                </div>
+                            </div>
+
                         </ul>
                     </div>
                 </li>
@@ -155,3 +165,4 @@ $generalsetting = \App\GeneralSetting::first();
     </div>
 </header>
 <!-- Top Header Navigation Ends -->
+

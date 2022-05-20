@@ -966,6 +966,13 @@ $('.address-district').on('change',function(e){
         //     $('.category-list').collapse('hide');
         //   }
         // );
+        $(document).ready(function(){
+            $('.dropdown-submenu a.test').on("click", function(e){
+                $(this).next('ul').toggle();
+                e.stopPropagation();
+                e.preventDefault();
+            });
+        });
     </script>
 
     @yield('script')

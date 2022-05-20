@@ -533,6 +533,7 @@
                     slidesToScroll: 1,
                     arrows: true,
                     dots: false,
+                    autoplay:true,
                     responsive: [{
                             breakpoint: 1400,
                             settings: {
@@ -576,6 +577,7 @@
                     arrows: true,
                     dots: false,
                     rows:2,
+                    autoplay:true,
                     responsive: [{
                             breakpoint: 1400,
                             settings: {
@@ -611,6 +613,7 @@
                     arrows: true,
                     dots: false,
                     rows:2,
+                    autoplay:true,
                     responsive: [{
                             breakpoint: 1400,
                             settings: {
@@ -647,6 +650,7 @@
                     slidesToScroll: 7,
                     arrows: true,
                     dots: false,
+                    autoplay:true,
                     responsive: [{
                             breakpoint: 1400,
                             settings: {

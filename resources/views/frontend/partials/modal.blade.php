@@ -54,7 +54,7 @@ $generalsetting = \App\GeneralSetting::first();
                         $total = 0;
                     @endphp
 
-                    <div class="modal-body" id="cart_items">
+                    <div class="modal-body">
                         <table class="w-100">
                             <tbody>
                                 @foreach($cart as $key => $cartItem)
@@ -69,7 +69,6 @@ $generalsetting = \App\GeneralSetting::first();
                                         @else
                                             <img src="{{ asset('frontend/images/placeholder.jpg') }}" data-src="{{ asset('frontend/images/placeholder.jpg') }}" alt="{{ __($product->name) }}">
                                         @endif
-                                        {{-- <img src="frontend/assets/images/product-images/1.jpg" class="img-fluid"> --}}
                                     </td>
                                     <td class="px-4 py-3">
                                         <a href="{{route('product',$product->slug)}}">
@@ -306,11 +305,11 @@ $generalsetting = \App\GeneralSetting::first();
                 <div class="modal-body d-flex justify-content-between h-100 px-4">
                     <ul class="navbar-nav w-100">
                         <li class="nav-item">
-                            <a class="nav-link active" href="{{route('home')}}"> <span class="nav-indication mr-2"><i
+                            <a class="nav-link {{ areActiveRoutesHome(['home'])}}" href="{{route('home')}}"> <span class="nav-indication mr-2"><i
                                         class="fa fa-eercast" aria-hidden="true"></i></span> Home</a>
                         </li>
                         <li class="nav-item d-flex align-items-center">
-                            <a class="nav-link add-on" data-toggle="modal" data-target="#nav-cart">
+                            <a class="nav-link add-on {{ areActiveRoutesHome(['cart'])}}" href="{{route('cart')}}">
                                 <span class="nav-indication mr-2">
                                     <i class="fa fa-eercast" aria-hidden="true"></i>
                                 </span>
@@ -326,7 +325,7 @@ $generalsetting = \App\GeneralSetting::first();
                             </a>
                         </li>
                         <li class=" nav-item d-flex align-items-center">
-                            <a class="nav-link add-on" data-toggle="modal" data-target="#nav-cart">
+                            <a class="nav-link add-on {{ areActiveRoutesHome(['wishlists.index'])}}" href="{{route('wishlists.index')}}">
                                 <span class="nav-indication mr-2"><i class="fa fa-eercast"
                                         aria-hidden="true"></i></span>Wishlist <span class="mx-2"><i
                                         class="fa fa-heart-o" aria-hidden="true"></i></span> 
@@ -337,6 +336,20 @@ $generalsetting = \App\GeneralSetting::first();
                                     @endif
                             </a>
                         </li>
+                        @auth
+                        <li class="nav-item">
+                            <a class="nav-link {{ areActiveRoutesHome(['profile'])}}" href="{{route('profile')}}"> <span class="nav-indication mr-2">
+                                <i class="fa fa-eercast" aria-hidden="true"></i></span> Manage Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ areActiveRoutesHome(['purchase_history.index'])}}" href="{{route('purchase_history.index')}}"> <span class="nav-indication mr-2">
+                                <i class="fa fa-eercast" aria-hidden="true"></i></span>Purchase History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ areActiveRoutesHome(['support_ticket.index', 'support_ticket.show'])}}" href="{{route('support_ticket.index')}}"> <span class="nav-indication mr-2">
+                                <i class="fa fa-eercast" aria-hidden="true"></i></span>Support Ticket</a>
+                        </li>
+                        @endauth
                         {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
@@ -484,131 +497,30 @@ $generalsetting = \App\GeneralSetting::first();
                             <div class="dropdown-menu">
                                 <div class="container d-block">
                                     <div class="row">
-                                        @foreach (\App\Category::all()->take(6) as $key => $category)
+                                        @foreach (\App\Category::all() as $key => $category)
                                             
                                         
                                         <div class="col-md-12">
                                             <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="{{ route('products.category', $category->slug) }}">{{$category->name}}</a>
+                                                <li class="dropdown-submenu">
+                                                    <a class="test nav-link head font-weight-bold" tabindex="-1" href="#">{{$category->name}}<span class="caret"></span></a>
+                                                    {{-- <a class="nav-link head font-weight-bold"
+                                                        href="{{ route('products.category', $category->slug) }}">{{$category->name}}</a> --}}
+                                                    <ul class="dropdown-menu">
+                                                        @foreach ($category->subcategories as $sub)
+                                                        <li class="nav-item p-0">
+                                                            <a class="nav-link" href="{{ route('products.subcategory', $sub->slug) }}">{{$sub->name}}</a>
+                                                        </li>
+                                                        @endforeach
+                                                    </ul>
                                                 </li>
-                                                @foreach ($category->subcategories as $sub)
-                                                <li class="nav-item p-0 d-none">
-                                                    <a class="nav-link" href="{{ route('products.subcategory', $sub->slug) }}">{{$sub->name}}</a>
-                                                </li>
-                                                @endforeach
+
                                                 
                                             </ul>
                                         </div>
                                         @endforeach
-                                        {{-- <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 27</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 39</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 4</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 2</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 3</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <!-- /.col-md-12  -->
-                                        <div class="col-md-12">
-                                            <ul class="nav flex-column">
-                                                <li class="nav-item">
-                                                    <a class="nav-link head font-weight-bold"
-                                                        href="under-construction.html">Heading 4</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 1</a>
-                                                </li>
-                                                <li class="nav-item p-0">
-                                                    <a class="nav-link" href="under-construction.html">Item 2</a>
-                                                </li>
-                                            </ul>
-                                        </div> --}}
-                                        <!-- /.col-md-12  -->
                                     </div>
+
                                 </div>
                                 <!--  /.container  -->
                             </div>
@@ -748,10 +660,6 @@ $generalsetting = \App\GeneralSetting::first();
                                 </div>
                                 <!--  /.container  -->
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact-us.html"> <span class="nav-indication mr-2"><i
-                                        class="fa fa-eercast" aria-hidden="true"></i></span> Contact Us</a>
                         </li> --}}
                     </ul>
                 </div>

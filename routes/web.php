@@ -283,10 +283,15 @@ Route::resource('addresses','AddressController');
 Route::get('/addresses/destroy/{id}', 'AddressController@destroy')->name('addresses.destroy');
 Route::get('/addresses/set_default/{id}', 'AddressController@set_default')->name('addresses.set_default');
 
+Route::get('/contact-us','HomeController@contact_us')->name('contact');
+Route::post('/send-mail','HomeController@sendMail')->name('send-mail');
+
 Route::get('/faq', 'HomeController@faq')->name('faq');
 Route::get('/blogs', 'HomeController@blogs')->name('blog');
 Route::get('/career', 'HomeController@career')->name('career');
 Route::get('/blog/{id}', 'HomeController@blogDetails')->name('blogDetails');
 
 Route::get('/{slug}', 'PageController@show_custom_page')->name('custom-pages.show_custom_page');
+
+
 
