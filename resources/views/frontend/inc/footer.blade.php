@@ -57,23 +57,23 @@
                         </div>
                     </div>
                     <li>
-                        <a href="index.html"><span class="mr-2"><i class="fa fa-angle-right"
+                        <a href="{{route('home')}}"><span class="mr-2"><i class="fa fa-angle-right"
                                     aria-hidden="true"></i></span>Home</a>
                         </h5>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="about-us.html"><span class="mr-2"><i class="fa fa-angle-right"
                                     aria-hidden="true"></i></span>About Us</a></h5>
-                    </li>
+                    </li> --}}
 
                     <li>
-                        <a href="wishlist.html"><span class="mr-2"><i class="fa fa-angle-right"
-                                    aria-hidden="true"></i></span>Wishlist</a></h5>
+                        <a href="{{route('wishlists.index')}}"><span class="mr-2"><i class="fa fa-angle-right"
+                                    aria-hidden="true"></i></span>Wishlists</a></h5>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="contact-us.html"><span class="mr-2"><i class="fa fa-angle-right"
                                     aria-hidden="true"></i></span>Contact Us</a></h5>
-                    </li>
+                    </li> --}}
 
                 </ul>
             </div>
@@ -86,23 +86,41 @@
                             </a>
                         </div>
                     </div>
+                    @auth
                     <li>
-                        <a href="dashboard.html"><span class="mr-2"><i class="fa fa-angle-right"
+                        <a href="{{route('dashboard')}}"><span class="mr-2"><i class="fa fa-angle-right"
                                     aria-hidden="true"></i></span>Dashboard</a>
                         </h5>
                     </li>
                     <li>
+                        <a href="{{route('profile')}}"><span class="mr-2"><i class="fa fa-angle-right"
+                                    aria-hidden="true"></i></span>Manage Profile</a></h5>
+                    </li>
+                    <li>
+                        <a href="{{route('logout')}}"><span class="mr-2"><i class="fa fa-angle-right"
+                                    aria-hidden="true"></i></span>Logout</a>
+                        </h5>
+                    </li>
+                    @else
+                    <li>
+                        <a href="{{route('users.login')}}"><span class="mr-2"><i class="fa fa-angle-right"
+                                    aria-hidden="true"></i></span>Login</a>
+                        </h5>
+                    </li>
+                    <li>
+                        <a href="{{route('users.registration')}}"><span class="mr-2"><i class="fa fa-angle-right"
+                                    aria-hidden="true"></i></span>Register</a>
+                        </h5>
+                    </li>
+                    @endauth
+                    {{-- <li>
                         <a href="cart.html"><span class="mr-2"><i class="fa fa-angle-right"
                                     aria-hidden="true"></i></span>Cart</a></h5>
                     </li>
                     <li>
-                        <a href="manage-profile.html"><span class="mr-2"><i class="fa fa-angle-right"
-                                    aria-hidden="true"></i></span>Manage Profile</a></h5>
-                    </li>
-                    <li>
                         <a href="order.html"><span class="mr-2"><i class="fa fa-angle-right"
                                     aria-hidden="true"></i></span>Order</a></h5>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>
