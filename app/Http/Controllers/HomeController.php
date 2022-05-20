@@ -27,13 +27,16 @@ use App\Coupon;
 use App\Faq;
 use App\Http\Controllers\SearchController;
 use App\Location;
+use App\Models\GeneralSetting;
 use App\Recommend;
 use App\State;
 use ImageOptimizer;
 use Cookie;
 use Exception;
 use Response;
+use App\Mail\CustomerEmail;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -899,5 +902,25 @@ class HomeController extends Controller
         $blog = Blog::where('id',$id)->first();
         $blogs = Blog::where('published',1)->where('id','!=',$id)->get();
         return view('frontend.blogDetails',compact('blog','blogs'));
+    }
+
+    public function contact_us(){
+        $info = GeneralSetting::first();
+        return view('frontend.contact',compact('info'));
+    }
+
+    public function sendMail(Request $request){
+        $array['view'] = 'emails.newsletter';
+        $array['subject'] = $request->subject;
+        $array['phone'] = $request->phone;
+        $array['from'] = \Config::get('mail.username');
+        $array['content'] = 'Phone :'.$request->phone.'<br>'.$request->message;
+        try {
+            Mail::to(User::where('user_type', 'admin')->first()->email)->send(new CustomerEmail($array));
+        } catch (\Exception $e) {
+            flash($e->getMessage())->error();
+        }
+        flash("Message sent")->success();
+        return redirect()->back()->with('success','Message sent');
     }
 }

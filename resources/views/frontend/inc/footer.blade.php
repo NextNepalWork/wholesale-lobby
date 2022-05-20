@@ -70,10 +70,10 @@
                         <a href="{{route('wishlists.index')}}"><span class="mr-2"><i class="fa fa-angle-right"
                                     aria-hidden="true"></i></span>Wishlists</a></h5>
                     </li>
-                    {{-- <li>
-                        <a href="contact-us.html"><span class="mr-2"><i class="fa fa-angle-right"
+                    <li>
+                        <a href="{{route('contact')}}"><span class="mr-2"><i class="fa fa-angle-right"
                                     aria-hidden="true"></i></span>Contact Us</a></h5>
-                    </li> --}}
+                    </li>
 
                 </ul>
             </div>
@@ -103,12 +103,12 @@
                     </li>
                     @else
                     <li>
-                        <a href="{{route('users.login')}}"><span class="mr-2"><i class="fa fa-angle-right"
+                        <a href="{{route('user.login')}}"><span class="mr-2"><i class="fa fa-angle-right"
                                     aria-hidden="true"></i></span>Login</a>
                         </h5>
                     </li>
                     <li>
-                        <a href="{{route('users.registration')}}"><span class="mr-2"><i class="fa fa-angle-right"
+                        <a href="{{route('user.registration')}}"><span class="mr-2"><i class="fa fa-angle-right"
                                     aria-hidden="true"></i></span>Register</a>
                         </h5>
                     </li>
