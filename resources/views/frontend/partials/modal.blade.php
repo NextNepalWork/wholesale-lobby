@@ -13,56 +13,25 @@ $generalsetting = \App\GeneralSetting::first();
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body sub_search">
+                <div class="modal-body">
                     <form action="{{ route('search') }}" method="GET" class="d-flex">
-                        <input class="input_box" type="text" aria-label="Search" id="search" name="q" placeholder="Search..." autocomplete="off"/>
+                        <input class="input_box" type="text" aria-label="Search" id="search_mob" name="q" placeholder="Search..." autocomplete="off"/>
                         
-                     </form>
-                     </form>
+                    </form>
+                    <div class="type-search-box d-none">
+                        <div class="search-preloader">
+                            <div class="loader">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                        <div class="search-nothing d-none">
+                        </div>
+                        <div id="mob_search-content">
+                        </div>
+                    </div>
                 </div>
-                {{-- <div class="modal-footer my-auto border-0 w-100">
-                    <ul class="search-list-wrapper w-100">
-                        <li class="mb-2 p-1">
-                            <a href="product-detail.html">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <div class="image"> <img src="frontend/assets/images/product-images/1.jpg"
-                                                alt="search-list-image" class="img-fluid"></div>
-                                    </div>
-                                    <div class="col-10 m-auto">
-                                        <p class="m-0">Ham Cheese Burger</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="mb-2 p-1">
-                            <a href="product-detail.html">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <div class="image"> <img src="frontend/assets/images/product-images/1.jpg"
-                                                alt="search-list-image" class="img-fluid"></div>
-                                    </div>
-                                    <div class="col-10 m-auto">
-                                        <p class="m-0">Ham Cheese Burger</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="mb-2 p-1">
-                            <a href="product-detail.html">
-                                <div class="row">
-                                    <div class="col-2">
-                                        <div class="image"> <img src="frontend/assets/images/product-images/1.jpg"
-                                                alt="search-list-image" class="img-fluid"></div>
-                                    </div>
-                                    <div class="col-10 m-auto">
-                                        <p class="m-0">Ham Cheese Burger</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div> --}}
             </div>
         </div>
     </div>
@@ -85,7 +54,7 @@ $generalsetting = \App\GeneralSetting::first();
                         $total = 0;
                     @endphp
 
-                    <div class="modal-body">
+                    <div class="modal-body" id="cart_items">
                         <table class="w-100">
                             <tbody>
                                 @foreach($cart as $key => $cartItem)
@@ -117,96 +86,6 @@ $generalsetting = \App\GeneralSetting::first();
                                           <span><i class="fa fa-trash" aria-hidden="true" onclick="removeFromCart({{ $key }})"></i></span></a>
                                     </td>
                                 </tr>
-                                {{-- <tr>
-                                    <td class="pr-4 py-3">
-                                        <img src="frontend/assets/images/product-images/6.jpg" class="img-fluid">
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <a href="product-detail.html">
-                                            <div class="head font-weight-bold">
-                                                Cheese Platter x <span class="cart-quantity">1</span>
-                                            </div>
-                                            <div class="price">
-                                                Rs 1000
-                                            </div>
-                                        </a>
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <a class="btn"> <span><i class="fa fa-trash" aria-hidden="true"></i></span></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="pr-4 py-3">
-                                        <img src="frontend/assets/images/product-images/5.jpg" class="img-fluid">
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <a href="product-detail.html">
-                                            <div class="head font-weight-bold">
-                                                Cheese Platter x <span class="cart-quantity">1</span>
-                                            </div>
-                                            <div class="price">
-                                                Rs 1000
-                                            </div>
-                                        </a>
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <a class="btn"> <span><i class="fa fa-trash" aria-hidden="true"></i></span></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="pr-4 py-3">
-                                        <img src="frontend/assets/images/product-images/3.jpg" class="img-fluid">
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <a href="product-detail.html">
-                                            <div class="head font-weight-bold">
-                                                Cheese Platter x <span class="cart-quantity">1</span>
-                                            </div>
-                                            <div class="price">
-                                                Rs 1000
-                                            </div>
-                                        </a>
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <a class="btn"> <span><i class="fa fa-trash" aria-hidden="true"></i></span></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="pr-4 py-3">
-                                        <img src="frontend/assets/images/product-images/2.jpg" class="img-fluid">
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <a href="product-detail.html">
-                                            <div class="head font-weight-bold">
-                                                Cheese Platter x <span class="cart-quantity">1</span>
-                                            </div>
-                                            <div class="price">
-                                                Rs 1000
-                                            </div>
-                                        </a>
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <a class="btn"> <span><i class="fa fa-trash" aria-hidden="true"></i></span></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="pr-4 py-3">
-                                        <img src="frontend/assets/images/product-images/1.jpg" class="img-fluid">
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <a href="product-detail.html">
-                                            <div class="head font-weight-bold">
-                                                Cheese Platter x <span class="cart-quantity">1</span>
-                                            </div>
-                                            <div class="price">
-                                                Rs 1000
-                                            </div>
-                                        </a>
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <a class="btn"> <span><i class="fa fa-trash" aria-hidden="true"></i></span></a>
-                                    </td>
-                                </tr> --}}
                                 @endforeach
                             </tbody>
                         </table>
@@ -440,9 +319,9 @@ $generalsetting = \App\GeneralSetting::first();
                                     <i class="fa fa-shopping-bag" aria-hidden="true"></i>
                                 </span>
                                 @if(Session::has('cart'))
-                                    <sup class="cart-items text-white">{{ count(Session::get('cart'))}}</sup>
+                                    <sup class="cart-items text-white" id="cart_items_sidenav">{{ count(Session::get('cart'))}}</sup>
                                 @else
-                                    <sup class="cart-items text-white">0</sup>
+                                    <sup class="cart-items text-white" id="cart_items_sidenav">0</sup>
                                 @endif
                             </a>
                         </li>

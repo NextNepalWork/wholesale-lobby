@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-<section id="breadcrumb_item" class="pb-0 breadcrumb mb-0">
+<section id="breadcrumb" class="pb-0 breadcrumb mb-0">
     <div class="container">
        <div class="row">
           <div class="col-md-12 m-auto">
@@ -99,7 +99,7 @@
                                                 <div class="product-buttons">
                                                     <div class="row align-items-center">
                                                         <div class="col-8 mx-auto">
-                                                                <button type="button" class="btn btn-block btn-base-1 btn-circle btn-icon-left dashboard-wishlist-cart-btn" onclick="showAddToCartModal({{ $wishlist->product->id }})">
+                                                                <button type="button" class="btn btn-block btn-primary btn-circle btn-icon-left dashboard-wishlist-cart-btn" onclick="showAddToCartModal({{ $wishlist->product->id }})">
                                                                     <i class="la la-shopping-cart mr-2"></i>{{__('Add to cart')}}
                                                                 </button>
                                                         </div>

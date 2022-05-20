@@ -133,11 +133,11 @@
                                                     @if(home_price($detailedProduct->id) != home_discounted_price($detailedProduct->id))
                                                         <div class="product-price text-dark">
                                                             <div class="font-weight-bold">{{ home_discounted_price($detailedProduct->id) }}
-                                                                {{-- <span class="piece">/{{ $detailedProduct->unit }}</span> --}}
+                                                                <span class="piece">/{{ $detailedProduct->unit }}</span>
                                                             </div>
                                                             <div class="d-flex">
                                                                 <div class="first-price mr-2">{{ home_price($detailedProduct->id) }}
-                                                                    {{-- <span>/{{ $detailedProduct->unit }}</span> --}}
+                                                                    <span>/{{ $detailedProduct->unit }}</span>
                                                                 </div>
                                                                 <div class="discount">
                                                                     @if (! $detailedProduct->discount == 0)
@@ -151,7 +151,7 @@
                                                     @else
                                                         <div class="product-price text-dark">
                                                             <div class="font-weight-bold">{{ home_discounted_price($detailedProduct->id) }}
-                                                            {{-- <span class="piece">/{{ $detailedProduct->unit }}</span>--}}
+                                                            <span class="piece">/{{ $detailedProduct->unit }}</span>
                                                             </div> 
                                                         </div>
                                                     @endif
@@ -260,8 +260,8 @@
                                                                 <h5>Color</h5>
                                                                 <div class="my-color ml-5">
                                                                     @foreach (json_decode($detailedProduct->colors) as $key => $color)
-                                                                    <label class="radio m-0" style="background: {{ $color }};" for="{{ $detailedProduct->id }}-color-{{ $key }}" data-toggle="tooltip">
-                                                                        <input type="radio" id="{{ $detailedProduct->id }}-color-{{ $key }}" name="color" value="{{ $color }}" @if($key == 0) checked @endif>
+                                                                    <label class="radio m-0" style="background: {{ $color }}; width:30px; height:30px;" for="{{ $detailedProduct->id }}-color-{{ $key }}" data-toggle="tooltip">
+                                                                        <input type="radio" id="{{ $detailedProduct->id }}-color-{{ $key }}" name="color" value="{{ $color }}" @if($key == 0) checked @endif style="opacity:1">
                                                                         <span style="background:{{$color}}; border:{{$color}}"></span> 
                                                                     </label>
                                                                     @endforeach
@@ -299,7 +299,7 @@
                                                                             -
                                                                         </button>
                                                                     </span>
-                                                                    <input type="text" name="quantity" class="input-number text-center" placeholder="1" value="1" min="1" max="10">
+                                                                    <input type="text" name="quantity" class="input-number text-center" placeholder="1" value="10" min="10" max="100">
                                                                     <span class="input-group-btn plus" data-type="plus" data-field="quantity">
                                                                         <button class="btn btn-number" type="button" data-type="plus" data-field="quantity" style="padding:0px;">
                                                                             +
@@ -764,15 +764,15 @@
                             <div class="product-content mx-auto text-center">
                                 <h3 class="title text-center"> <a href="{{ route('product', $related_product->slug) }}" class="">{{ __($related_product->name) }}</a></h3>
                                 <div class="price text-center mb-1"> 
-                                    @if(home_base_price($product->id) != home_discounted_base_price($product->id))
-                                        <del class="old-product-price strong-400">{{ home_base_price($product->id) }}</del>
+                                    @if(home_base_price($related_product->id) != home_discounted_base_price($related_product->id))
+                                        <del class="old-product-price strong-400">{{ home_base_price($related_product->id) }}</del>
                                     @endif
-                                    <span class="product-price strong-600">{{ home_discounted_base_price($product->id) }}</span>    
+                                    <span class="product-price strong-600">{{ home_discounted_base_price($related_product->id) }}</span>    
                                 </div>
                                 <div class="enterprise text-center mb-2">Sold by: <span
                                     class="font-weight-bold">
-                                    @if ($product->added_by == 'seller' && \App\BusinessSetting::where('type', 'vendor_system_activation')->first()->value == 1)
-                                        <a href="{{ route('shop.visit', $product->user->shop->slug) }}">{{ $product->user->shop->name }}</a>
+                                    @if ($related_product->added_by == 'seller' && \App\BusinessSetting::where('type', 'vendor_system_activation')->first()->value == 1)
+                                        <a href="{{ route('shop.visit', $related_product->user->shop->slug) }}">{{ $related_product->user->shop->name }}</a>
                                     @else
                                         {{ __('Inhouse product') }}
                                     @endif

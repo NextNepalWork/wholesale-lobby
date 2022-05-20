@@ -11087,7 +11087,7 @@ ul.categories--style-3 > li > a {
 
 ul.categories--style-3 > li > a:hover {
     /* background-color: rgba(0, 0, 0, 0.05); */
-    background: var(--theme_color_sub);
+    background: var(--main-color) !important;
     border-radius: 2px;
     font-weight: 600;
 }
