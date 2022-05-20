@@ -112,7 +112,7 @@
                    </span>
                </a>
            </li>
-           @if (\App\BusinessSetting::where('type', 'wallet_system')->first()->value == 1)
+           {{-- @if (\App\BusinessSetting::where('type', 'wallet_system')->first()->value == 1)
                <li>
                    <a href="{{ route('wallet.index') }}" class="{{ areActiveRoutesHome(['wallet.index'])}}">
                        <i class="la la-dollar"></i>
@@ -133,7 +133,7 @@
                    </a>
                </li>
            @endif
-           @endif
+           @endif --}}
 
            {{-- @if (\App\Addon::where('unique_identifier', 'affiliate_system')->first() != null && \App\Addon::where('unique_identifier', 'affiliate_system')->first()->activated && Auth::user()->affiliate_user != null && Auth::user()->affiliate_user->status)
                <li>

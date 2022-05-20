@@ -87,7 +87,6 @@ $generalsetting = \App\GeneralSetting::first();
                 <div class="description text-center text-capitalize">
                     <div class="card">
                         <form class="form-inline search_top justify-content-between" action="{{ route('search') }}" method="GET">
-                        {{-- <input type="text" placeholder="Enter products name"> --}}
                         <input class="form-control border-0 search_input" type="search" aria-label="Search" id="search" name="q" placeholder="Search {{(Session::get('key'))?'for '.implode(',',array_slice(explode(',',Session::get('key')), -3)):''}}" autocomplete="off"/>
                         <div class="typed-search-box d-none">
                             <div class="search-preloader">
@@ -101,53 +100,6 @@ $generalsetting = \App\GeneralSetting::first();
                             </div>
                         </div>
                         </form>
-                        {{-- <div class="card-footer">
-                            <ul class="search-list-wrapper w-100">
-                                <li class="mb-2 p-1">
-                                    <a href="product-detail.html">
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <div class="image"> <img
-                                                        src="frontend/assets/images/product-images/1.jpg"
-                                                        alt="search-list-image" class="img-fluid"></div>
-                                            </div>
-                                            <div class="col-9 m-auto">
-                                                <p class="m-0 text-left">Ham Cheese Burger</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="mb-2 p-1">
-                                    <a href="product-detail.html">
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <div class="image"> <img
-                                                        src="frontend/assets/images/product-images/1.jpg"
-                                                        alt="search-list-image" class="img-fluid"></div>
-                                            </div>
-                                            <div class="col-9 m-auto">
-                                                <p class="m-0 text-left">Ham Cheese Burger</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="mb-2 p-1">
-                                    <a href="product-detail.html">
-                                        <div class="row">
-                                            <div class="col-3">
-                                                <div class="image"> <img
-                                                        src="frontend/assets/images/product-images/1.jpg"
-                                                        alt="search-list-image" class="img-fluid">
-                                                </div>
-                                            </div>
-                                            <div class="col-9 m-auto">
-                                                <p class="m-0 text-left">Ham Cheese Burger</p>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div> --}}
                         
                     </div>
                 </div>
@@ -162,9 +114,9 @@ $generalsetting = \App\GeneralSetting::first();
                                     <span class="mr-1"><i class="fa fa-shopping-bag"
                                             aria-hidden="true"></i></span>
                                     @if(Session::has('cart'))
-                                        <sup class="cart-items text-white">{{ count(Session::get('cart'))}}</sup>
+                                        <sup class="cart-items text-white" id="cart_items_sidenav">{{ count(Session::get('cart'))}}</sup>
                                     @else
-                                        <sup class="cart-items text-white">0</sup>
+                                        <sup class="cart-items text-white" id="cart_items_sidenav">0</sup>
                                     @endif
                                 </a>
                             </li>

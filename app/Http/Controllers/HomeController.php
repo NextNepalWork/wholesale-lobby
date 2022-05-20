@@ -664,7 +664,7 @@ class HomeController extends Controller
 
 
     
-        $products = filter_products($products)->paginate(12)->appends(request()->query());
+        $products = filter_products($products)->paginate(10)->appends(request()->query());
 
        
 

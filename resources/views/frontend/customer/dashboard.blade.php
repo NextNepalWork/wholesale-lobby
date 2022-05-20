@@ -2,12 +2,12 @@
 
 @section('content')
 
-<section id="breadcrumb_item" class="pb-0 breadcrumb mb-0">
+<section id="breadcrumb" class="pb-0 breadcrumb mb-0">
     <div class="container">
        <div class="row">
           <div class="col-md-12 m-auto">
              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
+                <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item font-weight-bold">
                         <a href="/"><span><i class="fa fa-home" aria-hidden="true"></i></span>
                         HOME</a>
@@ -16,13 +16,13 @@
                         <a href="" class="text-dark">
                         Dashboard</a>
                     </li>
-                  
                 </ol>
              </nav>
           </div>
        </div>
     </div>
  </section>
+ 
  <!--======================================================= BREADCRUMB END ======-->
   <!-- Dashboard Vndeor Wrapper -->
   <section id="dashboard-vendor-wrapper">
@@ -159,7 +159,7 @@
                                     {{ __('Default Shipping Address') }}
                                     <div class="float-right">
                                         <a href="{{ route('profile') }}"
-                                            class="btn btn-link btn-sm">{{ __('Edit') }}</a>
+                                            class="btn btn-primary btn-sm px-3">{{ __('Edit') }}</a>
                                     </div>
                                 </div>
                                 <div class="form-box-content p-3">

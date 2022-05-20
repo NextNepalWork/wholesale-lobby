@@ -421,7 +421,7 @@
     </div>
 
     <!-- Brands -->
-    <section id="categories-wrapper" class="py-5 bg-light">
+    {{-- <section id="categories-wrapper" class="py-5 bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -508,7 +508,7 @@
                 <!-- Content in col ends -->
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Brands Ends -->
 
     <div id="section_featured">

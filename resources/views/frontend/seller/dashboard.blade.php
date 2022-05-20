@@ -135,7 +135,7 @@
                                             @endforeach
                                         </ul>
                                         <div class="text-center">
-                                            <a href="{{ route('seller.products.upload')}}" class="btn pt-3 pb-1">{{__('Add New Product')}}</a>
+                                            <a href="{{ route('seller.products.upload')}}" class="btn btn-primary px-3 mt-2">{{__('Add New Product')}}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -173,12 +173,12 @@
                                 <div class="bg-white mt-4 p-4 text-center">
                                     <div class="heading-4 strong-700">{{__('Shop')}}</div>
                                     <p>{{__('Manage & organize your shop')}}</p>
-                                    <a href="{{ route('shops.index') }}" class="btn btn-outline btn-sm">{{__('Go to setting')}}</a>
+                                    <a href="{{ route('shops.index') }}" class="btn btn-primary btn-sm px-2">{{__('Go to setting')}}</a>
                                 </div>
                                 <div class="bg-white mt-4 p-4 text-center">
                                     <div class="heading-4 strong-700">{{__('Payment')}}</div>
                                     <p>{{__('Configure your payment method')}}</p>
-                                    <a href="{{ route('profile') }}" class="btn btn-outline btn-sm">{{__('Configure Now')}}</a>
+                                    <a href="{{ route('profile') }}" class="btn btn-primary btn-sm px-2">{{__('Configure Now')}}</a>
                                 </div>
                             </div>
                         </div>
