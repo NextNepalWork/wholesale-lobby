@@ -54,7 +54,7 @@ $generalsetting = \App\GeneralSetting::first();
                         $total = 0;
                     @endphp
 
-                    <div class="modal-body" id="cart_items">
+                    <div class="modal-body">
                         <table class="w-100">
                             <tbody>
                                 @foreach($cart as $key => $cartItem)
@@ -69,7 +69,6 @@ $generalsetting = \App\GeneralSetting::first();
                                         @else
                                             <img src="{{ asset('frontend/images/placeholder.jpg') }}" data-src="{{ asset('frontend/images/placeholder.jpg') }}" alt="{{ __($product->name) }}">
                                         @endif
-                                        {{-- <img src="frontend/assets/images/product-images/1.jpg" class="img-fluid"> --}}
                                     </td>
                                     <td class="px-4 py-3">
                                         <a href="{{route('product',$product->slug)}}">

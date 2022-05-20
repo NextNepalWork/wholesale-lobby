@@ -91,175 +91,86 @@ data-target="#nav-cart">
 </ul> --}}
 
 
-    <!-- Nav Cart Pop Up -->
-    <div class="modal fade" id="nav-cart" tabindex="-1" role="dialog" aria-labelledby="navcartlabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title m-auto" id="navcartlabel"> <span class="mr-2"><i class="fa fa-opencart"
-                                aria-hidden="true"></i></span> Cart List</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
+<!-- Nav Cart Pop Up -->
+<div class="modal fade" id="nav-cart" tabindex="-1" role="dialog" aria-labelledby="navcartlabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title m-auto" id="navcartlabel"> <span class="mr-2"><i class="fa fa-opencart"
+                            aria-hidden="true"></i></span> Cart List</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            @if (Session::has('cart'))
+                
+                @if(count($cart = Session::get('cart')) > 0)
+                @php
+                    $total = 0;
+                @endphp
+
+                <div class="modal-body">
+                    <table class="w-100">
+                        <tbody>
+                            @foreach($cart as $key => $cartItem)
+                            <tr>
+                                @php
+                                $product = \App\Product::find($cartItem['id']);
+                                $total = $total + $cartItem['price']*$cartItem['quantity'];
+                                @endphp
+                                <td class="pr-4 py-3">
+                                    @if (file_exists($product->featured_img)) 
+                                        <img src="{{ asset($product->featured_img) }}" data-src="{{ asset($product->featured_img) }}" alt="{{ __($product->name) }}">
+                                    @else
+                                        <img src="{{ asset('frontend/images/placeholder.jpg') }}" data-src="{{ asset('frontend/images/placeholder.jpg') }}" alt="{{ __($product->name) }}">
+                                    @endif
+                                    {{-- <img src="frontend/assets/images/product-images/1.jpg" class="img-fluid"> --}}
+                                </td>
+                                <td class="px-4 py-3">
+                                    <a href="{{route('product',$product->slug)}}">
+                                        <div class="head font-weight-bold">
+                                            {{$product->name}} x <span class="cart-quantity">{{ $cartItem['quantity'] }}</span>
+                                        </div>
+                                        <div class="price">
+                                            {{ single_price($cartItem['price']*$cartItem['quantity']) }}
+                                        </div>
+                                    </a>
+                                </td>
+                                <td class="px-4 py-3">
+                                    <a class="btn"> 
+                                        <span><i class="fa fa-trash" aria-hidden="true" onclick="removeFromCart({{ $key }})"></i></span></a>
+                                </td>
+                            </tr>
+                            
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-                @if (Session::has('cart'))
-                    
-                    @if(count($cart = Session::get('cart')) > 0)
-                    @php
-                        $total = 0;
-                    @endphp
+                <div class="modal-footer flex-column">
+                    <div class="total-amount pb-3 text-center d-block">
+                        Total : <span class="font-weight-bold">{{ single_price($total) }}</span>
+                    </div>
+                    <div class="d-flex justify-content-around align-items-center w-100">
+                        <a href="{{ route('cart') }}" type="button" class="effect m-auto">View Cart</a>
+                        @if (Auth::check())
+                        <a href="{{ route('checkout.shipping_info') }}" type="button" class="effect m-auto ">Proceed Checkout</a>
+                        </a>
+                        @endif
 
-                    <div class="modal-body">
-                        <table class="w-100">
-                            <tbody>
-                                @foreach($cart as $key => $cartItem)
-                                <tr>
-                                    @php
-                                    $product = \App\Product::find($cartItem['id']);
-                                    $total = $total + $cartItem['price']*$cartItem['quantity'];
-                                    @endphp
-                                    <td class="pr-4 py-3">
-                                        @if (file_exists($product->featured_img)) 
-                                            <img src="{{ asset($product->featured_img) }}" data-src="{{ asset($product->featured_img) }}" alt="{{ __($product->name) }}">
-                                        @else
-                                            <img src="{{ asset('frontend/images/placeholder.jpg') }}" data-src="{{ asset('frontend/images/placeholder.jpg') }}" alt="{{ __($product->name) }}">
-                                        @endif
-                                        {{-- <img src="frontend/assets/images/product-images/1.jpg" class="img-fluid"> --}}
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <a href="{{route('product',$product->slug)}}">
-                                            <div class="head font-weight-bold">
-                                                {{$product->name}} x <span class="cart-quantity">{{ $cartItem['quantity'] }}</span>
-                                            </div>
-                                            <div class="price">
-                                                {{ single_price($cartItem['price']*$cartItem['quantity']) }}
-                                            </div>
-                                        </a>
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <a class="btn"> 
-                                          <span><i class="fa fa-trash" aria-hidden="true" onclick="removeFromCart({{ $key }})"></i></span></a>
-                                    </td>
-                                </tr>
-                                {{-- <tr>
-                                    <td class="pr-4 py-3">
-                                        <img src="frontend/assets/images/product-images/6.jpg" class="img-fluid">
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <a href="product-detail.html">
-                                            <div class="head font-weight-bold">
-                                                Cheese Platter x <span class="cart-quantity">1</span>
-                                            </div>
-                                            <div class="price">
-                                                Rs 1000
-                                            </div>
-                                        </a>
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <a class="btn"> <span><i class="fa fa-trash" aria-hidden="true"></i></span></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="pr-4 py-3">
-                                        <img src="frontend/assets/images/product-images/5.jpg" class="img-fluid">
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <a href="product-detail.html">
-                                            <div class="head font-weight-bold">
-                                                Cheese Platter x <span class="cart-quantity">1</span>
-                                            </div>
-                                            <div class="price">
-                                                Rs 1000
-                                            </div>
-                                        </a>
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <a class="btn"> <span><i class="fa fa-trash" aria-hidden="true"></i></span></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="pr-4 py-3">
-                                        <img src="frontend/assets/images/product-images/3.jpg" class="img-fluid">
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <a href="product-detail.html">
-                                            <div class="head font-weight-bold">
-                                                Cheese Platter x <span class="cart-quantity">1</span>
-                                            </div>
-                                            <div class="price">
-                                                Rs 1000
-                                            </div>
-                                        </a>
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <a class="btn"> <span><i class="fa fa-trash" aria-hidden="true"></i></span></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="pr-4 py-3">
-                                        <img src="frontend/assets/images/product-images/2.jpg" class="img-fluid">
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <a href="product-detail.html">
-                                            <div class="head font-weight-bold">
-                                                Cheese Platter x <span class="cart-quantity">1</span>
-                                            </div>
-                                            <div class="price">
-                                                Rs 1000
-                                            </div>
-                                        </a>
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <a class="btn"> <span><i class="fa fa-trash" aria-hidden="true"></i></span></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="pr-4 py-3">
-                                        <img src="frontend/assets/images/product-images/1.jpg" class="img-fluid">
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <a href="product-detail.html">
-                                            <div class="head font-weight-bold">
-                                                Cheese Platter x <span class="cart-quantity">1</span>
-                                            </div>
-                                            <div class="price">
-                                                Rs 1000
-                                            </div>
-                                        </a>
-                                    </td>
-                                    <td class="px-4 py-3">
-                                        <a class="btn"> <span><i class="fa fa-trash" aria-hidden="true"></i></span></a>
-                                    </td>
-                                </tr> --}}
-                                @endforeach
-                            </tbody>
-                        </table>
                     </div>
-                    <div class="modal-footer flex-column">
-                        <div class="total-amount pb-3 text-center d-block">
-                            Total : <span class="font-weight-bold">{{ single_price($total) }}</span>
-                        </div>
-                        <div class="d-flex justify-content-around align-items-center w-100">
-                            <a href="{{ route('cart') }}" type="button" class="effect m-auto">View Cart</a>
-                            @if (Auth::check())
-                            <a href="{{ route('checkout.shipping_info') }}" type="button" class="effect m-auto ">Proceed Checkout</a>
-                            </a>
-                            @endif
-
-                        </div>
-                    </div>
-                    @else
-                    <div class="text-center">
-                        <h6 class="">{{__('Your Cart is empty')}}</h6>
-                    </div>
-                    @endif
+                </div>
                 @else
                 <div class="text-center">
                     <h6 class="">{{__('Your Cart is empty')}}</h6>
-                 </div>
+                </div>
                 @endif
-            </div>
+            @else
+            <div class="text-center">
+                <h6 class="">{{__('Your Cart is empty')}}</h6>
+                </div>
+            @endif
         </div>
     </div>
-    <!-- Nav Cart Pop Up Ends -->
+</div>
+<!-- Nav Cart Pop Up Ends -->
 

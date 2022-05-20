@@ -349,8 +349,8 @@
                         
                         
                                                     <ul class="d-flex mb-3 extralink">
-                                                        <li> <a onclick="addToCompare({{ $detailedProduct->id }})" class="mr-3">Add to Compare</a>
-                                                        </li>
+                                                        {{-- <li> <a onclick="addToCompare({{ $detailedProduct->id }})" class="mr-3">Add to Compare</a>
+                                                        </li> --}}
                                                         <li> <a onclick="addToWishList({{ $detailedProduct->id }})" class="mr-3">Add to Wishlist</a>
                                                         </li>
                                                     </ul>
