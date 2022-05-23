@@ -61,10 +61,10 @@
                                     aria-hidden="true"></i></span>Home</a>
                         </h5>
                     </li>
-                    {{-- <li>
+                    <li>
                         <a href="about-us.html"><span class="mr-2"><i class="fa fa-angle-right"
                                     aria-hidden="true"></i></span>About Us</a></h5>
-                    </li> --}}
+                    </li>
 
                     <li>
                         <a href="{{route('wishlists.index')}}"><span class="mr-2"><i class="fa fa-angle-right"

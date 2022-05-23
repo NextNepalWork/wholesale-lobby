@@ -4,7 +4,7 @@
 
 
 
-<section id="breadcrumb" class="pb-0 breadcrumb mb-0">
+{{-- <section id="breadcrumb" class="pb-0 breadcrumb mb-0">
     <div class="container">
        <div class="row">
           <div class="col-md-12 m-auto">
@@ -24,7 +24,7 @@
           </div>
        </div>
     </div>
- </section>
+</section> --}}
     <section class="gry-bg py-4 profile">
         <div class="container">
             <div class="row cols-xs-space cols-sm-space cols-md-space">
