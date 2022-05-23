@@ -55,13 +55,13 @@
                                         <td class="product-quantity d-none d-md-table-cell">
                                             <div class="input-group input-group--style-2 pr-4" style="width: 130px;">
                                                 <span class="input-group-btn">
-                                                    <button class="btn btn-number" type="button" data-type="minus" data-field="quantity[{{ $key }}]">
+                                                    <button class="btn btn-number pr-0" type="button" data-type="minus" data-field="quantity[{{ $key }}]" style="border:0">
                                                         <i class="la la-minus"></i>
                                                     </button>
                                                 </span>
                                                 <input type="text" name="quantity[{{ $key }}]" class="form-control input-number" placeholder="1" value="{{ $cartItem['quantity'] }}" min="1" max="10" onchange="updateQuantity({{ $key }}, this)">
                                                 <span class="input-group-btn">
-                                                    <button class="btn btn-number" type="button" data-type="plus" data-field="quantity[{{ $key }}]">
+                                                    <button class="btn btn-number pl-0" type="button" data-type="plus" data-field="quantity[{{ $key }}]" style="border:0">
                                                         <i class="la la-plus"></i>
                                                     </button>
                                                 </span>

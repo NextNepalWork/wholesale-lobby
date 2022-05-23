@@ -275,8 +275,8 @@
                                                                 <h5>Color</h5>
                                                                 <div class="my-color ml-5">
                                                                     @foreach (json_decode($detailedProduct->colors) as $key => $color)
-                                                                    <label class="radio m-0" style="background: {{ $color }}; width:30px; height:30px;" for="{{ $detailedProduct->id }}-color-{{ $key }}" data-toggle="tooltip">
-                                                                        <input type="radio" id="{{ $detailedProduct->id }}-color-{{ $key }}" name="color" value="{{ $color }}" @if($key == 0) checked @endif style="opacity:1">
+                                                                    <label class="radio m-0" style="background: {{ $color }};" for="{{ $detailedProduct->id }}-color-{{ $key }}" data-toggle="tooltip">
+                                                                        <input type="radio" id="{{ $detailedProduct->id }}-color-{{ $key }}" name="color" value="{{ $color }}" @if($key == 0) checked @endif>
                                                                         <span style="background:{{$color}}; border:{{$color}}"></span> 
                                                                     </label>
                                                                     @endforeach
@@ -370,15 +370,19 @@
                                                         </li>
                                                     </ul>
                                                     <div class="button-wrapper">
+                                                        
                                                         @if ($qty > 0)
-                                                            <button type="button" class="effect" onclick="addToCart()">
+                                                            <button type="button" class="effect add-to-cart" onclick="addToCart()">
                                                                 <span class=" d-md-inline-block"> {{__('Add to cart')}}</span>
                                                             </button>
-                                                            <button type="button" class="effect" onclick="buyNow()">
+                                                            <button type="button" class="effect buy-now" onclick="buyNow()">
                                                                     {{__('Buy Now')}}
                                                             </button>
+                                                            <button type="button" class="effect out-of-stock" disabled>
+                                                                {{__('Out of Stock')}}
+                                                            </button>
                                                         @else
-                                                            <button type="button" class="effect" disabled>
+                                                            <button type="button" class="effect out-of-stock" disabled>
                                                                     {{__('Out of Stock')}}
                                                             </button>
                                                         @endif
