@@ -27,8 +27,16 @@
                                             <div class="product-grid-item2 d-flex align-items-center mx-2">
                                                 <div class="product-grid-image2">
                                                     <a href="{{ route('products.subcategory', $sub->slug) }}">
-                                                        <img src="https://hm.imimg.com/imhome_gifs/cvid03.png" alt="img"
-                                                            class="img-fluid pic-1"> </a>
+                                                        @if (!empty($sub->icon))
+                                                            @if (file_exists($sub->icon))
+                                                                <img src="{{asset($sub->icon)}}" alt="img" class="img-fluid pic-1">
+                                                            @else
+                                                                <img src="{{asset('frontend/images/placeholder.jpg')}}" alt="img" class="img-fluid pic-1">
+                                                            @endif
+                                                        @else
+                                                            <img src="{{asset('frontend/images/placeholder.jpg')}}" alt="img" class="img-fluid pic-1">
+                                                        @endif
+                                                             </a>
                                                 </div>
 
 
