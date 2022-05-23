@@ -658,7 +658,7 @@
                                             @endphp
                                         @endif
                                     @endforeach
-                                    {{-- @if ($commentable) --}}
+                                    @if ($commentable)
                                     <div class="col-lg-4 col-12 mx-auto">
                                         <!-- User Comment -->
                                         <div class="user-comment py-4 px-3">
@@ -710,7 +710,7 @@
                                         </div>
                                         <!-- User Comment Ends-->
                                     </div>
-                                    {{-- @endif --}}
+                                    @endif
                                 @endif
                             </div>
                         </div>

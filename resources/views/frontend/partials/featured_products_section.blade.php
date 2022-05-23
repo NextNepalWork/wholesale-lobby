@@ -18,15 +18,15 @@
                     <div class="product-grid-item">
                         <div class="product-grid-image">
                             <a href="{{route('product',$product->slug)}}"> 
-                                @if (!empty($product->thumbnail_img))
-                                    @if(file_exists($product->thumbnail_img))
-                                        <img src="{{asset($product->thumbnail_img)}}" alt="img" class="img-fluid pic-1">
+                                @if (!empty($product->featured_img))
+                                    @if(file_exists($product->featured_img))
+                                        <img src="{{asset($product->featured_img)}}" alt="img" class="img-fluid pic-1">
                                     @else
-                                    <img src="https://5.imimg.com/data5/NT/DP/MY-4226038/submersible-pump-sets-250x250.jpg" alt="img" class="img-fluid pic-1">
+                                    <img src="{{asset('frontend/images/placeholder.jpg')}}" alt="img" class="img-fluid pic-1">
 
                                     @endif
                                 @else
-                                <img src="https://5.imimg.com/data5/NT/DP/MY-4226038/submersible-pump-sets-250x250.jpg" alt="img" class="img-fluid pic-1">
+                                <img src="{{asset('frontend/images/placeholder.jpg')}}" alt="img" class="img-fluid pic-1">
                                     
                                 @endif
  

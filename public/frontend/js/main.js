@@ -160,6 +160,7 @@ $(".slick-slider-listing2").slick({
     slidesToScroll: 1,
     arrows: true,
     dots: false,
+    autoplay: true,
     responsive: [
         {
             breakpoint: 1400,
