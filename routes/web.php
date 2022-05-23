@@ -22,6 +22,11 @@ Route::get('clear', function () {
     Artisan::call('config:cache');
 });
 
+Route::get('clear2', function () {
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+});
+
 
 Auth::routes(['verify' => true]);
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
