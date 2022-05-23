@@ -31,6 +31,7 @@
                 <tr>
                     <th>#</th>
                     <th>{{__('Subcategory')}}</th>
+                    <th>{{__('Icon')}}</th>
                     <th>{{__('Category')}}</th>
                     <th width="10%">{{__('Options')}}</th>
                 </tr>
@@ -41,6 +42,7 @@
                         <tr>
                             <td>{{ ($key+1) + ($subcategories->currentPage() - 1)*$subcategories->perPage() }}</td>
                             <td>{{__($subcategory->name)}}</td>
+                            <td><img loading="lazy"  class="img-xs" src="{{ asset($subcategory->icon) }}" alt="{{__('icon')}}"></td>
                             <td>{{$subcategory->category->name}}</td>
                             <td>
                                 <div class="btn-group dropdown">

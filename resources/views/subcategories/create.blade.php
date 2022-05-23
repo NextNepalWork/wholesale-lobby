@@ -20,6 +20,12 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="col-sm-3 control-label" for="icon">{{__('Icon')}} <small>(32x32)</small></label>
+                    <div class="col-sm-9">
+                        <input type="file" id="icon" name="icon" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="col-sm-3 control-label" for="name">{{__('Category')}}</label>
                     <div class="col-sm-9">
                         <select name="category_id" required class="form-control demo-select2-placeholder">

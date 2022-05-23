@@ -27,7 +27,7 @@
     <section id="navigation-wrapper" class="navigation-wrap">
         <nav class="navbar header-sticky px-3">
             <div class="navbar-menus d-xl-block d-lg-block d-none w-100" id="navbarmain">
-                <ul class="navbar-nav py-4 py-md-0 d-flex flex-row flex-wrap justify-content-center role=" menu">
+                <ul class="navbar-nav py-4 py-md-0 d-flex flex-row flex-wrap justify-content-center" role=" menu">
                     @foreach (\App\Category::all()->take(6) as $key => $category)
 
                     <li class="nav-item">
@@ -91,6 +91,69 @@
         </nav>
     </section>
     <!-- Navigation Ends -->
+    @php
+$flash_deal = \App\FlashDeal::where('status', 1)->where('featured', 1)->first();
+$time = date('Y-m-d H:i:s',$flash_deal->end_date);
+@endphp
+@if($flash_deal != null && strtotime(date('Y-m-d H:i:s')) >= $flash_deal->start_date && strtotime(date('Y-m-d H:i:s')) <= $flash_deal->end_date)
+<section class="product-listing position-relative pt-5 bg-white">
+    <div class="container">
+        <div class="product-lists">
+            <div class="row">
+                <div class="col-12">
+                    <div class="heading d-flex justify-content-between align-items-center flex-wrap">
+                        <div class="head">
+                            <h4 class="font-weight-bold">Flash Sale</h4>
+                            <!-- <p class="m-0">THERE'S SOMETHING FOR EVERYONE</p> -->
+                        </div>
+                        <div class="flash-deal-box float-left d-flex">
+                            <span class="d-flex align-items-center">Offer Ends in : </span> 
+                           <div class="countdown countdown--style-1 countdown--style-1-v1 " data-countdown-date="{{ date('Y-m-d H:i:s', $flash_deal->end_date) }}" data-countdown-label="show"></div>
+                        </div>
+                        {{-- <div class="navigator"> <a href="product-list.html">See all</a> </div> --}}
+                    </div>
+                </div>
+            </div>
+            <div class="slick-slider-flash">
+                @foreach ($flash_deal->flash_deal_products as $key => $flash_deal_product)
+                @php
+                    $product = \App\Product::find($flash_deal_product->product_id);
+                @endphp
+                @if ($product != null && $product->published != 0)
+                
+                <div class="slick-item position-relative">
+                    <div class="product-grid-item2 d-flex align-items-center mx-2">
+                        <div class="product-grid-image2">
+                            <a href="{{route('product',$product->slug)}}">
+                                @if (!empty($product->featured_img))
+                                    @if (file_exists($product->featured_img))
+                                        <img src="{{asset($product->featured_img)}}" alt="img" class="img-fluid pic-1">
+                                    @else
+                                        <img src="{{asset('frontend/images/placeholder.jpg')}}" alt="img" class="img-fluid pic-1">
+                                    @endif
+                                @else 
+                                    <img src="{{asset('frontend/images/placeholder.jpg')}}" alt="img" class="img-fluid pic-1">
+                                @endif 
+                            </a>
+                        </div>
+                        <div class="product-content">
+                            <ul>
+                                <li class="title mb-2"><a href="{{ route('products.subcategory', $product->subcategory->slug) }}" class=" font-weight-bold" title="{{$product->subcategory->name}}">{{$product->subcategory->name}}</a></li>
+                                <li>
+                                    <a href="{{route('product',$product->slug)}}" title="{{$product->name}}">{{$product->name}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @endforeach
+            </div>
+        </div>
+    </div>
+</section>  
+
+@endif
     <!-- Product Listing -->
     <section class="product-listing position-relative pt-5 bg-light">
         <div class="container">
@@ -136,246 +199,6 @@
                         </div>
                     </div>
                     @endforeach
-                    {{-- <div class="slick-item position-relative py-4 mx-2">
-                        <div class="product-grid-item2 d-flex align-items-center">
-                            <div class="product-grid-image2">
-                                <a href="product-list.html">
-                                    <img src="https://hm.imimg.com/imhome_gifs/cvid03.png" alt="img"
-                                        class="img-fluid pic-1"> </a>
-                            </div>
-                            <div class="product-content">
-                                <ul>
-                                    <li class="title mb-2"><a href="" class=" font-weight-bold">Medical Essential ,
-                                            Safety &
-                                            Protective Clothing
-                                            and Apparel</a></li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-grid-item2 d-flex align-items-center">
-                            <div class="product-grid-image2">
-                                <a href="product-list.html">
-                                    <img src="http://3.imimg.com/data3/TH/GC/GLADMIN-56254/oxygen-cylinders-125x125.jpg"
-                                        alt="img" class="img-fluid pic-1"> </a>
-                            </div>
-                            <div class="product-content">
-                                <ul>
-                                    <li class="title mb-2"><a href="" class=" font-weight-bold">Medical
-                                            Essential ,
-                                            Safety &
-                                            Protective Clothing
-                                            and Apparel</a></li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slick-item position-relative py-4 mx-2">
-                        <div class="product-grid-item2 d-flex align-items-center">
-                            <div class="product-grid-image2">
-                                <a href="product-list.html">
-                                    <img src="https://hm.imimg.com/imhome_gifs/cvid03.png" alt="img"
-                                        class="img-fluid pic-1"> </a>
-                            </div>
-                            <div class="product-content">
-                                <ul>
-                                    <li class="title mb-2"><a href="" class=" font-weight-bold">Medical Essential ,
-                                            Safety &
-                                            Protective Clothing
-                                            and Apparel</a></li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-grid-item2 d-flex align-items-center">
-                            <div class="product-grid-image2">
-                                <a href="product-list.html">
-                                    <img src="http://3.imimg.com/data3/TH/GC/GLADMIN-56254/oxygen-cylinders-125x125.jpg"
-                                        alt="img" class="img-fluid pic-1"> </a>
-                            </div>
-                            <div class="product-content">
-                                <ul>
-                                    <li class="title mb-2"><a href="" class=" font-weight-bold">Medical
-                                            Essential ,
-                                            Safety &
-                                            Protective Clothing
-                                            and Apparel</a></li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slick-item position-relative py-4 mx-2">
-                        <div class="product-grid-item2 d-flex align-items-center">
-                            <div class="product-grid-image2">
-                                <a href="product-list.html">
-                                    <img src="https://hm.imimg.com/imhome_gifs/cvid03.png" alt="img"
-                                        class="img-fluid pic-1"> </a>
-                            </div>
-                            <div class="product-content">
-                                <ul>
-                                    <li class="title mb-2"><a href="" class=" font-weight-bold">Medical Essential ,
-                                            Safety &
-                                            Protective Clothing
-                                            and Apparel</a></li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-grid-item2 d-flex align-items-center">
-                            <div class="product-grid-image2">
-                                <a href="product-list.html">
-                                    <img src="http://3.imimg.com/data3/TH/GC/GLADMIN-56254/oxygen-cylinders-125x125.jpg"
-                                        alt="img" class="img-fluid pic-1"> </a>
-                            </div>
-                            <div class="product-content">
-                                <ul>
-                                    <li class="title mb-2"><a href="" class=" font-weight-bold">Medical
-                                            Essential ,
-                                            Safety &
-                                            Protective Clothing
-                                            and Apparel</a></li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slick-item position-relative py-4 mx-2">
-                        <div class="product-grid-item2 d-flex align-items-center">
-                            <div class="product-grid-image2">
-                                <a href="product-list.html">
-                                    <img src="https://hm.imimg.com/imhome_gifs/cvid03.png" alt="img"
-                                        class="img-fluid pic-1"> </a>
-                            </div>
-                            <div class="product-content">
-                                <ul>
-                                    <li class="title mb-2"><a href="" class=" font-weight-bold">Medical Essential ,
-                                            Safety &
-                                            Protective Clothing
-                                            and Apparel</a></li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-grid-item2 d-flex align-items-center">
-                            <div class="product-grid-image2">
-                                <a href="product-list.html">
-                                    <img src="http://3.imimg.com/data3/TH/GC/GLADMIN-56254/oxygen-cylinders-125x125.jpg"
-                                        alt="img" class="img-fluid pic-1"> </a>
-                            </div>
-                            <div class="product-content">
-                                <ul>
-                                    <li class="title mb-2"><a href="" class=" font-weight-bold">Medical
-                                            Essential ,
-                                            Safety &
-                                            Protective Clothing
-                                            and Apparel</a></li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                    <li>
-                                        <a href="product-detail.html">3 Ply Face Mask</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
         </div>
@@ -514,13 +337,49 @@
     <div id="section_featured">
 
     </div>
+@php
+$today = date('Y-m-d H:i:s');
+// dd($today);
+@endphp
 @endsection
     
 
 
 @section('script')
 <script>
+
     $(document).ready(function() {
+        // flash counter
+        var data = @json($time);
+        var today = @json($today);
+        // console.log(data);
+        var countDownDate = new Date(data).getTime();
+        // console.log('countDownDate'+countDownDate)
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+            // Get today's date and time
+            var now = new Date(today).getTime();
+        // console.log('now'+now)
+            //   alert(countDownDate);
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+        // console.log('distance'+distance)
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            // console.log(document.getElementsByClassName("demo"));
+            // Output the result in an element with id="demo"
+            $('.demo').text(days + " days : " + hours + " hours : " + minutes + " minutes : " + seconds + " seconds");
+            //document.getElementsByClassName("demo").innerHTML = days + "d " + hours + "h "+ minutes + "m " + seconds + "s ";
+            // If the count down is over, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                $('.demo').text("EXPIRED");
+                //document.getElementsByClassName("demo").innerHTML = "EXPIRED";
+            }
+        }, 1000);
         
         $.post('{{ route('home.section.featured')}}', {_token:'{{ csrf_token() }}'
             },

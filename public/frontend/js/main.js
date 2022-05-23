@@ -120,6 +120,39 @@ $(".slick-slider-category").slick({
     ],
 });
 // Category Slick Slider Ends
+//flash deal
+$(".slick-slider-flash").slick({
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: true,
+    dots: false,
+    autoplay: true,
+    responsive: [
+        {
+            breakpoint: 1400,
+            settings: {
+                slidesToShow: 4,
+                slidesToScroll: 1,
+            },
+        },
+        {
+            breakpoint: 1080,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+            },
+        },
+        {
+            breakpoint: 780,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+            },
+        },
+    ],
+});
+//flash deal ends
 // Product Listing Slick Slider Starts
 $(".slick-slider-listing").slick({
     infinite: true,
@@ -128,6 +161,7 @@ $(".slick-slider-listing").slick({
     arrows: true,
     dots: false,
     rows: 2,
+    autoplay: true,
     responsive: [
         {
             breakpoint: 1400,

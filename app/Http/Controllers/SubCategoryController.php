@@ -49,6 +49,9 @@ class SubCategoryController extends Controller
     {
         $subcategory = new SubCategory;
         $subcategory->name = $request->name;
+        if($request->hasFile('icon')){
+            $subcategory->icon = $request->file('icon')->store('uploads/subcategories/icon');
+        }
         $subcategory->category_id = $request->category_id;
         $subcategory->meta_title = $request->meta_title;
         $subcategory->meta_description = $request->meta_description;
@@ -116,6 +119,9 @@ class SubCategoryController extends Controller
         }
 
         $subcategory->name = $request->name;
+        if($request->hasFile('icon')){
+            $subcategory->icon = $request->file('icon')->store('uploads/subcategories/icon');
+        }
         $subcategory->category_id = $request->category_id;
         $subcategory->meta_title = $request->meta_title;
         $subcategory->meta_description = $request->meta_description;

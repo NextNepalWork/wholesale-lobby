@@ -117,6 +117,7 @@
 
 
     <link type="text/css" href="{{ asset('frontend-old/css/main.css') }}" rel="stylesheet" media="all">
+    
 
 
     @if(\App\Language::where('code', Session::get('locale', Config::get('app.locale')))->first()->rtl == 1)
@@ -705,13 +706,16 @@ $('.address-district').on('change',function(e){
                         $('#option-choice-form #chosen_price_div #chosen_price').html(data.price);
                         $('#available-quantity').html(data.quantity);
                         $('.input-number').prop('max', data.quantity);
-                        //console.log(data.quantity);
-                        if (parseInt(data.quantity) < 1 && data.digital != 1) {
+                        
+                        if (parseInt(data.quantity) < 1 && data.digital != 1 ) {
                             $('.buy-now').hide();
                             $('.add-to-cart').hide();
-                        } else {
+                            $('.out-of-stock').show();
+                        }else {
                             $('.buy-now').show();
                             $('.add-to-cart').show();
+                            $('.out-of-stock').hide();
+
                         }
                     }
                 });
