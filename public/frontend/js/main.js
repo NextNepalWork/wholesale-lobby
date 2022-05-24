@@ -13,11 +13,15 @@ function myFunction() {
 $(window).scroll(function () {
     var scroll = $(window).scrollTop();
     if (scroll > 350) {
-        $(".navigation-wrap").css("border-bottom", "0.5px solid #41B54A");
+        $("#top-header-navigation-wrapper").css(
+            "border-bottom",
+            "0.5px solid #41B54A"
+        );
     } else {
-        $(".navigation-wrap").css("border-bottom", "unset");
+        $("#top-header-navigation-wrapper").css("border-bottom", "unset");
     }
 }); // Navigation Js Scroll Ends
+
 // Brand Slick Slider Starts
 $(".our_brand").slick({
     infinite: true,
@@ -841,10 +845,10 @@ $(".banner-search").slick({
     slidesToScroll: 1,
     fade: true,
     speed: 300,
-    arrows: true,
+    arrows: false,
     // centerMode: true,
     autoplay: true,
-    dots: false,
+    dots: true,
     responsive: [
         {
             breakpoint: 325,

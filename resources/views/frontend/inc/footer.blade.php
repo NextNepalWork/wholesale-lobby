@@ -61,8 +61,18 @@
                                     aria-hidden="true"></i></span>Home</a>
                         </h5>
                     </li>
+                    @php
+                        $about=\App\Page::where('slug','about')->first();
+                        if ($about == null) {
+                            $about = new \App\Page();
+                            $about->title='About';
+                            $about->slug='about';
+                            $about->content='content';
+                            $about->save();
+                        }
+                    @endphp
                     <li>
-                        <a href="about-us.html"><span class="mr-2"><i class="fa fa-angle-right"
+                        <a href="{{route('custom-pages.show_custom_page',$about->slug)}}"><span class="mr-2"><i class="fa fa-angle-right"
                                     aria-hidden="true"></i></span>About Us</a></h5>
                     </li>
 

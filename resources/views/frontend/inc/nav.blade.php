@@ -69,7 +69,7 @@ $generalsetting = \App\GeneralSetting::first();
     </div>
 </div>
 <!-- Top Header Navigation -->
-<header id="top-header-navigation-wrapper" class="position-relative">
+<header id="top-header-navigation-wrapper" class="">
     <div class="container">
         <div class="top-header d-flex justify-content-between align-items-center py-1">
             <div class="image">
