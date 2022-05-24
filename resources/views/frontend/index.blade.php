@@ -91,7 +91,7 @@
         </nav>
     </section>
     <!-- Navigation Ends -->
-    @php
+    {{-- @php
 $flash_deal = \App\FlashDeal::where('status', 1)->where('featured', 1)->first();
 $time = date('Y-m-d H:i:s',$flash_deal->end_date);
 @endphp
@@ -104,13 +104,11 @@ $time = date('Y-m-d H:i:s',$flash_deal->end_date);
                     <div class="heading d-flex justify-content-between align-items-center flex-wrap">
                         <div class="head">
                             <h4 class="font-weight-bold">Flash Sale</h4>
-                            <!-- <p class="m-0">THERE'S SOMETHING FOR EVERYONE</p> -->
                         </div>
                         <div class="flash-deal-box float-left d-flex">
                             <span class="d-flex align-items-center">Offer Ends in : </span> 
                            <div class="countdown countdown--style-1 countdown--style-1-v1 " data-countdown-date="{{ date('Y-m-d H:i:s', $flash_deal->end_date) }}" data-countdown-label="show"></div>
                         </div>
-                        {{-- <div class="navigator"> <a href="product-list.html">See all</a> </div> --}}
                     </div>
                 </div>
             </div>
@@ -153,7 +151,7 @@ $time = date('Y-m-d H:i:s',$flash_deal->end_date);
     </div>
 </section>  
 
-@endif
+@endif --}}
     <!-- Product Listing -->
     <section class="product-listing position-relative pt-5 bg-light">
         <div class="container">
@@ -349,37 +347,7 @@ $today = date('Y-m-d H:i:s');
 <script>
 
     $(document).ready(function() {
-        // flash counter
-        var data = @json($time);
-        var today = @json($today);
-        // console.log(data);
-        var countDownDate = new Date(data).getTime();
-        // console.log('countDownDate'+countDownDate)
-        // Update the count down every 1 second
-        var x = setInterval(function() {
-            // Get today's date and time
-            var now = new Date(today).getTime();
-        // console.log('now'+now)
-            //   alert(countDownDate);
-            // Find the distance between now and the count down date
-            var distance = countDownDate - now;
-        // console.log('distance'+distance)
-            // Time calculations for days, hours, minutes and seconds
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            // console.log(document.getElementsByClassName("demo"));
-            // Output the result in an element with id="demo"
-            $('.demo').text(days + " days : " + hours + " hours : " + minutes + " minutes : " + seconds + " seconds");
-            //document.getElementsByClassName("demo").innerHTML = days + "d " + hours + "h "+ minutes + "m " + seconds + "s ";
-            // If the count down is over, write some text
-            if (distance < 0) {
-                clearInterval(x);
-                $('.demo').text("EXPIRED");
-                //document.getElementsByClassName("demo").innerHTML = "EXPIRED";
-            }
-        }, 1000);
+        
         
         $.post('{{ route('home.section.featured')}}', {_token:'{{ csrf_token() }}'
             },
