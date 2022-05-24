@@ -283,10 +283,10 @@
     <script src="{{ asset('frontend-old/js/active-shop.js') }}"></script>
     <script src="{{ asset('frontend-old/js/main.js') }}"></script>
     <script src="{{asset('frontend-old/js/script-new.js')}}"></script>
-        <!-- Custom Js  -->
-        <script src="{{asset('frontend/js/main.js')}}"></script>
+    <!-- Custom Js  -->
+    <script src="{{asset('frontend/js/main.js')}}"></script>
 
-        <!-- Custom Js Ends -->
+    <!-- Custom Js Ends -->
 
     @if ($generalsetting->pop_status == 1)
     <script type="text/javascript">

@@ -184,7 +184,7 @@
                                     <!-- card-group-item.// -->
                                 </div>
                                 <!-- Content Ends -->
-                                {{-- <div class="card-wrapper mb-2">
+                                <div class="card-wrapper mb-2">
                                     <div class="card-group-item">
                                         <div class="card-head">
                                             <div class="heading d-flex align-items-center text-center flex-wrap  p-2">
@@ -226,13 +226,16 @@
                                                                     id="input-slider-range-value-high">
                                                                 </span>
                                                             </div>
+                                                            <input class="hidden" type="text" name="min_price">
+                                                            <input class="hidden" type="text" name="max_price">
+
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         
                                     </div>
-                                </div> --}}
+                                </div>
                                 @if (!empty($all_colors))
                                     <div class="card-wrapper mt-4 mb-2">
                                         <div class="card-group-item">
@@ -441,7 +444,7 @@
                                         <div class="row py-3 mb-3">
                                             <div class="col-lg-8 col-12 post">
                                                 <div
-                                                    class="product-grid-item d-flex align-items-center flex-wrap justify-content-center">
+                                                    class="product-grid-item d-flex align-items-center flex-wrap">
                                                     <div class="product-grid-image">
                                                         <a href="{{route('product',$product->slug)}}"> 
                                                             @if(!empty($product->featured_img))
@@ -1221,7 +1224,7 @@
             $('#search-form').submit();
         }
         function rangefilter(arg){
-            console.log(arg[0]);
+            console.log(arg[0],arg[1]);
             $('input[name=min_price]').val(arg[0]);
             $('input[name=max_price]').val(arg[1]);
             filter();
