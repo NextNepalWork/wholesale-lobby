@@ -295,6 +295,9 @@ sup {
 /* Top Header Navigation */
 #top-header-navigation-wrapper {
     background-color: white;
+    position: sticky;
+    top: 0;
+    z-index: 5;
 }
 
 #top-header-navigation-wrapper ul li a {
@@ -484,10 +487,9 @@ sup {
 }
 
 #banner-categories-wrapper {
-    overflow: hidden;
     z-index: 4;
-    max-height: 22rem;
-    min-height: 22rem;
+    max-height: 32rem;
+    min-height: 32rem;
 }
 
 /* 
@@ -529,8 +531,8 @@ sup {
 }
 
 #banner-categories-wrapper .banner-item img {
-    max-height: 22rem;
-    min-height: 22rem;
+    max-height: 32rem;
+    min-height: 32rem;
     object-fit: cover;
     object-position: center;
     width: 100%;
@@ -656,7 +658,7 @@ sup {
     }
 } */
 #banner-categories-wrapper .slick-slider {
-    height: 22rem;
+    height: 32rem;
 }
 
 #top-header-navigation-wrapper

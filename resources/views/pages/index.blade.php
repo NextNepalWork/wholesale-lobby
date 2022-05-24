@@ -36,7 +36,9 @@
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-right">
                                         <li><a href="{{route('pages.edit', $page->slug)}}">{{__('Edit')}}</a></li>
-                                        <li><a onclick="confirm_modal('{{route('pages.destroy', $page->id)}}');">{{__('Delete')}}</a></li>
+                                        @if ($page->slug!='about')
+                                            <li><a onclick="confirm_modal('{{route('pages.destroy', $page->id)}}');">{{__('Delete')}}</a></li>
+                                        @endif
                                     </ul>
                                 </div>
                             </td>
