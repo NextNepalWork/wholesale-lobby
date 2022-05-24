@@ -311,7 +311,6 @@ $(document).ready(function () {
             d = document.getElementById("input-slider-range-value-low"),
             e = document.getElementById("input-slider-range-value-high"),
             f = [d, e];
-
         noUiSlider.create(c, {
             start: [
                 parseInt(d.getAttribute("data-range-value-low")),
@@ -327,6 +326,7 @@ $(document).ready(function () {
                 f[b].textContent = a[b];
             }),
             c.noUiSlider.on("change", function (a, b) {
+                // console.log(a);
                 rangefilter(a);
             });
     }
