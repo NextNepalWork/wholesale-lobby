@@ -510,6 +510,7 @@ class HomeController extends Controller
         $subcategory_id = (SubCategory::where('slug', $request->subcategory)->first() != null) ? SubCategory::where('slug', $request->subcategory)->first()->id : null;
         $subsubcategory_id = (SubSubCategory::where('slug', $request->subsubcategory)->first() != null) ? SubSubCategory::where('slug', $request->subsubcategory)->first()->id : null;
         $min_price = $request->min_price;
+        
         $max_price = $request->max_price;
         $seller_id = $request->seller_id;
         $rating = $request->rating;

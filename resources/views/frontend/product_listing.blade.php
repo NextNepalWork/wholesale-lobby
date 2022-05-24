@@ -184,7 +184,55 @@
                                     <!-- card-group-item.// -->
                                 </div>
                                 <!-- Content Ends -->
-
+                                {{-- <div class="card-wrapper mb-2">
+                                    <div class="card-group-item">
+                                        <div class="card-head">
+                                            <div class="heading d-flex align-items-center text-center flex-wrap  p-2">
+                                                <div class="head">
+                                                    <h5 class="text-uppercase m-0 text-white">Price Range</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            <div class="filter-content1">
+                                                <div class="card-body px-3 py-2">
+                                                    <div class="range-slider-wrapper mt-3">
+                                                        <!-- Range slider container -->
+                                                        <div id="input-slider-range" data-range-value-min="{{ filter_products(\App\Product::query())->get()->min('unit_price') }}" data-range-value-max="{{ filter_products(\App\Product::query())->get()->max('unit_price') }}"></div>
+            
+                                                        <!-- Range slider values -->
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <span class="range-slider-value value-low"
+                                                                    @if (isset($min_price))
+                                                                        data-range-value-low="{{ $min_price }}"
+                                                                    @elseif($products->min('unit_price') > 0)
+                                                                        data-range-value-low="{{ $products->min('unit_price') }}"
+                                                                    @else
+                                                                        data-range-value-low="0"
+                                                                    @endif
+                                                                    id="input-slider-range-value-low">
+                                                                </span>
+                                                            </div>
+            
+                                                            <div class="col-6 text-right">
+                                                                <span class="range-slider-value value-high"
+                                                                    @if (isset($max_price))
+                                                                        data-range-value-high="{{ $max_price }}"
+                                                                    @elseif($products->max('unit_price') > 0)
+                                                                        data-range-value-high="{{ $products->max('unit_price') }}"
+                                                                    @else
+                                                                        data-range-value-high="0"
+                                                                    @endif
+                                                                    id="input-slider-range-value-high">
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                    </div>
+                                </div> --}}
                                 @if (!empty($all_colors))
                                     <div class="card-wrapper mt-4 mb-2">
                                         <div class="card-group-item">
@@ -1173,17 +1221,11 @@
             $('#search-form').submit();
         }
         function rangefilter(arg){
-            // console.log(arg[0]);
+            console.log(arg[0]);
             $('input[name=min_price]').val(arg[0]);
             $('input[name=max_price]').val(arg[1]);
             filter();
         }
-        // function ratefilter(rate){
-        //     // console.log(rate[0],rate[1]);
-        //     $('input[name=min_rating]').val(rate[0]);
-        //     $('input[name=max_rating]').val(rate[1]);
-        //     // console.log($('input[name=min_rating]').val(rate[0]));
-        //     filter();
-        // }
+        
     </script>
 @endsection

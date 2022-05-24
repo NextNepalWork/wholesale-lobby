@@ -119,7 +119,7 @@
                                                             <i class="la la-minus"></i>
                                                         </button>
                                                     </span>
-                                                    <input type="text" name="quantity[{{ $key }}]" class="form-control input-number" placeholder="1" value="{{ $cartItem['quantity'] }}" min="1" max="10" onchange="updateQuantity({{ $key }}, this)">
+                                                    <input type="text" name="quantity[{{ $key }}]" class="form-control input-number" placeholder="1" value="{{ $cartItem['quantity'] }}" min="10" max="100" onchange="updateQuantity({{ $key }}, this)">
                                                     <span class="input-group-btn">
                                                         <button class="btn btn-number pl-0" type="button" data-type="plus" data-field="quantity[{{ $key }}]" style="border:0">
                                                             <i class="la la-plus"></i>
@@ -151,9 +151,9 @@
                         </div>
                         <div class="col-6 text-right">
                             @if(Auth::check())
-                                <a href="{{ route('checkout.shipping_info') }}" class="btn effect btn-styled btn-base-1">{{__('Continue to Shipping')}}</a>
+                                <a href="{{ route('checkout.shipping_info') }}" class="effect">{{__('Continue to Shipping')}}</a>
                             @else
-                                <button class="btn effect btn-styled btn-base-1" onclick="showCheckoutModal()">{{__('Continue to Shipping')}}</button>
+                                <button class="effect" onclick="showCheckoutModal()">{{__('Continue to Shipping')}}</button>
                             @endif
                         </div>
                     </div>

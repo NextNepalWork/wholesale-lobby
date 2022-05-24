@@ -28,7 +28,7 @@
         <nav class="navbar header-sticky px-3">
             <div class="navbar-menus d-xl-block d-lg-block d-none w-100" id="navbarmain">
                 <ul class="navbar-nav py-4 py-md-0 d-flex flex-row flex-wrap justify-content-center" role=" menu">
-                    @foreach (\App\Category::all()->take(6) as $key => $category)
+                    @foreach (\App\Category::where('top',1)->get()->take(6) as $key => $category)
 
                     <li class="nav-item">
                         <a class="nav-link d-flex justify-content-center align-items-center"
