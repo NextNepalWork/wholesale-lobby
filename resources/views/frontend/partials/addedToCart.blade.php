@@ -36,6 +36,6 @@
 
     <div class="text-center">
         <button class="btn-custom" data-dismiss="modal">{{__('Back to shopping')}}</button>
-        <a href="{{ route('cart') }}" class="btn-custom" >{{__('Proceed to Checkout')}}</a>
+        <a href="{{ route('cart') }}" class="btn btn-base-1 p-1" >{{__('Proceed to Checkout')}}</a>
     </div>
 </div>
