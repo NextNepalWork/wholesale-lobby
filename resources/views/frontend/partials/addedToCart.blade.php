@@ -35,7 +35,7 @@
     </div>
 
     <div class="text-center">
-        <button class="btn-custom" data-dismiss="modal">{{__('Back to shopping')}}</button>
-        <a href="{{ route('cart') }}" class="btn btn-base-1 p-1" >{{__('Proceed to Checkout')}}</a>
+        <button class="btn-custom effect" data-dismiss="modal">{{__('Back to shopping')}}</button>
+        <a href="{{ route('cart') }}" class="btn p-1 effect">{{__('Proceed to Checkout')}}</a>
     </div>
 </div>

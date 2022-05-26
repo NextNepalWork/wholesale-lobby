@@ -397,85 +397,92 @@ $today = date('Y-m-d H:i:s');
             function(data) {
                 // console.log(data);
                 $('#section_featured').html(data);
-                $('.slick-slider-listing2').slick({
-                    infinite: true,
-                    slidesToShow: 4,
-                    slidesToScroll: 1,
-                    arrows: true,
-                    dots: false,
-                    autoplay:true,
-                    responsive: [{
-                            breakpoint: 1400,
-                            settings: {
-                                slidesToShow: 4,
-                                slidesToScroll: 1
+                $(document).ajaxStop(function(){
+                    $('.slick-slider-listing2').slick({
+                        infinite: true,
+                        slidesToShow: 4,
+                        slidesToScroll: 1,
+                        arrows: true,
+                        dots: false,
+                        autoplay:true,
+                        responsive: [{
+                                breakpoint: 1400,
+                                settings: {
+                                    slidesToShow: 4,
+                                    slidesToScroll: 1
+                                }
+                            },
+                            {
+                                breakpoint: 1080,
+                                settings: {
+                                    slidesToShow: 3,
+                                    slidesToScroll: 1
+                                }
+                            },
+                            {
+                                breakpoint: 780,
+                                settings: {
+                                    slidesToShow: 2,
+                                    slidesToScroll: 1
+                                }
+                            },
+                            {
+                                breakpoint: 480,
+                                settings: {
+                                    slidesToShow: 1,
+                                    slidesToScroll: 1,
+                                    dots: true
+                                }
                             }
-                        },
-                        {
-                            breakpoint: 1080,
-                            settings: {
-                                slidesToShow: 3,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 780,
-                            settings: {
-                                slidesToShow: 2,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 480,
-                            settings: {
-                                slidesToShow: 1,
-                                slidesToScroll: 1,
-                                dots: true
-                            }
-                        }
-                    ]
+                        ]
+                    });
                 });
             });
         $.post('{{ route('home.section.best_selling')}}', {_token:'{{ csrf_token() }}'
             },
             function(data) {
                 $('#section_best_selling').html(data);
-                $('.slick-slider-bestselling').slick({
-                    infinite: true,
-                    slidesToShow: 4,
-                    slidesToScroll: 1,
-                    arrows: true,
-                    dots: false,
-                    rows:2,
-                    autoplay:true,
-                    responsive: [{
-                            breakpoint: 1400,
-                            settings: {
-                                slidesToShow: 4,
-                                slidesToScroll: 1
+                $(document).ajaxStop(function(){
+                    $('.slick-slider-bestselling').slick({
+                        infinite: true,
+                        slidesToShow: 4,
+                        slidesToScroll: 1,
+                        arrows: true,
+                        dots: false,
+                        rows:2,
+                        autoplay:true,
+                        responsive: [{
+                                breakpoint: 1400,
+                                settings: {
+                                    slidesToShow: 4,
+                                    slidesToScroll: 1
+                                }
+                            },
+                            {
+                                breakpoint: 1080,
+                                settings: {
+                                    slidesToShow: 3,
+                                    slidesToScroll: 1
+                                }
+                            },
+                            {
+                                breakpoint: 780,
+                                settings: {
+                                    slidesToShow: 1,
+                                    slidesToScroll: 1
+                                }
                             }
-                        },
-                        {
-                            breakpoint: 1080,
-                            settings: {
-                                slidesToShow: 3,
-                                slidesToScroll: 1
-                            }
-                        },
-                        {
-                            breakpoint: 780,
-                            settings: {
-                                slidesToShow: 1,
-                                slidesToScroll: 1
-                            }
-                        }
-                    ]
+                        ]
+                    });
                 });
             });
         $.post('{{ route('home.section.home_categories')}}', {_token:'{{ csrf_token() }}'
             },
             function(data) {
                 $('#section_home_categories').html(data);
+                
+            });
+            $(document).ajaxStop(function(){
                 $('.slick-slider-listing-home').slick({
                     infinite: true,
                     slidesToShow: 4,
@@ -512,53 +519,54 @@ $today = date('Y-m-d H:i:s');
             },
             function(data) {
                 $('#section_best_sellers').html(data);
-                // slickInit();
+                $(document).ajaxStop(function(){
 
-                $(".slider_feature2").slick({
-                    autoplay: true,
-                    slidesToShow: 5,
-                    slidesToScroll: 7,
-                    arrows: true,
-                    dots: false,
-                    autoplay:true,
-                    responsive: [{
-                            breakpoint: 1400,
-                            settings: {
-                                slidesToShow: 5,
-                                slidesToScroll: 4,
+                    $(".slider_feature2").slick({
+                        autoplay: true,
+                        slidesToShow: 5,
+                        slidesToScroll: 7,
+                        arrows: true,
+                        dots: false,
+                        autoplay:true,
+                        responsive: [{
+                                breakpoint: 1400,
+                                settings: {
+                                    slidesToShow: 5,
+                                    slidesToScroll: 4,
+                                },
                             },
-                        },
-                        {
-                            breakpoint: 1080,
-                            settings: {
-                                slidesToShow: 1,
-                                slidesToScroll: 1,
+                            {
+                                breakpoint: 1080,
+                                settings: {
+                                    slidesToShow: 1,
+                                    slidesToScroll: 1,
+                                },
                             },
-                        },
-                        {
-                            breakpoint: 780,
-                            settings: {
-                                slidesToShow: 2,
-                                slidesToScroll: 1,
+                            {
+                                breakpoint: 780,
+                                settings: {
+                                    slidesToShow: 2,
+                                    slidesToScroll: 1,
+                                },
                             },
-                        },
-                        {
-                            breakpoint: 600,
-                            settings: {
-                                slidesToShow: 2,
-                                slidesToScroll: 1,
-                                dots: true,
+                            {
+                                breakpoint: 600,
+                                settings: {
+                                    slidesToShow: 2,
+                                    slidesToScroll: 1,
+                                    dots: true,
+                                },
                             },
-                        },
-                        {
-                            breakpoint: 480,
-                            settings: {
-                                slidesToShow: 2,
-                                slidesToScroll: 1,
-                                dots: true,
+                            {
+                                breakpoint: 480,
+                                settings: {
+                                    slidesToShow: 2,
+                                    slidesToScroll: 1,
+                                    dots: true,
+                                },
                             },
-                        },
-                    ],
+                        ],
+                    });
                 });
             });
     });

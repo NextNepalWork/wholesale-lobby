@@ -574,10 +574,19 @@ class HomeController extends Controller
                     $products->orderBy('created_at', 'asc');
                     break;
                 case '3':
-                    $products->orderBy('unit_price', 'asc');
+                    $products->selectRaw('*,case 
+                    when discount_type = "amount" then (unit_price - discount)
+                    when discount_type = "percent" then (unit_price - (unit_price * (discount/100)))
+                    end as unit_price2');
+
+                    $products->orderBy('unit_price2', 'asc');
                     break;
                 case '4':
-                    $products->orderBy('unit_price', 'desc');
+                    $products->selectRaw('*,case 
+                    when discount_type = "amount" then (unit_price - discount)
+                    when discount_type = "percent" then (unit_price - (unit_price * (discount/100)))
+                    end as unit_price2');
+                    $products->orderBy('unit_price2', 'desc');
                     break;
                 default:
                     // code...

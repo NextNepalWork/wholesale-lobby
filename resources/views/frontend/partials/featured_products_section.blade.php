@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="slick-slider-listing2">
-                @foreach (\App\Product::where('featured',1)->get() as $product)
+                @foreach (\App\Product::where('published',1)->where('featured',1)->get() as $product)
                 <div class="slick-item position-relative py-4">
                     <div class="product-grid-item">
                         <div class="product-grid-image">

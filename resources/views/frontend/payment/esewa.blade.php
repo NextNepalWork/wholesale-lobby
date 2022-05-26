@@ -13,8 +13,8 @@
       <input value="0" name="pdc" type="hidden">
       <input value="{{$esewa->esewa_key}}" name="scd" type="hidden">
       <input value="{{$ordercode->code}}" name="pid" type="hidden">
-      <input value="https://sewa-digital.nextnepal.org/page/esewa_payment_success?q=su" type="hidden" name="su">
-      <input value="https://sewa-digital.nextnepal.org/page/esewa_payment_failed?q=fu" type="hidden" name="fu">
+      <input value="https://wholesale-lobby.nextnepal.org/page/esewa_payment_success?q=su" type="hidden" name="su">
+      <input value="https://wholesale-lobby.nextnepal.org/page/esewa_payment_failed?q=fu" type="hidden" name="fu">
       <input value="Submit" class ='submitesewa' type="submit" style= "display:none">
       </form>
     <script> 
