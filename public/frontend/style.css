@@ -1692,7 +1692,10 @@ a.btn:hover {
     border: 1px solid #c9c9c9;
     border-radius: 2px;
 }
-
+#product-listing-wrapper .product-content .first-price {
+    text-decoration: line-through;
+    color: var(--text-color);
+}
 /* Swiper Slider */
 .zoom {
     width: 60%;
@@ -2658,6 +2661,7 @@ table .cart-image {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background: #ebebeb;
 }
 
 /* Login Register Ends */
@@ -4008,4 +4012,31 @@ section#cart_user span.imgCheckbox0 .img_select {
 }
 .hidden {
     display: none;
+}
+
+.checkbox input[type="checkbox"]:checked + label::after,
+.checkbox input[type="radio"]:checked + label::after {
+    font-family: "FontAwesome";
+    content: "\f00c";
+    color: var(--main-color) !important;
+}
+
+.added-to-cart .text-center a.effect:hover {
+    color: #fff !important;
+    background-color: var(--main-color) !important;
+}
+
+div#shipping .add_btn_img img {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div#shipping button.btn.add_btn_img {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
 }

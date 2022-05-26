@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="all-category-wrap py-4 gry-bg">
-    <div class="sticky-top">
+    <div class="">
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -14,7 +14,15 @@
                                     <li class="@php if($i == 0) echo 'active' @endphp">
                                         <a href="#{{ $i }}" class="row no-gutters align-items-center">
                                             <div class="col-md-3">
-                                                <img loading="lazy"  class="cat-image" src="{{ asset($categories[$i]->icon) }}">
+                                                @if (!empty($categories[$i]->icon))
+                                                    @if (file_exists($categories[$i]->icon))
+                                                        <img loading="lazy"  class="cat-image" src="{{ asset($categories[$i]->icon) }}">
+                                                    @else
+                                                        <img loading="lazy"  class="cat-image" src="{{ asset('frontend/images/placeholder.jpg') }}">
+                                                    @endif
+                                                @else
+                                                    <img loading="lazy"  class="cat-image" src="{{ asset('frontend/images/placeholder.jpg') }}">
+                                                @endif
                                             </div>
                                             <div class="col-md-9">
                                                 <div class="cat-name">{{ $categories[$i]->name }}</div>
@@ -37,7 +45,15 @@
                                     <li class="@php if($key == 0) echo 'active' @endphp">
                                         <a href="#{{ $key }}" class="row no-gutters align-items-center">
                                             <div class="col-md-3">
-                                                <img loading="lazy"  class="cat-image" src="{{ asset($category->icon) }}">
+                                                @if (!empty($category->icon))
+                                                    @if (file_exists($category->icon))
+                                                        <img loading="lazy"  class="cat-image" src="{{ asset($category->icon) }}">
+                                                    @else
+                                                        <img loading="lazy"  class="cat-image" src="{{ asset('frontend/images/placeholder.jpg') }}">
+                                                    @endif
+                                                @else
+                                                    <img loading="lazy"  class="cat-image" src="{{ asset('frontend/images/placeholder.jpg') }}">
+                                                @endif
                                             </div>
                                             <div class="col-md-9">
                                                 <div class="cat-name">{{ __($category->name) }}</div>

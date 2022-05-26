@@ -5,20 +5,31 @@
             <div class="product-gal sticky-top d-flex flex-row-reverse">
                 @if(is_array(json_decode($product->photos)) && count(json_decode($product->photos)) > 0)
                     <div class="product-gal-img">
-                        <img src="{{ asset('frontend/images/placeholder.jpg') }}" class="xzoom img-fluid lazyload"
-                             src="{{ asset('frontend/images/placeholder.jpg') }}"
-                             data-src="{{ asset(json_decode($product->photos)[0]) }}"
-                             xoriginal="{{ asset(json_decode($product->photos)[0]) }}"/>
+                        @if (file_exists(json_decode($product->photos)[0]))
+                            <img src="{{ asset(json_decode($product->photos)[0]) }}" class="xzoom img-fluid lazyload" src="{{ asset(json_decode($product->photos)[0]) }}" data-src="{{ asset(json_decode($product->photos)[0]) }}" xoriginal="{{ asset(json_decode($product->photos)[0]) }}"/>
+                        @else
+                            <img src="{{ asset('frontend/images/placeholder.jpg') }}" class="xzoom img-fluid lazyload"/>
+                        @endif
                     </div>
                     <div class="product-gal-thumb">
                         <div class="xzoom-thumbs">
                             @foreach (json_decode($product->photos) as $key => $photo)
+                            
                                 <a href="{{ asset($photo) }}">
+                                    @if (file_exists($photo))
+                                    <img src="{{ asset($photo) }}"
+                                    class="xzoom-gallery lazyload"
+                                    src="{{ asset($photo) }}" width="80"
+                                    data-src="{{ asset($photo) }}"
+                                    @if($key == 0) xpreview="{{ asset($photo) }}" @endif>
+                                    @else
                                     <img src="{{ asset('frontend/images/placeholder.jpg') }}"
-                                         class="xzoom-gallery lazyload"
-                                         src="{{ asset('frontend/images/placeholder.jpg') }}" width="80"
-                                         data-src="{{ asset($photo) }}"
-                                         @if($key == 0) xpreview="{{ asset($photo) }}" @endif>
+                                    class="xzoom-gallery lazyload"
+                                    src="{{ asset('frontend/images/placeholder.jpg') }}" width="80"
+                                    data-src="{{ asset('frontend/images/placeholder.jpg') }}"
+                                    @if($key == 0) xpreview="{{ asset('frontend/images/placeholder.jpg') }}" @endif>
+                                    @endif
+                                    
                                 </a>
                             @endforeach
                         </div>
@@ -173,15 +184,15 @@
                                     <div class="input-group input-group--style-2 pr-3" style="width: 160px;">
                                         <span class="input-group-btn">
                                             <button class="btn btn-number" type="button" data-type="minus"
-                                                    data-field="quantity" disabled="disabled">
+                                                    data-field="quantity" disabled="disabled" style="border:none">
                                                 <i class="la la-minus"></i>
                                             </button>
                                         </span>
                                         <input type="text" name="quantity" class="form-control input-number text-center"
-                                               placeholder="1" value="1" min="1" max="10">
+                                               placeholder="10" value="10" min="10" max="100">
                                         <span class="input-group-btn">
                                             <button class="btn btn-number" type="button" data-type="plus"
-                                                    data-field="quantity">
+                                                    data-field="quantity" style="border:none">
                                                 <i class="la la-plus"></i>
                                             </button>
                                         </span>
@@ -216,20 +227,20 @@
                         <!-- Add to cart button -->
                         @if ($product->digital == 1)
                             <button type="button"
-                                    class="btn btn-styled btn-alt-base-1 c-white btn-icon-left strong-700 hov-bounce hov-shaddow ml-2 add-to-cart"
+                                    class="btn btn-styled btn-alt-base-1 c-white btn-icon-left strong-700 hov-bounce hov-shaddow ml-2 add-to-cart effect"
                                     onclick="addToCart()">
                                 <i class="la la-shopping-cart"></i>
                                 <span class="d-none d-md-inline-block"> {{__('Add to cart')}}</span>
                             </button>
                         @elseif($qty > 0)
                             <button type="button"
-                                    class="btn btn-styled btn-alt-base-1 c-white btn-icon-left strong-700 hov-bounce hov-shaddow ml-2 add-to-cart btn-custom"
+                                    class="btn btn-styled btn-alt-base-1 c-white btn-icon-left strong-700 hov-bounce hov-shaddow ml-2 add-to-cart btn-custom effect"
                                     onclick="addToCart()">
                                 <i class="la la-shopping-cart"></i>
                                 <span class="d-none d-md-inline-block"> {{__('Add to cart')}}</span>
                             </button>
                         @else
-                            <button type="button" class="btn btn-styled btn-base-3 btn-icon-left strong-700" disabled>
+                            <button type="button" class="btn btn-styled btn-base-3 btn-icon-left strong-700 effect" disabled>
                                 <i class="la la-cart-arrow-down"></i> {{__('Out of Stock')}}
                             </button>
                         @endif
