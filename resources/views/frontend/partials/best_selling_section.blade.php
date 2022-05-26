@@ -17,7 +17,7 @@
                 @foreach (filter_products(\App\Product::where('published', 1)->orderBy('num_of_sale', 'desc'))->limit(20)->get() as $key => $product)
                 <div class="slick-item position-relative">
                     <div class="product-grid-item2 d-flex align-items-center mx-2">
-                        <div class="product-grid-image2">
+                        <div class="product-grid-image2 w-50">
                             <a href="{{route('product',$product->slug)}}">
                                 @if (!empty($product->featured_img))
                                     @if (file_exists($product->featured_img))
@@ -30,7 +30,7 @@
                                 @endif 
                             </a>
                         </div>
-                        <div class="product-content">
+                        <div class="product-content w-50">
                             <ul>
                                 <li class="title mb-2"><a href="{{ route('products.subcategory', $product->subcategory->slug) }}" class=" font-weight-bold" title="{{$product->subcategory->name}}">{{$product->subcategory->name}}</a></li>
                                 <li>

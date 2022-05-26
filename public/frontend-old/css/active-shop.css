@@ -9341,6 +9341,7 @@ select.form-control-lg:not([size]):not([multiple]) {
 .checkbox input[type="radio"]:checked + label::after {
     font-family: "FontAwesome";
     content: "\f00c";
+    color: var(--main-color) !important;
 }
 
 .checkbox input[type="checkbox"]:disabled + label,

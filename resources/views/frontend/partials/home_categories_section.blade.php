@@ -4,7 +4,7 @@
 @endphp
 @foreach (\App\HomeCategory::where('status', 1)->get() as $key => $homeCategory)
     @if ($homeCategory->category != null)
-        @if (count($homeCategory->category->products)>0)
+        @if (count($homeCategory->category->products()->where('published',1)->get())>0)
             <section class="product-listing position-relative py-5 @if(($i%2)==0) bg-white @else bg-light @endif">
                 <div class="container">
                     <div class="product-lists">
@@ -21,11 +21,11 @@
                         <div class="slick-slider-listing-home">
                                 @foreach ($homeCategory->category->subcategories as $sub)
                                 
-                                    @if (count($sub->products)>0)
+                                    @if (count($sub->products()->where('published',1)->get())>0)
                                         <div class="slick-item position-relative">
                                             
                                             <div class="product-grid-item2 d-flex align-items-center mx-2">
-                                                <div class="product-grid-image2">
+                                                <div class="product-grid-image2 w-50">
                                                     <a href="{{ route('products.subcategory', $sub->slug) }}">
                                                         @if (!empty($sub->icon))
                                                             @if (file_exists($sub->icon))
@@ -40,10 +40,11 @@
                                                 </div>
 
 
-                                                <div class="product-content">
+                                                <div class="product-content w-50">
                                                     <ul>
                                                         <li class="title mb-2"><a href="{{ route('products.subcategory', $sub->slug) }}" class=" font-weight-bold" title="{{$sub->name}}">{{$sub->name}}</a></li>
-                                                        @foreach ($sub->products as $product)
+
+                                                        @foreach ($sub->products()->where('published',1)->get() as $product)
                                                         <li>
                                                             <a href="{{route('product',$product->slug)}}" title="{{$product->name}}">{{$product->name}}</a>
                                                         </li>
