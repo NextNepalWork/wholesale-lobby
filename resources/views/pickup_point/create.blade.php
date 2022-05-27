@@ -45,7 +45,9 @@
                         <div class="col-sm-9">
                             <select name="staff_id" class="form-control demo-select2-placeholder" required>
                                 @foreach(\App\Staff::all() as $staff)
-                                    <option value="{{$staff->id}}">{{$staff->user->name}}</option>
+                                    @isset($staff->user->id)
+                                        <option value="{{$staff->id}}">{{$staff->user->name}}</option>
+                                    @endisset
                                 @endforeach
                             </select>
                         </div>

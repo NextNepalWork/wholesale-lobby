@@ -150,6 +150,9 @@
             margin-bottom: 0;
         }
 
+        .modal-backdrop{
+            z-index: 1 !important;
+        }
     </style>
 </head>
 
@@ -628,6 +631,7 @@ $('.address-district').on('change',function(e){
                     $('#cart-summary').html(data);
                     showFrontendAlert('success', 'Item has been removed from cart');
                     $('#cart_items_sidenav').html(parseInt($('#cart_items_sidenav').html()) - 1);
+                    $('#nav-cart').modal('hide');
                 });
         }
 
