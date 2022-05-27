@@ -42,7 +42,8 @@
                                 @if($seller->user != null)
                                     <tr>
                                         <td>{{ $seller->user->name }}</td>
-                                        <td>{{ $seller->user->shop->name }}</td>
+                                        {{-- <td>{{ $seller->user->shop->name }}</td> --}}
+                                        <td>@isset($seller->user->shop->name){{ $seller->user->shop->name }}@endisset</td>
                                         <td>
                                             @php
                                                 $num_of_sale = 0;

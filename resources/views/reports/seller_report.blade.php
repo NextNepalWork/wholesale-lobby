@@ -43,7 +43,8 @@
                                     <tr>
                                         <td>{{ $seller->user->name }}</td>
                                         <td>{{ $seller->user->email }}</td>
-                                        <td>{{ $seller->user->shop->name }}</td>
+                                        {{-- <td>{{ $seller->user->shop->name }}</td> --}}
+                                        <td>@isset($seller->user->shop->name){{ $seller->user->shop->name }}@endisset</td>
                                         <td>
                                             @if ($seller->verification_status == 1)
                                                 <div class="label label-table label-success">
