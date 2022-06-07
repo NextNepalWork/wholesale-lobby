@@ -112,6 +112,9 @@ if($flash_deal!=null){
                             <span class="d-flex align-items-center">Offer Ends in : </span> 
                            <div class="countdown countdown--style-1 countdown--style-1-v1 " data-countdown-date="{{ date('Y-m-d H:i:s', $flash_deal->end_date) }}" data-countdown-label="show"></div>
                         </div>
+                        <div class="navigator">
+                            <a href="{{route('flash-deals')}}">See All</a>
+                        </div>
                     </div>
                 </div>
             </div>

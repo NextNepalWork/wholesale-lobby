@@ -34,7 +34,7 @@
                 </form>
             </div>
         </div>
-        <div class="panel-body">
+        <div class="panel-body" style="overflow-x: scroll;">
             <table class="table table-striped res-table mar-no" cellspacing="0" width="100%">
                 <thead>
                 <tr>
@@ -46,6 +46,7 @@
                     <th>{{__('Approval')}}</th>
                     <th>{{ __('Num. of Products') }}</th>
                     <th>{{ __('Due to seller') }}</th>
+                    <th>Document</th>
                     <th width="10%">{{__('Options')}}</th>
                 </tr>
                 </thead>
@@ -78,6 +79,14 @@
                                     {{ single_price($seller->admin_to_pay) }}
                                 @else
                                     {{ single_price(abs($seller->admin_to_pay)) }} (Due to Admin)
+                                @endif
+                            </td>
+                            <td>
+                                @php
+                                    $doc=\App\Shop::where('user_id',$seller->user->id)->first();
+                                @endphp
+                                @if (isset($doc->document))
+                                    <a href="{{asset($doc->document)}}" class="btn btn-primary">Download</a>
                                 @endif
                             </td>
                             <td>
