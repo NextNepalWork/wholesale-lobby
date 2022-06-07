@@ -98,6 +98,14 @@
                                         <a href="#">Forgot Password?</a>
                                     </div>
                                 </div> -->
+                                <div class="mt-2">
+                                                
+                                    <input type="checkbox" class="" placeholder="{{__('Pan')}}" name="read" required>
+
+                                    <label>{{__('I have read and agreed to the ')}} <a href="javascript:void(0);" class="view-seller-policy" data-toggle="modal" data-target="#exampleModal"><span class="text-primary">privacy policy</span> </a> <span class="required-star">*</span></label>
+
+                                    
+                                    </div>
                             <button type="submit" class="btn-custom px-5 text-uppercase ">
                                 Create an Account
                             </button>
@@ -137,7 +145,25 @@
         </div>
     </section>
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Privacy Policy</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                {!! \App\Policy::where('name', 'privacy_policy')->first()->content !!}
+            
+            </div>
+
+          </div>
+        </div>
+      </div>
 @endsection
+
 
 @section('script')
 

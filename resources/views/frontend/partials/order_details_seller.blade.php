@@ -33,7 +33,7 @@
         </ul>
     </div>
     <div class="row mt-5">
-        <div class="offset-lg-2 col-lg-4 col-sm-6">
+        {{-- <div class="offset-lg-2 col-lg-4 col-sm-6">
             <div class="form-inline">
                 <select class="form-control selectpicker form-control-sm"  data-minimum-results-for-search="Infinity" id="update_payment_status">
                     <option value="unpaid" @if ($payment_status == 'unpaid') selected @endif>{{__('Unpaid')}}</option>
@@ -41,7 +41,7 @@
                 </select>
                 <label class="my-2" >{{__('Payment Status')}}</label>
             </div>
-        </div>
+        </div> --}}
         <div class="col-lg-4 col-sm-6">
             <div class="form-inline">
                 <select class="form-control selectpicker form-control-sm"  data-minimum-results-for-search="Infinity" id="update_delivery_status">

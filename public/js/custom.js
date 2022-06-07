@@ -18,13 +18,13 @@ $(document).on("nifty.ready", function () {
         });
     });
 
-    $(".res-table").DataTable({
-        responsive: true,
-        paging: false,
-        searching: false,
-        ordering: false,
-        bInfo: false,
-    });
+    // $(".res-table").DataTable({
+    //     responsive: true,
+    //     paging: false,
+    //     searching: false,
+    //     ordering: false,
+    //     bInfo: false,
+    // });
 
     // SELECT2 SINGLE
     // =================================================================
