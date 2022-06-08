@@ -93,7 +93,10 @@ Route::group(['prefix' =>'admin', 'middleware' => ['auth', 'admin']], function()
 
 
 	Route::resource('customers','CustomerController');
+	Route::get('/recommended-products','CustomerController@recommend_product')->name('customers.recommend');
 	Route::get('/customers/destroy/{id}', 'CustomerController@destroy')->name('customers.destroy');
+	Route::get('/recommended-products/destroy/{id}', 'CustomerController@recommend_destroy')->name('recommend.destroy');
+
 
 	Route::get('/newsletter', 'NewsletterController@index')->name('newsletters.index');
 	Route::post('/newsletter/send', 'NewsletterController@send')->name('newsletters.send');

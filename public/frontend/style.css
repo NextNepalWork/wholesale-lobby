@@ -330,8 +330,8 @@ sup {
 }
 
 .navbar-brand img {
-    max-height: 42px;
-    min-height: 42px;
+    max-height: 50px;
+    min-height: 50px;
     width: auto;
     /* display: block; */
     object-fit: contain;
