@@ -9,6 +9,7 @@ use App\ProductStock;
 use Auth;
 use Illuminate\Http\Request;
 
+
 use Image;
 
 class ProductController extends Controller
@@ -833,8 +834,9 @@ class ProductController extends Controller
 
     public function expired_products()
     {
-        $user=Auth::user()->id;
-        $products=Product::where('published',1)->where('user_id',$user)->paginate(15);
+        $user=Auth::user();
+        $products=Product::where('published',1)->where('user_id',$user->id)->paginate(15);
+        
         return view('frontend.seller.expired',compact('products'));
     }
 
