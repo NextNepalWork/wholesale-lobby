@@ -138,6 +138,9 @@
                                     <li class="{{ areActiveRoutes(['reviews.index'])}}">
                                         <a class="nav-link" href="{{route('reviews.index')}}">{{__('Product Reviews')}}@if($review_count > 0)<span class="pull-right badge badge-info">{{ $review_count }}</span>@endif</a>
                                     </li>
+                                    <li class="{{ areActiveRoutes(['customers.recommend'])}}">
+                                        <a class="nav-link" href="{{ route('customers.recommend') }}">{{__('Recommended Products')}}</a>
+                                    </li>
                                 </ul>
                             </li>
                         @endif

@@ -21,7 +21,8 @@
                         <div class="slick-slider-listing-home">
                                 @foreach ($homeCategory->category->subcategories as $sub)
                                 
-                                    @if (count($sub->products()->where('published',1)->get())>0)
+                                    @if (count($sub->products()->where('published',1)->get())>0)  
+
                                         <div class="slick-item position-relative">
                                             
                                             <div class="product-grid-item2 d-flex align-items-center mx-2">
@@ -45,9 +46,11 @@
                                                         <li class="title mb-2"><a href="{{ route('products.subcategory', $sub->slug) }}" class=" font-weight-bold" title="{{$sub->name}}">{{$sub->name}}</a></li>
 
                                                         @foreach ($sub->products()->where('published',1)->get() as $product)
+                                                        @if ($product->expiry_date==null || date('Y-m-d H:i:s') <= $product->expiry_date) 
                                                         <li>
                                                             <a href="{{route('product',$product->slug)}}" title="{{$product->name}}">{{$product->name}}</a>
                                                         </li>
+                                                        @endif
                                                         @endforeach
                                                         
                                                     </ul>
@@ -56,6 +59,7 @@
                                             </div>
 
                                         </div>
+                                        
                                     @endif
                                 @endforeach
                             

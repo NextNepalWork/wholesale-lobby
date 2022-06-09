@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Customer;
 use App\User;
 use App\Order;
+use App\Recommend;
 
 class CustomerController extends Controller
 {
@@ -99,6 +100,22 @@ class CustomerController extends Controller
         if(Customer::destroy($id)){
             flash(__('Customer has been deleted successfully'))->success();
             return redirect()->route('customers.index');
+        }
+
+        flash(__('Something went wrong'))->error();
+        return back();
+    }
+
+    public function recommend_product(){
+        $recommends=Recommend::latest()->get();
+        return view('customers.recommend',compact('recommends'));
+    }
+
+    public function recommend_destroy($id)
+    {
+        if(Recommend::destroy($id)){
+            flash(__('Recommend has been deleted successfully'))->success();
+            return redirect()->route('customers.recommend');
         }
 
         flash(__('Something went wrong'))->error();

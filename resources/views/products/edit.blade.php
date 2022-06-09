@@ -134,6 +134,13 @@
 							</select>
 						</div>
 					</div>
+
+					<div class="form-group">
+						<label for="expiry_date" class="col-lg-2 control-label">{{ __('Expiry Date') }}</label>
+						<div class="col-lg-7">
+								<input type="date" class="form-control" name="expiry_date" placeholder="Expiry Date" id="expiry_date" value="{{$product->expiry_date}}">
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="panel">
