@@ -503,167 +503,174 @@
                             <div class="right-side-wrapper products-seller w-100">
                                 <ul class="products">
                                     @if (isset($products) && !($products->isEmpty()))
-                                    @foreach ($products as $key => $product)
-                                        @php
-                                        $qty = 0;
-                                        if($product->variant_product){
-                                            foreach ($product->stocks as $key => $stock) {
-                                                $qty += $stock->qty;
-                                            }
-                                        }
-                                        else{
-                                            $qty = $product->current_stock ;
-                                        }
-                                        @endphp
-                                        <li>
-                                            <div class="row py-3 mb-3">
-                                                <div class="col-lg-12 col-12 post">
-                                                    <div
-                                                        class="product-grid-item d-flex align-items-center flex-wrap">
-                                                        <div class="product-grid-image">
-                                                            <a href="{{route('product',$product->slug)}}"> 
-                                                                @if(!empty($product->featured_img))
-                                                                    @if (file_exists($product->featured_img)) 
-                                                                        <img class="img-fluid pic-1" src="{{ asset($product->featured_img) }}" alt="{{ __($product->name) }}">
-                                                                    @else
-                                                                        <img class="img-fluid pic-1" src="{{ asset('frontend/images/placeholder.jpg') }}"  alt="{{ __($product->name) }}">
+                                    
+                                        @foreach ($products as $key => $product)
+                                            @if ($product->expiry_date==null || date('Y-m-d H:i:s') <= $product->expiry_date)   
+                                                @php
+                                                $qty = 0;
+                                                if($product->variant_product){
+                                                    foreach ($product->stocks as $key => $stock) {
+                                                        $qty += $stock->qty;
+                                                    }
+                                                }
+                                                else{
+                                                    $qty = $product->current_stock ;
+                                                }
+                                                @endphp
+                                                <li>
+                                                    <div class="row py-3 mb-3">
+                                                        <div class="col-lg-12 col-12 post">
+                                                            <div
+                                                                class="product-grid-item d-flex align-items-center flex-wrap">
+                                                                <div class="product-grid-image">
+                                                                    <a href="{{route('product',$product->slug)}}"> 
+                                                                        @if(!empty($product->featured_img))
+                                                                            @if (file_exists($product->featured_img)) 
+                                                                                <img class="img-fluid pic-1" src="{{ asset($product->featured_img) }}" alt="{{ __($product->name) }}">
+                                                                            @else
+                                                                                <img class="img-fluid pic-1" src="{{ asset('frontend/images/placeholder.jpg') }}"  alt="{{ __($product->name) }}">
+                                                                                    
+                                                                            @endif
                                                                             
-                                                                    @endif
-                                                                    
-                                                                @else
-                                                                    <img class="img-fluid pic-1" src="{{ asset('frontend/images/placeholder.jpg') }}"  alt="{{ __($product->name) }}">
-                                                                @endif
-                                                            </a>
-                                                            <ul class="social d-flex">
-                                                                <li>
-                                                                    @if ($qty > 0)
-                                                                        <a class="fa fa-shopping-bag" onclick="showAddToCartModal({{ $product->id }})">
-                                                                        </a>
+                                                                        @else
+                                                                            <img class="img-fluid pic-1" src="{{ asset('frontend/images/placeholder.jpg') }}"  alt="{{ __($product->name) }}">
+                                                                        @endif
+                                                                    </a>
+                                                                    <ul class="social d-flex">
+                                                                        <li>
+                                                                            @if ($qty > 0)
+                                                                                <a class="fa fa-shopping-bag" onclick="showAddToCartModal({{ $product->id }})">
+                                                                                </a>
 
-                                                                    @else
-                                                                        <a class="fa fa-shopping-bag" disabled>
-                                                                        </a>
-                                                                    @endif
-                                                                    {{-- <a href="" class="fa fa-shopping-bag"></a> --}}
-                                                                </li>
-                                                                <li>
-                                                                    {{-- <a class="fa fa-heart" onclick="successMsg();"></a> --}}
-                                                                    <a onclick="addToWishList({{ $product->id }})" class="fa fa-heart"></a>
-                                                                </li>
-                                                            </ul>
-                                                            <!-- <span class="product-discount-label">-20%</span> -->
-                                                        </div>
-                                                        <div class="product-content ml-3 mt-2">
-                                                            <a href="{{route('product',$product->slug)}}" class="title">{{$product->name}}</a>
-                                                            <div class="price mb-1">
-                                                                @if(home_price($product->id) != home_discounted_price($product->id))
-                                                                    <div class="product-price text-dark">
-                                                                        <div class="font-weight-bold">{{ home_discounted_price($product->id) }}
-                                                                            <span class="piece">/{{ $product->unit }}</span>
-                                                                        </div>
-                                                                        <div class="d-flex">
-                                                                            <div class="first-price mr-2">{{ home_price($product->id) }}
-                                                                                <span>/{{ $product->unit }}</span>
-                                                                            </div>
-                                                                            <div class="discount">
-                                                                                @if (! $product->discount == 0)
-                                                                                    <div class="">
-                                                                                        -{{ ($product->discount_type == 'amount')?'Rs.':'' }} {{ (intval($product->discount,0)) }}{{ !($product->discount_type == 'amount')?' %':'' }} off
+                                                                            @else
+                                                                                <a class="fa fa-shopping-bag" disabled>
+                                                                                </a>
+                                                                            @endif
+                                                                            {{-- <a href="" class="fa fa-shopping-bag"></a> --}}
+                                                                        </li>
+                                                                        <li>
+                                                                            {{-- <a class="fa fa-heart" onclick="successMsg();"></a> --}}
+                                                                            <a onclick="addToWishList({{ $product->id }})" class="fa fa-heart"></a>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <!-- <span class="product-discount-label">-20%</span> -->
+                                                                </div>
+                                                                <div class="product-content ml-3 mt-2">
+                                                                    <a href="{{route('product',$product->slug)}}" class="title">{{$product->name}}</a>
+                                                                    <div class="price mb-1">
+                                                                        @if(home_price($product->id) != home_discounted_price($product->id))
+                                                                            <div class="product-price text-dark">
+                                                                                <div class="font-weight-bold">{{ home_discounted_price($product->id) }}
+                                                                                    <span class="piece">/{{ $product->unit }}</span>
+                                                                                </div>
+                                                                                <div class="d-flex">
+                                                                                    <div class="first-price mr-2">{{ home_price($product->id) }}
+                                                                                        <span>/{{ $product->unit }}</span>
                                                                                     </div>
-                                                                                @endif
+                                                                                    <div class="discount">
+                                                                                        @if (! $product->discount == 0)
+                                                                                            <div class="">
+                                                                                                -{{ ($product->discount_type == 'amount')?'Rs.':'' }} {{ (intval($product->discount,0)) }}{{ !($product->discount_type == 'amount')?' %':'' }} off
+                                                                                            </div>
+                                                                                        @endif
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
+                                                                        @else
+                                                                            <div class="product-price text-dark">
+                                                                                <div class="font-weight-bold">{{ home_discounted_price($product->id) }}
+                                                                                <span class="piece">/{{ $product->unit }}</span>
+                                                                                </div> 
+                                                                            </div>
+                                                                        @endif
                                                                     </div>
-                                                                @else
-                                                                    <div class="product-price text-dark">
-                                                                        <div class="font-weight-bold">{{ home_discounted_price($product->id) }}
-                                                                        <span class="piece">/{{ $product->unit }}</span>
-                                                                        </div> 
+                                                                    <ul class="other-detail">
+                                                                        <li>Brand: <span>@if($product->brand)
+                                                                            <a href="{{route('products.brand',['brand_slug' => $product->brand->slug])}}">{{$product->brand->name}}</a>
+                                                                            @endif</span> </li>
+                                                                        <li>Category: <span> <a href="{{route('products.category',$product->category->slug)}}">{{$product->category->name}}</a>
+                                                                            </span> </li>
+                                                                        {{-- <li>Weight: <span>Abc</span> </li>
+                                                                        <li>Type: <span>Hotel, Home, Hospital, Restaurant</span> </li> --}}
+                                                                    </ul>
+                                                                    <div class="enterprise mb-2">Sold by: <span
+                                                                            class="font-weight-bold">@if ($product->added_by == 'seller' && \App\BusinessSetting::where('type', 'vendor_system_activation')->first()->value == 1)
+                                                                            <a href="{{ route('shop.visit', $product->user->shop->slug) }}">{{ $product->user->shop->name }}</a>
+                                                                        @else
+                                                                            {{ __('Inhouse product') }}
+                                                                        @endif</span>
                                                                     </div>
-                                                                @endif
+                                                                    <a href="{{route('product',$product->slug)}}" class="anchor-btn2 mb-3">View</a>
+                                                                </div>
                                                             </div>
-                                                            <ul class="other-detail">
-                                                                <li>Brand: <span>@if($product->brand)
-                                                                    <a href="{{route('products.brand',['brand_slug' => $product->brand->slug])}}">{{$product->brand->name}}</a>
-                                                                    @endif</span> </li>
-                                                                <li>Category: <span> <a href="{{route('products.category',$product->category->slug)}}">{{$product->category->name}}</a>
-                                                                    </span> </li>
-                                                                {{-- <li>Weight: <span>Abc</span> </li>
-                                                                <li>Type: <span>Hotel, Home, Hospital, Restaurant</span> </li> --}}
-                                                            </ul>
-                                                            <div class="enterprise mb-2">Sold by: <span
-                                                                    class="font-weight-bold">@if ($product->added_by == 'seller' && \App\BusinessSetting::where('type', 'vendor_system_activation')->first()->value == 1)
-                                                                    <a href="{{ route('shop.visit', $product->user->shop->slug) }}">{{ $product->user->shop->name }}</a>
-                                                                @else
-                                                                    {{ __('Inhouse product') }}
-                                                                @endif</span>
-                                                            </div>
-                                                            <a href="{{route('product',$product->slug)}}" class="anchor-btn2 mb-3">View</a>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                {{-- <div class="col-lg-4 col-12 seller-info">
-                                                    <div class="seller-info-box p-4">
-                                                        <div class="sold-by position-relative">
-                                                            <div class="position-absolute medal-badge">
-                                                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
-                                                                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                    xml:space="preserve" viewBox="0 0 287.5 442.2">
-                                                                    <polygon style="fill:#F8B517;"
-                                                                        points="223.4,442.2 143.8,376.7 64.1,442.2 64.1,215.3 223.4,215.3 ">
-                                                                    </polygon>
-                                                                    <circle style="fill:#FBD303;" cx="143.8" cy="143.8"
-                                                                        r="143.8">
-                                                                    </circle>
-                                                                    <circle style="fill:#F8B517;" cx="143.8" cy="143.8"
-                                                                        r="93.6">
-                                                                    </circle>
-                                                                    <polygon style="fill:#FCFCFD;" points="143.8,55.9 163.4,116.6 227.5,116.6 175.6,154.3 195.6,215.3 143.8,177.7 91.9,215.3 111.9,154.3
-                                                                                                    60,116.6 124.1,116.6 ">
-                                                                    </polygon>
-                                                                </svg>
-                                                            </div>
-                                                            <div class="title font-weight-bold">Sold By</div>
-                                                            <a href="" class="name d-block font-weight-bold">
-                                                                @if ($product->added_by == 'seller' && \App\BusinessSetting::where('type', 'vendor_system_activation')->first()->value == 1)
-                                                                    <a href="{{ route('shop.visit', $product->user->shop->slug) }}">{{ $product->user->shop->name }}</a>
-                                                                @else
-                                                                    {{ __('Inhouse product') }}
-                                                                @endif
-                                                                <span class="ml-2"><i class="fa fa-check-circle"
-                                                                        style="color:green"></i></span>
-                                                            </a>
-                                                            @php
-                                                            $total = 0;
-                                                            $rating = 0;
-                                                            foreach ($product->user->products as $key => $seller_product) {
-                                                                $total += $seller_product->reviews->count();
-                                                                $rating += $seller_product->reviews->sum('rating');
-                                                            }
-                                                            // echo $rating/$total;
-                                                        @endphp
-                            
-                                                            <div class="rating text-center d-block">
-                                                                <span class="star-rating star-rating-sm d-block">
-                                                                    @if ($total > 0)
-                                                                        {{ renderStarRating($rating/$total) }}
-                                                                    @else
-                                                                        {{ renderStarRating(0) }}
+                                                        {{-- <div class="col-lg-4 col-12 seller-info">
+                                                            <div class="seller-info-box p-4">
+                                                                <div class="sold-by position-relative">
+                                                                    <div class="position-absolute medal-badge">
+                                                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                            xml:space="preserve" viewBox="0 0 287.5 442.2">
+                                                                            <polygon style="fill:#F8B517;"
+                                                                                points="223.4,442.2 143.8,376.7 64.1,442.2 64.1,215.3 223.4,215.3 ">
+                                                                            </polygon>
+                                                                            <circle style="fill:#FBD303;" cx="143.8" cy="143.8"
+                                                                                r="143.8">
+                                                                            </circle>
+                                                                            <circle style="fill:#F8B517;" cx="143.8" cy="143.8"
+                                                                                r="93.6">
+                                                                            </circle>
+                                                                            <polygon style="fill:#FCFCFD;" points="143.8,55.9 163.4,116.6 227.5,116.6 175.6,154.3 195.6,215.3 143.8,177.7 91.9,215.3 111.9,154.3
+                                                                                                            60,116.6 124.1,116.6 ">
+                                                                            </polygon>
+                                                                        </svg>
+                                                                    </div>
+                                                                    <div class="title font-weight-bold">Sold By</div>
+                                                                    <a href="" class="name d-block font-weight-bold">
+                                                                        @if ($product->added_by == 'seller' && \App\BusinessSetting::where('type', 'vendor_system_activation')->first()->value == 1)
+                                                                            <a href="{{ route('shop.visit', $product->user->shop->slug) }}">{{ $product->user->shop->name }}</a>
+                                                                        @else
+                                                                            {{ __('Inhouse product') }}
+                                                                        @endif
+                                                                        <span class="ml-2"><i class="fa fa-check-circle"
+                                                                                style="color:green"></i></span>
+                                                                    </a>
+                                                                    @php
+                                                                    $total = 0;
+                                                                    $rating = 0;
+                                                                    foreach ($product->user->products as $key => $seller_product) {
+                                                                        $total += $seller_product->reviews->count();
+                                                                        $rating += $seller_product->reviews->sum('rating');
+                                                                    }
+                                                                    // echo $rating/$total;
+                                                                @endphp
+                                    
+                                                                    <div class="rating text-center d-block">
+                                                                        <span class="star-rating star-rating-sm d-block">
+                                                                            @if ($total > 0)
+                                                                                {{ renderStarRating($rating/$total) }}
+                                                                            @else
+                                                                                {{ renderStarRating(0) }}
+                                                                            @endif
+                                                                        </span>
+                                                                        <span class="rating-count d-block ml-0">({{ $total }} {{__('customer reviews')}})</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row justify-content-center align-items-center">
+                                                                    @if ($product->added_by == 'seller' && \App\BusinessSetting::where('type', 'vendor_system_activation')->first()->value == 1)
+                                                                        <a href="{{ route('shop.visit', $product->user->shop->slug) }}" class="anchor-btn2 mt-2">Visit Store</a>
                                                                     @endif
-                                                                </span>
-                                                                <span class="rating-count d-block ml-0">({{ $total }} {{__('customer reviews')}})</span>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="row justify-content-center align-items-center">
-                                                            @if ($product->added_by == 'seller' && \App\BusinessSetting::where('type', 'vendor_system_activation')->first()->value == 1)
-                                                                <a href="{{ route('shop.visit', $product->user->shop->slug) }}" class="anchor-btn2 mt-2">Visit Store</a>
-                                                            @endif
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
-                                                </div> --}}
-                                            </div>
-                                        </li>
-                                    @endforeach
+                                                </li>
+                                            @else
+                                                <div class="nothing-wrap d-flex justify-content-center w-100 align-items-center flex-column">
+                                                    <p class="pt-3">Sorry, Your Searched Product Expired Or Is Not Available.</p>
+                                                </div>
+                                            @endif
+                                        @endforeach
                                     @else
                                     <div class="nothing-wrap d-flex justify-content-center w-100 align-items-center flex-column">
                                         <p class="pt-3">Sorry, Nothing to show here.</p>

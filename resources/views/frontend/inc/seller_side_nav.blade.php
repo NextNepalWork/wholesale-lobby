@@ -67,6 +67,25 @@
                         </span>
                     </a>
                 </li>
+                @php
+                    $count=0;
+                    $products = \App\Product::where('user_id',Auth::user()->id)->where('published',1)->get();
+                    foreach ($products as $key => $product) {
+                        $remaining_days = now()->diffInDays(Carbon\Carbon::parse($product->expiry_date), false);
+                        if($remaining_days<=10){
+                            $count = $count + 1;
+                        }
+                    }
+                @endphp
+                <li>
+                    <a href="{{ route('products.expired') }}" class="{{ areActiveRoutesHome(['products.expired'])}}">
+                        <i class="la la-diamond"></i>
+                        <span class="category-name">
+                            {{__('Expired Products')}}
+                            <span class="ml-2" style="color:red"><strong>({{$count}})</strong></span>
+                        </span>
+                    </a>
+                </li>
                 {{-- <li>
                     <a href="{{ route('seller.digitalproducts') }}" class="{{ areActiveRoutesHome(['seller.digitalproducts', 'seller.digitalproducts.upload', 'seller.digitalproducts.edit'])}}">
                         <i class="la la-diamond"></i>

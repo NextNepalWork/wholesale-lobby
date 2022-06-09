@@ -124,6 +124,7 @@ if($flash_deal!=null){
                     $product = \App\Product::find($flash_deal_product->product_id);
                 @endphp
                 @if ($product != null && $product->published != 0)
+                @if ($product->expiry_date==null || date('Y-m-d H:i:s') <= $product->expiry_date)   
                 
                 <div class="slick-item position-relative">
                     <div class="product-grid-item2 d-flex align-items-center mx-2">
@@ -151,6 +152,7 @@ if($flash_deal!=null){
                     </div>
                 </div>
                 @endif
+                @endif
                 @endforeach
             </div>
         </div>
@@ -158,6 +160,7 @@ if($flash_deal!=null){
 </section>  
 
 @endif
+
     <!-- Product Listing -->
     <section class="product-listing position-relative pt-5 bg-light">
         <div class="container">
@@ -175,33 +178,34 @@ if($flash_deal!=null){
                 </div>
                 <div class="slick-slider-listing">
                     @foreach (filter_products(\App\Product::where('published', 1)->orderBy('created_at', 'desc'))->limit(20)->get() as $key => $product)
-                        
+                    @if ($product->expiry_date==null || date('Y-m-d H:i:s') <= $product->expiry_date)   
                     
-                    <div class="slick-item position-relative">
-                        <div class="product-grid-item2 d-flex align-items-center mx-2">
-                            <div class="product-grid-image2 w-50">
-                                <a href="{{route('product',$product->slug)}}">
-                                    @if (!empty($product->featured_img))
-                                        @if (file_exists($product->featured_img))
-                                            <img src="{{asset($product->featured_img)}}" alt="img" class="img-fluid pic-1">
-                                        @else
+                        <div class="slick-item position-relative">
+                            <div class="product-grid-item2 d-flex align-items-center mx-2">
+                                <div class="product-grid-image2 w-50">
+                                    <a href="{{route('product',$product->slug)}}">
+                                        @if (!empty($product->featured_img))
+                                            @if (file_exists($product->featured_img))
+                                                <img src="{{asset($product->featured_img)}}" alt="img" class="img-fluid pic-1">
+                                            @else
+                                                <img src="{{asset('frontend/images/placeholder.jpg')}}" alt="img" class="img-fluid pic-1">
+                                            @endif
+                                        @else 
                                             <img src="{{asset('frontend/images/placeholder.jpg')}}" alt="img" class="img-fluid pic-1">
-                                        @endif
-                                    @else 
-                                        <img src="{{asset('frontend/images/placeholder.jpg')}}" alt="img" class="img-fluid pic-1">
-                                    @endif 
-                                </a>
-                            </div>
-                            <div class="product-content w-50">
-                                <ul>
-                                    <li class="title mb-2"><a href="{{ route('products.subcategory', $product->subcategory->slug) }}" class=" font-weight-bold" title="{{$product->subcategory->name}}">{{$product->subcategory->name}}</a></li>
-                                    <li>
-                                        <a href="{{route('product',$product->slug)}}" title="{{$product->name}}">{{$product->name}}</a>
-                                    </li>
-                                </ul>
+                                        @endif 
+                                    </a>
+                                </div>
+                                <div class="product-content w-50">
+                                    <ul>
+                                        <li class="title mb-2"><a href="{{ route('products.subcategory', $product->subcategory->slug) }}" class=" font-weight-bold" title="{{$product->subcategory->name}}">{{$product->subcategory->name}}</a></li>
+                                        <li>
+                                            <a href="{{route('product',$product->slug)}}" title="{{$product->name}}">{{$product->name}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                     @endforeach
                 </div>
             </div>
@@ -233,31 +237,34 @@ if($flash_deal!=null){
 
                         @endphp
                         @if (($product))
-                        <div class="slick-item position-relative">
-                            <div class="product-grid-item2 d-flex align-items-center mx-2">
-                                <div class="product-grid-image2">
-                                    <a href="{{route('product',$product->slug)}}">
-                                        @if (!empty($product->featured_img))
-                                            @if (file_exists($product->featured_img))
-                                                <img src="{{asset($product->featured_img)}}" alt="img" class="img-fluid pic-1">
-                                            @else
-                                                <img src="{{asset('frontend/images/placeholder.jpg')}}" alt="img" class="img-fluid pic-1">
-                                            @endif
-                                        @else 
-                                            <img src="{{asset('frontend/images/placeholder.jpg')}}" alt="img" class="img-fluid pic-1">
-                                        @endif 
-                                    </a>
+                            @if ($product->expiry_date==null || date('Y-m-d H:i:s') <= $product->expiry_date)   
+
+                                <div class="slick-item position-relative">
+                                    <div class="product-grid-item2 d-flex align-items-center mx-2">
+                                        <div class="product-grid-image2">
+                                            <a href="{{route('product',$product->slug)}}">
+                                                @if (!empty($product->featured_img))
+                                                    @if (file_exists($product->featured_img))
+                                                        <img src="{{asset($product->featured_img)}}" alt="img" class="img-fluid pic-1">
+                                                    @else
+                                                        <img src="{{asset('frontend/images/placeholder.jpg')}}" alt="img" class="img-fluid pic-1">
+                                                    @endif
+                                                @else 
+                                                    <img src="{{asset('frontend/images/placeholder.jpg')}}" alt="img" class="img-fluid pic-1">
+                                                @endif 
+                                            </a>
+                                        </div>
+                                        <div class="product-content">
+                                            <ul>
+                                                <li class="title mb-2"><a href="{{ route('products.subcategory', $product->subcategory->slug) }}" class=" font-weight-bold" title="{{$product->subcategory->name}}">{{$product->subcategory->name}}</a></li>
+                                                <li>
+                                                    <a href="{{route('product',$product->slug)}}" title="{{$product->name}}">{{$product->name}}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="product-content">
-                                    <ul>
-                                        <li class="title mb-2"><a href="{{ route('products.subcategory', $product->subcategory->slug) }}" class=" font-weight-bold" title="{{$product->subcategory->name}}">{{$product->subcategory->name}}</a></li>
-                                        <li>
-                                            <a href="{{route('product',$product->slug)}}" title="{{$product->name}}">{{$product->name}}</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                            @endif
                         @endif
                         @endforeach
                     </div>
