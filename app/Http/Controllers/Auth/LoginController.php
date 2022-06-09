@@ -12,6 +12,9 @@ use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use Mail;
+use App\Mail\EmailManager;
 
 class LoginController extends Controller
 {
@@ -160,13 +163,37 @@ class LoginController extends Controller
         }
         if(auth()->user()->user_type == 'admin' || auth()->user()->user_type == 'staff')
         {
-           
             return redirect()->route('admin.dashboard');
         }
         elseif(session('link') != null){
             return redirect(session('link'));
         }
         else{
+            // $user=Auth::user();
+            // if($user->user_type=='seller'){
+            //     $products=Product::where('published',1)->where('user_id',$user->id)->get();
+            //     foreach ($products as $key => $product) {
+            //         $remaining_days= now()->diffInDays(Carbon::parse($product->expiry_date), false);
+            //         if($remaining_days <= 10){
+            //             if (env('MAIL_USERNAME') != null) {
+            //                         $array['view'] = 'emails.expiry';
+            //                         $array['subject'] = 'Product Expiring Soon';
+            //                         $array['from'] = env('MAIL_USERNAME');
+            //                         $array['content'] = $product->name . 'expires in' .$remaining_days . ' 10 days';
+        
+            //                         try {
+            //                             Mail::to($user->email)->queue(new EmailManager($array));
+            //                         } catch (\Exception $e) {
+            //                             flash(__('Mail cannot be sent'))->error();
+            //                         }
+            //             } 
+            //             else {
+            //                 flash(__('Please configure SMTP first'))->error();
+            //                 return back();
+            //             }
+            //         }
+            //     }
+            // }
             return redirect()->route('dashboard');
         }
     }

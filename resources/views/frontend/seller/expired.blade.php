@@ -101,6 +101,7 @@
                                             
                                         @endphp
                                         @if ($remaining_days <= 10 )
+                                        
                                             <tr>
                                                 <td>{{ ($key+1) + ($products->currentPage() - 1)*$products->perPage() }}</td>
                                                 <td><a href="{{ route('product', $product->slug) }}" target="_blank">{{ __($product->name) }}</a></td>
