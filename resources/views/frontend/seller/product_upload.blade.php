@@ -67,7 +67,7 @@
                                             <div class="mb-3">
                                                 <select class="form-control mb-3 selectpicker" data-placeholder="Select a brand" id="brands" name="brand_id">
                                                     <option value="">{{ ('Select Brand') }}</option>
-                                                    @foreach (\App\Brand::all() as $brand)
+                                                    @foreach ($brands as $brand)
                                                         <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                                                     @endforeach
                                                 </select>

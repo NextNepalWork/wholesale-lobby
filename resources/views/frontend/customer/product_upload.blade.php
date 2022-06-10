@@ -1,7 +1,12 @@
 @extends('frontend.layouts.app')
 
 @section('content')
-
+<style>
+.section--vendorStore .store__product .col-6 {
+  /* height: 390px; */
+  padding: 0;
+}
+</style>
     <section class="gry-bg py-4 profile">
         <div class="container">
             <div class="row cols-xs-space cols-sm-space cols-md-space">

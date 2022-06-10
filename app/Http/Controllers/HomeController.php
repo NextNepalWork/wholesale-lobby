@@ -379,18 +379,34 @@ class HomeController extends Controller
 
     public function show_product_upload_form(Request $request)
     {
+        $brands_all = Brand::all();
+        $user_id = Auth::user()->id;
+        $brands = [];
+        foreach($brands_all as $a => $b){
+            if(!empty($b->vendor)){
+                $vendors = explode(',',$b->vendor);
+                if(in_array($user_id,$vendors)){
+                    array_push($brands,$b);    
+                }
+            }else{
+                array_push($brands,$b);
+            }
+        }
+        // dd($user_id,$filtered_brands);
         if(\App\Addon::where('unique_identifier', 'seller_subscription')->first() != null && \App\Addon::where('unique_identifier', 'seller_subscription')->first()->activated){
             if(Auth::user()->seller->remaining_uploads > 0){
                 $categories = Category::all();
-                return view('frontend.seller.product_upload', compact('categories'));
+                return view('frontend.seller.product_upload', compact('categories','brands'));
             }
             else {
                 flash('Upload limit has been reached. Please upgrade your package.')->warning();
                 return back();
             }
+            // dd('123');
         }
         $categories = Category::all();
-        return view('frontend.seller.product_upload', compact('categories'));
+        // dd('123');
+        return view('frontend.seller.product_upload', compact('categories','brands'));
     }
 
     public function show_product_edit_form(Request $request, $id)

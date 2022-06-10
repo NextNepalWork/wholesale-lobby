@@ -38,6 +38,19 @@
                         <textarea name="meta_description" rows="8" class="form-control">{{ $brand->meta_description }}</textarea>
                     </div>
                 </div>
+                <div class="form-group" id="Vendors">
+                    <label class="col-sm-2 control-label" for="Vendors">{{__('Vendors')}}</label>
+                    <div class="col-sm-10">
+                        @php
+                            $selected_vendors = explode(',',$brand->vendor);
+                        @endphp
+                        <select class="form-control demo-select2-placeholder" name="vendor[]" id="Vendors" multiple="multiple">
+                            @foreach (\App\User::where('user_type','seller')->get() as $a => $seller)
+                                <option <?php if(in_array($seller->id,$selected_vendors)) echo 'selected' ?> value="{{$seller->id}}">{{$seller->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label" for="name">{{__('Slug')}}</label>
                     <div class="col-sm-10">

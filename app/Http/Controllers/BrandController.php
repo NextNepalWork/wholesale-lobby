@@ -47,6 +47,7 @@ class BrandController extends Controller
         $brand->name = $request->name;
         $brand->meta_title = $request->meta_title;
         $brand->meta_description = $request->meta_description;
+        $brand->vendor = implode(',',$request->vendor);
         if ($request->slug != null) {
             $brand->slug = str_replace(' ', '-', $request->slug);
         }
@@ -103,6 +104,7 @@ class BrandController extends Controller
         $brand->name = $request->name;
         $brand->meta_title = $request->meta_title;
         $brand->meta_description = $request->meta_description;
+        $brand->vendor = implode(',',$request->vendor);
         if ($request->slug != null) {
             $brand->slug = str_replace(' ', '-', $request->slug);
         }

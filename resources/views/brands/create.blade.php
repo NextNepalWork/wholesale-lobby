@@ -37,6 +37,16 @@
                         <textarea name="meta_description" rows="8" class="form-control"></textarea>
                     </div>
                 </div>
+                <div class="form-group" id="Vendors">
+                    <label class="col-sm-2 control-label" for="Vendors">{{__('Vendors')}}</label>
+                    <div class="col-sm-10">
+                        <select class="form-control demo-select2-placeholder" name="vendor[]" id="Vendors" multiple="multiple">
+                            @foreach (\App\User::where('user_type','seller')->get() as $a => $seller)
+                                <option value="{{$seller->id}}">{{$seller->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
             </div>
             <div class="panel-footer text-right">
                 <button class="btn btn-purple" type="submit">{{__('Save')}}</button>
