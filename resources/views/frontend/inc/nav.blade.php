@@ -11,7 +11,7 @@ $generalsetting = \App\GeneralSetting::first();
                         <a href="" class="text-white">Check Our App</a>
                     </li>
                     <li>
-                        <a href="{{route('shops.create')}}" class="text-white">Sell Here</a>
+                        <a href="{{route('shops.create')}}" class="text-white">Become A Seller</a>
                     </li>
                     <li class="d-flex align-items-center top_head_right">
                         <div class="dropdown user_login_mobile">

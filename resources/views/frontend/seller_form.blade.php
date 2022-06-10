@@ -130,6 +130,14 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-2">
+                                            <label>{{__('Attach File')}} <span class="required-star">*</span></label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <input type="file" class="mb-3" name="document" required>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
                                             <label>{{__('Pan')}} <span class="required-star">*</span></label>
                                         </div>
                                         <div class="col-md-10">

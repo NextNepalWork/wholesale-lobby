@@ -330,8 +330,8 @@ sup {
 }
 
 .navbar-brand img {
-    max-height: 42px;
-    min-height: 42px;
+    max-height: 50px;
+    min-height: 50px;
     width: auto;
     /* display: block; */
     object-fit: contain;
@@ -548,9 +548,9 @@ sup {
     overflow-x: initial;
 }
 
-#banner-categories-wrapper .slick-dots {
+/* #banner-categories-wrapper .slick-dots {
     z-index: -1;
-}
+} */
 
 #banner-categories-wrapper .description {
     position: absolute;
@@ -4039,4 +4039,11 @@ div#shipping button.btn.add_btn_img {
     height: 100%;
     width: 100%;
     justify-content: center;
+}
+.slick-dotted.slick-slider {
+    margin-bottom: unset;
+}
+.slick-dots {
+    position: absolute;
+    bottom: 0px;
 }

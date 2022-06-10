@@ -9,6 +9,7 @@ use App\ProductStock;
 use Auth;
 use Illuminate\Http\Request;
 
+
 use Image;
 
 class ProductController extends Controller
@@ -146,6 +147,7 @@ class ProductController extends Controller
         $product->made_in_nepal = $request->made_in_nepal != null ? 1 : 0;
         $product->warranty = $request->warranty != null ? 1 : 0;
         $product->warranty_time = $request->warranty_time;
+        $product->expiry_date = $request->expiry_date;
 
         $photos = array();
         $thumb=array();
@@ -428,6 +430,7 @@ class ProductController extends Controller
         $product->warranty = $request->warranty != null ? 1 : 0;
         $product->warranty_time = $request->warranty_time;
 
+        $product->expiry_date = $request->expiry_date;
         // $product->thumbnail_img = $request->previous_thumbnail_img;
         // if($request->hasFile('thumbnail_img')){
         //     $product->thumbnail_img = $request->thumbnail_img->store('uploads/products/thumbnail');
@@ -826,6 +829,15 @@ class ProductController extends Controller
     {
         $products = Product::where('category_id', $request->category_id)->get();
         return $products;
+    }
+
+
+    public function expired_products()
+    {
+        $user=Auth::user();
+        $products=Product::where('published',1)->where('user_id',$user->id)->paginate(15);
+        
+        return view('frontend.seller.expired',compact('products'));
     }
 
 }

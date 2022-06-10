@@ -157,6 +157,41 @@ $(".slick-slider-flash").slick({
     ],
 });
 //flash deal ends
+
+//recommended
+$(".slick-slider-recommended").slick({
+    infinite: true,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: true,
+    dots: false,
+    autoplay: true,
+    responsive: [
+        {
+            breakpoint: 1400,
+            settings: {
+                slidesToShow: 4,
+                slidesToScroll: 1,
+            },
+        },
+        {
+            breakpoint: 1080,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+            },
+        },
+        {
+            breakpoint: 780,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+            },
+        },
+    ],
+});
+//recommended ends
+
 // Product Listing Slick Slider Starts
 $(".slick-slider-listing").slick({
     infinite: true,

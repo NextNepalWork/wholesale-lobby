@@ -103,12 +103,15 @@ class ShopController extends Controller
             $shop->address = $request->address;
             $shop->location=implode('!!', $request['location']);
             // $shop->location=serialize($request['location']);
+            if($request->hasFile('document')){
+                $shop->document = $request->document->store('uploads/shop/documents');
+            }
             $shop->slug = preg_replace('/\s+/', '-', $request->name).'-'.$shop->id;
             if($request->hasFile('logo')){
                 $shop->logo = $request->logo->store('uploads/shop/logo');
             }
             if($shop->save()){
-                $user->sendEmailVerificationNotification();
+                // $user->sendEmailVerificationNotification();
                 auth()->login($user, false);
                 flash(__('Your Shop has been created successfully!'))->success();
 
