@@ -141,6 +141,21 @@
                                     <li class="{{ areActiveRoutes(['customers.recommend'])}}">
                                         <a class="nav-link" href="{{ route('customers.recommend') }}">{{__('Recommended Products')}}</a>
                                     </li>
+                                    @php
+                                    $count=0;
+                                    $products = \App\Product::where('published',1)->where('added_by','seller')->where('expiry_date','!=','null')->get();
+                                    foreach ($products as $key => $product) {
+                                        $remaining_days = now()->diffInDays(Carbon\Carbon::parse($product->expiry_date), false);
+                                        if($remaining_days<=10){
+                                            $count = $count + 1;
+                                        }
+                                    }
+                                @endphp
+                                    <li class="{{ areActiveRoutesHome(['products.expired'])}}">
+                                        <a class="nav-link" href="{{ route('products.expired') }}">{{__('Expired Products')}}
+                                            <span class="pull-right badge badge-danger">{{ $count }}</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         @endif

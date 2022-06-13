@@ -9,7 +9,11 @@ use App\ProductStock;
 use Auth;
 use Illuminate\Http\Request;
 
-
+use Carbon\Carbon;
+use Mail;
+use App\Mail\ExpiryMail;
+use App\User;
+use Illuminate\Routing\Route;
 use Image;
 
 class ProductController extends Controller
@@ -78,7 +82,7 @@ class ProductController extends Controller
 
         $products = $products->orderBy('created_at', 'desc')->paginate(15);
         $type = 'Seller';
-
+        
         return view('products.index', compact('products', 'type', 'col_name', 'query', 'seller_id', 'sort_search'));
     }
 
@@ -832,12 +836,71 @@ class ProductController extends Controller
     }
 
 
-    public function expired_products()
+    public function expired_products(Request $request)
     {
         $user=Auth::user();
-        $products=Product::where('published',1)->where('user_id',$user->id)->paginate(15);
-        
-        return view('frontend.seller.expired',compact('products'));
+        if($user->user_type=='seller'){
+            $products=Product::where('published',1)->where('user_id',$user->id)->paginate(15);
+            return view('frontend.seller.expired',compact('products'));
+        }else{
+            $seller_id = null;
+            $sort_search = null;
+            $vendor_id = null;
+            $products = Product::where('added_by', 'seller');
+            if ($request->has('user_id') && $request->user_id != null) {
+                $products = $products->where('user_id', $request->user_id);
+                $seller_id = $request->user_id;
+            }
+            if ($request->search != null) {
+                $products = $products
+                    ->where('name', 'like', '%' . $request->search . '%');
+                $sort_search = $request->search;
+            }
+            if ($request->seller != null) {
+            
+                $products = $products
+                    ->where('user_id', $request->seller);
+                $vendor_id=$request->seller;
+                
+            }
+    
+            // $products = $products->orderBy('created_at', 'desc')->paginate(15);
+            $type = 'Seller';
+            $products=$products->where('published',1)->where('expiry_date', '!=','null')->paginate(15);
+            return view('products.expired',compact('products','vendor_id'));
+        }
     }
+    public function send_expiry_mail(Request $request, $id){           
+        $expired_products=[];
+        $products=Product::where('published',1)->where('user_id',$id)->get();
+        $user=User::where('id',$id)->first();
+        foreach($products as $key => $product){
+            $remaining_days= now()->diffInDays(Carbon::parse($product->expiry_date), false);
+            if($remaining_days<=10){
+                $expired_products[$key] = $product;
+            }
+        }
+        if (env('MAIL_USERNAME') != null) {
+            // $array['view'] = 'emails.expiry';
+            $array['subject'] = 'Product Expiring Soon';
+            $array['from'] = env('MAIL_USERNAME');
+            $array['seller'] = $user->name;
+            $array['details']=$expired_products;
+
+            try {
+                Mail::to($user->email)->queue(new ExpiryMail($array));
+                flash(__('Mail Sent Successfully'))->success();
+                return back();
+            } catch (\Exception $e) {
+                // dd($e);
+                flash(__('Mail cannot be sent'))->error();
+            }
+        }
+        else {
+            flash(__('Please configure SMTP first'))->error();
+            return back();
+        }  
+    }
+
 
 }
