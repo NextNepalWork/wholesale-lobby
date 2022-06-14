@@ -172,15 +172,17 @@
                                                     @endif
                                                 </div>
                                                 <ul class="other-detail">
-                                                    <li>Brand: <span>@if($detailedProduct->brand)
+                                                    @if($detailedProduct->brand)
+                                                    <li class="my-2"><span class="font-weight-bold text-dark">Brand: </span><span>
                                                         <a href="{{route('products.brand',['brand_slug' => $detailedProduct->brand->slug])}}">{{$detailedProduct->brand->name}}</a>
-                                                        @endif</span> </li>
-                                                    <li>Category: <span><a href="{{route('products.category',$detailedProduct->category->slug)}}">{{$detailedProduct->category->name}}</a>
+                                                        </span> </li>
+                                                    @endif
+                                                    <li class="my-2"><span class="font-weight-bold text-dark">Category: </span> <span><a href="{{route('products.category',$detailedProduct->category->slug)}}">{{$detailedProduct->category->name}}</a>
                                                         </span> </li>
                                                     {{-- <li>Weight: <span>Abc</span> </li>
                                                     <li>Type: <span>Hotel, Home, Hospital, Restaurant</span> </li> --}}
                                                 </ul>
-                                                <div class="enterprise mb-2">Sold by: 
+                                                {{-- <div class="enterprise mb-2">Sold by: 
                                                     <span class="font-weight-bold">
                                                     @if ($detailedProduct->added_by == 'seller' && \App\BusinessSetting::where('type', 'vendor_system_activation')->first()->value == 1)
                                                         <a href="{{ route('shop.visit', $detailedProduct->user->shop->slug) }}">{{ $detailedProduct->user->shop->name }}</a>
@@ -188,7 +190,7 @@
                                                         {{ __('Inhouse product') }}
                                                     @endif
                                                     </span>
-                                                </div>
+                                                </div> --}}
                                                 {{-- <p>{!! $detailedProduct->description !!}</p> --}}
 
                                                 {{-- <form class="product-types">
@@ -305,9 +307,10 @@
                                                         @endforeach
                                                         @endif
                         
-                                                        <div class="form-group col-lg-4 col-md-6">
-                                                            <div class="quantity">
-                                                                <h5>Quantity</h5>
+                                                        <div class="form-group">
+                                                            <div class="quantity d-flex align-items-center">
+                                                                <h5 class="mr-4">Quantity:</h5>
+                                                                
                                                                 <div class="qty-1">
                                                                     <span class="input-group-btn minus">
                                                                         <button class="btn btn-number" type="button" data-type="minus" data-field="quantity" style="padding:0px;">
@@ -322,6 +325,7 @@
                                                                     </span>
                                                                 </div>
                                                                 <div class="avialable-amount">(<span id="available-quantity">{{ $qty }}</span> {{__('available')}})</div>
+                                                                
                                                             </div>
                                                         </div>
                                                     </div>
@@ -363,14 +367,8 @@
                                                     </div>
                         
                         
-                                                    <ul class="d-flex mb-3 extralink">
-                                                        {{-- <li> <a onclick="addToCompare({{ $detailedProduct->id }})" class="mr-3">Add to Compare</a>
-                                                        </li> --}}
-                                                        <li> <a onclick="addToWishList({{ $detailedProduct->id }})" class="mr-3">Add to Wishlist</a>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="button-wrapper">
-                                                        
+                                                    <div class="button-wrapper mt-2">
+                                                        <button onclick="addToWishList({{ $detailedProduct->id }})" class="effect">Add To Wishlist</button>
                                                         @if ($qty > 0)
                                                             <button type="button" class="effect add-to-cart" onclick="addToCart()">
                                                                 <span class=" d-md-inline-block"> {{__('Add to cart')}}</span>
@@ -386,6 +384,7 @@
                                                                     {{__('Out of Stock')}}
                                                             </button>
                                                         @endif
+                                                        
                                                     </div>
                                                     <div class="info mt-2">
                                                         <p><span>
@@ -761,7 +760,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="slick-slider-listing">
+                <div class="slick-slider-related">
                     @foreach ($products as $key => $related_product)
                     <div class="slick-item position-relative py-4">
                         <div class="product-grid-item">
@@ -952,6 +951,39 @@
                 $('#login_modal').modal('show');
             @endif
         }
+
+        $(".slick-slider-related").slick({
+            infinite: true,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            arrows: true,
+            dots: false,
+            rows: 1,
+            autoplay: true,
+            responsive: [
+                {
+                    breakpoint: 1400,
+                    settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 1080,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                    },
+                },
+                {
+                    breakpoint: 780,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                    },
+                },
+            ],
+        });
 
 
     </script>

@@ -96,7 +96,7 @@
                             </a>
                         </div>
                     </div>
-                    @auth
+                    {{-- @auth
                     <li>
                         <a href="{{route('dashboard')}}"><span class="mr-2"><i class="fa fa-angle-right"
                                     aria-hidden="true"></i></span>Dashboard</a>
@@ -122,7 +122,42 @@
                                     aria-hidden="true"></i></span>Register</a>
                         </h5>
                     </li>
-                    @endauth
+                    @endauth --}}
+                    <li>
+                        
+                        <a href="{{ route('faq') }}"> 
+                            <span class="mr-2"><i class="fa fa-angle-right"
+                                aria-hidden="true"></i></span>
+                                FAQ</a>
+                     </li>
+                        <li>
+                           <a href="{{ route('sellerpolicy') }}">
+                            <span class="mr-2"><i class="fa fa-angle-right"
+                                aria-hidden="true"></i></span>
+                              {{__('Seller Policy')}}
+                           </a>
+                        </li>
+                        <li>
+                           <a href="{{ route('returnpolicy') }}">
+                            <span class="mr-2"><i class="fa fa-angle-right"
+                                aria-hidden="true"></i></span>
+                              {{__('Return & Refund Policy')}}
+                           </a>
+                        </li>
+                        <li>
+                           <a href="{{ route('terms') }}">
+                            <span class="mr-2"><i class="fa fa-angle-right"
+                                aria-hidden="true"></i></span>
+                              {{__('Terms & Conditions')}}
+                           </a>
+                        </li>
+                        <li>
+                           <a href="{{ route('privacypolicy') }}">
+                            <span class="mr-2"><i class="fa fa-angle-right"
+                                aria-hidden="true"></i></span>
+                              {{__('Privacy Policy')}}
+                           </a>
+                        </li>
                     {{-- <li>
                         <a href="cart.html"><span class="mr-2"><i class="fa fa-angle-right"
                                     aria-hidden="true"></i></span>Cart</a></h5>
