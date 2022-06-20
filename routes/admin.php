@@ -268,4 +268,7 @@ Route::resource('flash_deals','FlashDealController');
 
 	Route::resource('countries','CountryController');
 	Route::post('/countries/status', 'CountryController@updateStatus')->name('countries.status');
+
+	Route::post('/products/expired/send-mail/{id}', 'ProductController@send_expiry_mail')->name('expired-mail');
+
 });
