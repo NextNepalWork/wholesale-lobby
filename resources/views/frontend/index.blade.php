@@ -185,10 +185,14 @@ if($flash_deal!=null){
                                 <div class="product-grid-image2 w-50">
                                     <a href="{{route('product',$product->slug)}}">
                                         @if (!empty($product->featured_img))
-                                            @if (file_exists($product->featured_img))
-                                                <img src="{{asset($product->featured_img)}}" alt="img" class="img-fluid pic-1">
+                                            @if (filter_var($product->featured_img, FILTER_VALIDATE_URL) === FALSE)
+                                                @if (file_exists($product->featured_img))
+                                                    <img src="{{asset($product->featured_img)}}" alt="img" class="img-fluid pic-1">
+                                                @else
+                                                    <img src="{{asset('frontend/images/placeholder.jpg')}}" alt="img" class="img-fluid pic-1">
+                                                @endif
                                             @else
-                                                <img src="{{asset('frontend/images/placeholder.jpg')}}" alt="img" class="img-fluid pic-1">
+                                                <img src="{{asset($product->featured_img)}}" alt="img" class="img-fluid pic-1">
                                             @endif
                                         @else 
                                             <img src="{{asset('frontend/images/placeholder.jpg')}}" alt="img" class="img-fluid pic-1">

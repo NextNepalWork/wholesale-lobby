@@ -706,7 +706,7 @@ class OrderController extends Controller
                             $orderDetail->payment_status = 'paid';
                             $orderDetail->save();
                             if ($orderDetail->product->user->user_type == 'seller') {
-                                $seller_id=$orderDetail->product->user->seller->id;
+                                $seller_id = $orderDetail->product->user->seller->id;
                                 // dd($seller_id);
                                 $category_id = $orderDetail->product->category->id;
                                 // dd($category_id);
@@ -723,7 +723,7 @@ class OrderController extends Controller
                                 $seller->admin_to_pay = $seller->admin_to_pay + $afterCommissionPrice;
                                 $seller->save();
                                 // $commission_percentage = $orderDetail->product->category->commision_rate;
-                                // $seller = $orderDetail->product->user->seller;
+                                // $seller = $orderDetail->product->user2.->seller;
                                 // $seller->admin_to_pay = $seller->admin_to_pay + ($orderDetail->price * (100 - $commission_percentage)) / 100;
                                 // $seller->save();
                             }

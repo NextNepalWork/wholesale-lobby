@@ -101,15 +101,15 @@
                                 </div>
                             @endif
                        @endif
-                       {{-- <div class="col-xl-6 col-md-6 m-auto">
+                       <div class="col-xl-6 col-md-6 m-auto">
                            <div class="image_payment text-center" data-toggle="tooltip" data-placement="top" title="NIC">
                                <label id="file-input">
-                               <img class="img_select img-fluid" src="{{ asset('uploads/nic.jpg')}}" >
+                               <img class="img_select img-fluid" src="{{ asset('uploads/visa-master.jpg')}}" >
                                <input class="hidden" type="radio" id="file-input" name="payment_option" value="nic">
                                </label>
 
                            </div>
-                       </div> --}}
+                       </div>
                        @php
                            $esewa=json_decode(\App\BusinessSetting::where('type', 'esewa_payment')->first()->value);
                        @endphp

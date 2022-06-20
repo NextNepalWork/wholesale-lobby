@@ -74,12 +74,14 @@
 
                                 <div class="swiper-slide">
                                     @if (!empty($photo))
-                                        @if (file_exists($photo))
-                                            <img src="{{ asset($photo) }}"
-                                            data-zoom="{{ asset($photo) }}" class="img-responsive">
+                                        @if (filter_var($photo, FILTER_VALIDATE_URL) === FALSE)
+                                            @if (file_exists($photo))
+                                                <img src="{{ asset($photo) }}" data-zoom="{{ asset($photo) }}" class="img-responsive">
+                                            @else
+                                                <img src="{{asset('frontend/images/placeholder.jpg')}}" data-zoom="{{asset('frontend/images/placeholder.jpg')}}" class="img-responsive">
+                                            @endif
                                         @else
-                                            <img src="{{asset('frontend/images/placeholder.jpg')}}"
-                                            data-zoom="{{asset('frontend/images/placeholder.jpg')}}" class="img-responsive">
+                                            <img src="{{ asset($photo) }}" data-zoom="{{ asset($photo) }}" class="img-responsive">
                                         @endif
                                     @else
                                         <img src="{{asset('frontend/images/placeholder.jpg')}}"
@@ -96,12 +98,17 @@
                             <div class="swiper-wrapper">
                                 @foreach (json_decode($detailedProduct->photos) as $key => $photo)
                                     @if (!empty($photo))
-                                        @if (file_exists($photo))
+                                        @if (filter_var($photo, FILTER_VALIDATE_URL) === FALSE)
+                                            @if (file_exists($photo))
+                                                <div class="swiper-slide" style="background-image:url('{{ asset($photo) }}')">
+                                                </div>
+                                            @else
+                                                <div class="swiper-slide" style="background-image:url('{{ asset("frontend/images/placeholder.jpg") }}')">
+                                                </div>
+                                            @endif
+                                        @else
                                             <div class="swiper-slide" style="background-image:url('{{ asset($photo) }}')">
                                             </div>
-                                        @else
-                                        <div class="swiper-slide" style="background-image:url('{{ asset("frontend/images/placeholder.jpg") }}')">
-                                        </div>
                                         @endif
                                     
                                     @else
