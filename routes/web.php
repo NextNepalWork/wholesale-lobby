@@ -118,7 +118,7 @@ Route::get('page/esewa_payment_failed','EsewaController@fail');
 Route::get('/checkout/order-confirmed', 'CheckoutController@order_confirmed')->name('order_confirmed');
 Route::post('/checkout/payment', 'CheckoutController@checkout')->name('payment.checkout');
 Route::post('/get_pick_ip_points', 'HomeController@get_pick_ip_points')->name('shipping_info.get_pick_ip_points');
-Route::get('/checkout/payment_select', 'CheckoutController@get_payment_info')->name('checkout.payment_info');
+Route::get('/checkout/payment_select', 'CheckoutController@payment.checkout')->name('checkout.payment_info');
 Route::post('/checkout/apply_coupon_code', 'CheckoutController@apply_coupon_code')->name('checkout.apply_coupon_code');
 Route::post('/checkout/remove_coupon_code', 'CheckoutController@remove_coupon_code')->name('checkout.remove_coupon_code');
 
@@ -220,6 +220,8 @@ Route::group(['middleware' => ['auth']], function(){
 	Route::post('/products/update/{id}','ProductController@update')->name('products.update');
 	Route::get('/products/destroy/{id}', 'ProductController@destroy')->name('products.destroy');
 	Route::get('/product-bulk-delete/', 'ProductController@bulkDelete')->name('products.bulkDelete');
+	Route::get('/payment/all/{id}', 'ProductController@allPayment')->name('payment.all');
+	Route::post('/dues-bulk-pay/', 'ProductController@bulkPay')->name('dues.bulkPay');
 	Route::get('/products/duplicate/{id}', 'ProductController@duplicate')->name('products.duplicate');
 	Route::post('/products/sku_combination', 'ProductController@sku_combination')->name('products.sku_combination');
 	Route::post('/products/sku_combination_edit', 'ProductController@sku_combination_edit')->name('products.sku_combination_edit');

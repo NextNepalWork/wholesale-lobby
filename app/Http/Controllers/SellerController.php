@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AdminToPay;
 use App\Models\Commission;
 use Illuminate\Http\Request;
 use App\Seller;
@@ -41,6 +42,21 @@ class SellerController extends Controller
         return view('sellers.index', compact('sellers', 'sort_search', 'approved'));
     }
 
+    public function paySeller($id){
+        $dues = AdminToPay::where('seller_id',$id)->count();
+        $seller = Seller::find($id);
+        $user = User::find($seller->user_id);
+        // dd($user);
+        $shop = Shop::where('user_id',$user->id)->first();
+
+        if($dues > 0){
+            $dues = AdminToPay::where(['seller_id' => $id,'status' => 0])->with('orderDetail')->get();
+        }else{
+            $dues = [];
+        }
+        // dd($dues,$shop,$user,$seller);
+        return view('sellers.admin_to_pay', compact('dues','seller','user','shop'));
+    }
     /**
      * Show the form for creating a new resource.
      *

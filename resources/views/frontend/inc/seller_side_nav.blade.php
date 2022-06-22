@@ -231,14 +231,14 @@
                         </span>
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{ route('withdraw_requests.index') }}" class="{{ areActiveRoutesHome(['withdraw_requests.index'])}}">
                         <i class="la la-money"></i>
                         <span class="category-name">
                             {{__('Money Withdraw')}}
                         </span>
                     </a>
-                </li>
+                </li> --}}
                 {{-- @if (\App\BusinessSetting::where('type', 'wallet_system')->first()->value == 1)
                     <li>
                         <a href="{{ route('wallet.index') }}" class="{{ areActiveRoutesHome(['wallet.index'])}}">

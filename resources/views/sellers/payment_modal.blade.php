@@ -51,12 +51,12 @@
                 <div class="col-sm-9">
                     <select name="payment_option" id="payment_option" class="form-control demo-select2-placeholder" required>
                         <option value="">{{__('Select Payment Method')}}</option>
-                        @if($seller->cash_on_delivery_status == 1)
+                        {{-- @if($seller->cash_on_delivery_status == 1) --}}
                             <option value="cash">{{__('Cash')}}</option>
-                        @endif
-                        @if($seller->bank_payment_status == 1)
+                        {{-- @endif --}}
+                        {{-- @if($seller->bank_payment_status == 1) --}}
                             <option value="bank_payment">{{__('Bank Payment')}}</option>
-                        @endif
+                        {{-- @endif --}}
                     </select>
                 </div>
             </div>

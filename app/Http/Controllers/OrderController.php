@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AdminToPay;
 use App\BusinessSetting;
 use App\CouponUsage;
 use App\Http\Controllers\AffiliateController;
@@ -11,6 +12,7 @@ use App\Location;
 use App\Mail\CustomerEmail;
 use App\Mail\InvoiceEmailManager;
 use App\Models\Commission;
+use App\Models\Seller;
 use App\Order;
 use App\OrderDetail;
 use App\OtpConfiguration;
@@ -611,6 +613,7 @@ class OrderController extends Controller
 
     public function update_payment_status(Request $request)
     {
+        // return 'a';
         $order = Order::findOrFail($request->order_id);
         $order->payment_status_viewed = '0';
         $order->save();
@@ -662,6 +665,23 @@ class OrderController extends Controller
                                 $afterCommissionPrice = $orderDetail->price - ($orderDetail->price * $commission_percentage) / 100;
                                 $seller->admin_to_pay = $seller->admin_to_pay + $afterCommissionPrice;
                                 $seller->save();
+                                
+                                $seller_id = $orderDetail->product->user->seller->id;
+                                $user = Seller::where('id',$seller_id)->first();
+                                
+                                try{
+                                    // return 'aaaa';
+                                    AdminToPay::create([
+                                        'seller_id' => $seller_id,
+                                        'user_id' => $user->id,
+                                        'amount' => $afterCommissionPrice,
+                                        'order_detail' => $orderDetail->id, 
+                                        'status' => 0 
+                                    ]);
+                                }
+                                catch (\Exception $e) {
+                                    Log::info('Error in creating AdminToPay Table '.$e);
+                                }
                             }
                         }
                     } else {
@@ -670,14 +690,16 @@ class OrderController extends Controller
                             $orderDetail->payment_status = 'paid';
                             $orderDetail->save();
                             if ($orderDetail->product->user->user_type == 'seller') {
-                                $seller_id=$orderDetail->product->user->seller->id;
-                                // dd($seller_id);
+                                $seller_id = $orderDetail->product->user->seller->id;
                                 $category_id = $orderDetail->product->category->id;
-                                // dd($category_id);
-                                $commission=Commission::where('seller_id',$seller_id)->where('category_id',$category_id)->first();
+                                $commission=Commission::where('seller_id',$seller_id)->where('category_id',$category_id)->count();
+                                // if($commission < 1){
+                                //     flash('Set Commission Rate for this seller')->error();
+                                //     return false;
+                                // }
                                 // dd($commission);
                                 
-                                $commission_percentage =$commission->commission_rate;
+                                $commission_percentage = isset($commission->commission_rate)?$commission->commission_rate:0;
 
                                 // $commission_percentage =$orderDetail->product->category->commision_rate;
                                 $seller = $orderDetail->product->user->seller;
@@ -686,6 +708,22 @@ class OrderController extends Controller
                                 // dd($afterCommissionPrice);
                                 $seller->admin_to_pay = $seller->admin_to_pay + $afterCommissionPrice;
                                 $seller->save();
+
+                                $user = Seller::where('id',$seller_id)->first();
+                                
+                                try{
+                                    // return 'aaaa';
+                                    AdminToPay::create([
+                                        'seller_id' => $seller_id,
+                                        'user_id' => $user->id,
+                                        'amount' => $afterCommissionPrice,
+                                        'order_detail' => $orderDetail->id, 
+                                        'status' => 0 
+                                    ]);
+                                }
+                                catch (\Exception $e) {
+                                    Log::info('Error in creating AdminToPay Table '.$e);
+                                }
                             }
                         }
                     }
@@ -697,11 +735,29 @@ class OrderController extends Controller
                             $orderDetail->save();
                             if ($orderDetail->product->user->user_type == 'seller') {
                                 $seller = $orderDetail->product->user->seller;
-                                $seller->admin_to_pay = $seller->admin_to_pay + ($orderDetail->price * (100 - $commission_percentage)) / 100;
+                                $afterCommissionPrice = ($orderDetail->price * (100 - $commission_percentage)) / 100;
+                                $seller->admin_to_pay = $seller->admin_to_pay + $afterCommissionPrice;
                                 $seller->save();
+
+                                $seller_id = $orderDetail->product->user->seller->id;
+                                $user = Seller::where('id',$seller_id)->first();
+                                
+                                try{
+                                    // return 'aaaa';
+                                    AdminToPay::create([
+                                        'seller_id' => $seller_id,
+                                        'user_id' => $user->id,
+                                        'amount' => $afterCommissionPrice,
+                                        'order_detail' => $orderDetail->id, 
+                                        'status' => 0 
+                                    ]);
+                                }
+                                catch (\Exception $e) {
+                                    Log::info('Error in creating AdminToPay Table '.$e);
+                                }
                             }
                         }
-                    } else {
+                    } else {     
                         foreach ($order->orderDetails as $key => $orderDetail) {
                             $orderDetail->payment_status = 'paid';
                             $orderDetail->save();
@@ -722,6 +778,23 @@ class OrderController extends Controller
                                 // dd($afterCommissionPrice);
                                 $seller->admin_to_pay = $seller->admin_to_pay + $afterCommissionPrice;
                                 $seller->save();
+
+                                $seller_id = $orderDetail->product->user->seller->id;
+                                $user = Seller::where('id',$seller_id)->first();
+                                
+                                try{
+                                    // return 'aaaa';
+                                    AdminToPay::create([
+                                        'seller_id' => $seller_id,
+                                        'user_id' => $user->id,
+                                        'amount' => $afterCommissionPrice,
+                                        'order_detail' => $orderDetail->id, 
+                                        'status' => 0 
+                                    ]);
+                                }
+                                catch (\Exception $e) {
+                                    Log::info('Error in creating AdminToPay Table '.$e);
+                                }
                                 // $commission_percentage = $orderDetail->product->category->commision_rate;
                                 // $seller = $orderDetail->product->user2.->seller;
                                 // $seller->admin_to_pay = $seller->admin_to_pay + ($orderDetail->price * (100 - $commission_percentage)) / 100;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AdminToPay;
 use Illuminate\Http\Request;
 use Stripe;
 use App\Order;
@@ -81,8 +82,27 @@ class EsewaController extends Controller
                         $orderDetail->save();
                         if($orderDetail->product->user->user_type == 'seller'){
                             $seller = $orderDetail->product->user->seller;
-                            $seller->admin_to_pay = $seller->admin_to_pay + ($orderDetail->price*(100-$commission_percentage))/100 + $orderDetail->tax + $orderDetail->shipping_cost;
+                            $afterCommissionPrice = ($orderDetail->price*(100-$commission_percentage))/100 + $orderDetail->tax;
+                            // $orderDetail->shipping_cost
+                            $seller->admin_to_pay = $seller->admin_to_pay + $afterCommissionPrice;
                             $seller->save();
+
+                            $seller_id = $orderDetail->product->user->seller->id;
+                            $user = Seller::where('id',$seller_id)->first();
+                            
+                            try{
+                                // return 'aaaa';
+                                AdminToPay::create([
+                                    'seller_id' => $seller_id,
+                                    'user_id' => $user->id,
+                                    'amount' => $afterCommissionPrice,
+                                    'order_detail' => $orderDetail->id, 
+                                    'status' => 0 
+                                ]);
+                            }
+                            catch (\Exception $e) {
+                                Log::info('Error in creating AdminToPay Table '.$e);
+                            }
                         }
                     }
                 }
@@ -93,8 +113,32 @@ class EsewaController extends Controller
                         if($orderDetail->product->user->user_type == 'seller'){
                             $commission_percentage = $orderDetail->product->category->commision_rate;
                             $seller = $orderDetail->product->user->seller;
-                            $seller->admin_to_pay = $seller->admin_to_pay + ($orderDetail->price*(100-$commission_percentage))/100  + $orderDetail->tax + $orderDetail->shipping_cost;
+                            // + $orderDetail->shipping_cost
+                            
+                            $afterCommissionPrice = ($orderDetail->price*(100-$commission_percentage))/100  + $orderDetail->tax;
+                            $seller->admin_to_pay = $seller->admin_to_pay + $afterCommissionPrice;
                             $seller->save();
+
+                            // $orderDetail->shipping_cost
+                            $seller->admin_to_pay = $seller->admin_to_pay + $afterCommissionPrice;
+                            $seller->save();
+
+                            $seller_id = $orderDetail->product->user->seller->id;
+                            $user = Seller::where('id',$seller_id)->first();
+                            
+                            try{
+                                // return 'aaaa';
+                                AdminToPay::create([
+                                    'seller_id' => $seller_id,
+                                    'user_id' => $user->id,
+                                    'amount' => $afterCommissionPrice,
+                                    'order_detail' => $orderDetail->id, 
+                                    'status' => 0 
+                                ]);
+                            }
+                            catch (\Exception $e) {
+                                Log::info('Error in creating AdminToPay Table '.$e);
+                            }
                         }
                     }
                 }
@@ -105,8 +149,27 @@ class EsewaController extends Controller
                     $orderDetail->save();
                     if($orderDetail->product->user->user_type == 'seller'){
                         $seller = $orderDetail->product->user->seller;
-                        $seller->admin_to_pay = $seller->admin_to_pay + $orderDetail->price + $orderDetail->tax + $orderDetail->shipping_cost;
+                        $afterCommissionPrice = $orderDetail->price + $orderDetail->tax;
+                        // + $orderDetail->shipping_cost
+                        $seller->admin_to_pay = $seller->admin_to_pay + $orderDetail->price + $orderDetail->tax;
                         $seller->save();
+
+                        $seller_id = $orderDetail->product->user->seller->id;
+                        $user = Seller::where('id',$seller_id)->first();
+                        
+                        try{
+                            // return 'aaaa';
+                            AdminToPay::create([
+                                'seller_id' => $seller_id,
+                                'user_id' => $user->id,
+                                'amount' => $afterCommissionPrice,
+                                'order_detail' => $orderDetail->id, 
+                                'status' => 0 
+                            ]);
+                        }
+                        catch (\Exception $e) {
+                            Log::info('Error in creating AdminToPay Table '.$e);
+                        }
                     }
                 }
             }

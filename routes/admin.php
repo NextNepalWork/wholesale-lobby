@@ -80,6 +80,7 @@ Route::group(['prefix' =>'admin', 'middleware' => ['auth', 'admin']], function()
 	});
 
 	Route::resource('sellers','SellerController');
+	Route::get('/seller/pay/{id}', 'SellerController@paySeller')->name('seller.pay');
 	Route::get('/sellers/destroy/{id}', 'SellerController@destroy')->name('sellers.destroy');
 	Route::get('/sellers/view/{id}/verification', 'SellerController@show_verification_request')->name('sellers.show_verification_request');
 	Route::get('/sellers/approve/{id}', 'SellerController@approve_seller')->name('sellers.approve');

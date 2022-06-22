@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AdminToPay;
 use App\Category;
 use App\Language;
 use App\Product;
@@ -12,6 +13,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Mail;
 use App\Mail\ExpiryMail;
+use App\Models\Seller;
+use App\Models\Shop;
 use App\User;
 use Illuminate\Routing\Route;
 use Image;
@@ -663,7 +666,53 @@ class ProductController extends Controller
 
         return response()->json(['success' => "Product Deleted successfully", 'redirectTo' => $redirectTo]);
     }
+    public function bulkPay(Request $request)
+    {
+        // dd($request->all());
+        $ids = $request->due_id;
+        // dd($ids);
+        $exploded_ids = explode(",", $ids);
+        // return $exploded_ids;
+        foreach ($exploded_ids as $dataId) {
+            $due = AdminToPay::findOrFail($dataId);
+            $due->status = 1;
+            $due->paid_date = Carbon::now();
+            $due->payment_type = $request->payment_option;
+            if (!($due->save())) {
+                return response()->json(['error' => 'Something went wrong']);
+            }
+        }
+        $seller = Seller::findOrFail($request->seller_id);
+        $seller->admin_to_pay = $seller->admin_to_pay - $request->amount;
+        if (!($seller->save())) {
+            return response()->json(['error' => 'Something went wrong']);
+        }
+        // if (Auth::user()->user_type == 'admin') {
+        //     $redirectTo = route('products.admin');
+        // } else {
+        //     $redirectTo = route('seller.products');
+        // }
 
+        flash(__('Paid Successfully'))->success();
+
+        return redirect()->back();
+    
+    }
+    public function allPayment($id){
+        $dues = AdminToPay::where('seller_id',$id)->count();
+        $seller = Seller::find($id);
+        $user = User::find($seller->user_id);
+        // dd($user);
+        $shop = Shop::where('user_id',$user->id)->first();
+
+        if($dues > 0){
+            $dues = AdminToPay::where(['seller_id' => $id,'status' => 1])->with('orderDetail')->get();
+        }else{
+            $dues = [];
+        }
+        // dd($dues,$shop,$user,$seller);
+        return view('sellers.all_payments', compact('dues','seller','user','shop'));
+    }
     private function __deleteProduct($product, $id)
     {
         // foreach (Language::all() as $key => $language) {
