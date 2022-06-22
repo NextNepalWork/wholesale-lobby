@@ -99,7 +99,7 @@
                                         <li><a onclick="commission('{{$seller->id}}');">{{__('Seller Commission')}}</a></li>
                                         <li><a href="{{route('seller.pay',['id' => $seller->id])}}">{{__('Pay')}}</a></li>
                                         {{-- <li><a onclick="show_seller_payment_modal('{{$seller->id}}');">{{__('Pay Now')}}</a></li> --}}
-                                        <li><a href="{{route('sellers.payment_history', encrypt($seller->id))}}">{{__('Payment History')}}</a></li>
+                                        <li><a href="{{ route('payment.all',['id'=> $seller->id]) }}">{{__('Payment History')}}</a></li>
                                         <li><a href="{{route('sellers.edit', encrypt($seller->id))}}">{{__('Edit')}}</a></li>
                                         <li><a onclick="confirm_modal('{{route('sellers.destroy', $seller->id)}}');">{{__('Delete')}}</a></li>
                                     </ul>

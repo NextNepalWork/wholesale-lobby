@@ -48,11 +48,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($dues as $key => $product)
-                    {{-- @php
-                        dd($product->amount);    
-                    @endphp --}}
-                    
+                    @foreach ($dues as $key => $product)                    
                         <tr>
                             <td>
                                 <input type="checkbox" value="{{ $product->id }}" data-amount="{{ $product->amount }}" data-id="{{ $product->id }}"
