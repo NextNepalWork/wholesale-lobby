@@ -63,7 +63,7 @@
                             <td>{{ $product->orderDetail->order->code }}</td>
                             <td>
                                 @php
-                                    $product_detail = \App\Product::find($product->id);
+                                    $product_detail = \App\Product::find($product->orderDetail->id);
                                 @endphp
                                 {{(isset($product_detail->name))?$product_detail->name:'Empty'}}
                             </td>
