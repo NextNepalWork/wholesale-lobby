@@ -12,7 +12,7 @@
 <br>
 <div class="panel">    
     <div class="panel-heading bord-btm clearfix pad-all h-100">
-        <h3 class="panel-title pull-left pad-no">Shop : {{$shop->name}}<br>Seller : {{$user->name}}</h3>
+        <h3 class="panel-title pull-left pad-no">Shop : {{(isset($shop->name))?$shop->name:'Empty'}}<br>Seller : {{(isset($user->name))?$user->name:'Empty'}}</h3>
         <a href="{{ route('payment.all',['id'=> $seller->id]) }}"
             class="btn btn-rounded btn-info pull-right">{{ __('View all payments') }}</a>
     </div>
@@ -65,7 +65,7 @@
                                 @php
                                     $product_detail = \App\Product::find($product->id);
                                 @endphp
-                                {{$product_detail->name}}
+                                {{{{(isset($product_detail->name))?$product_detail->name:'Empty'}}}}
                             </td>
                             <td>{{ $product->amount }}</td>
                             <td>{{ date('D d M Y',strtotime($product->created_at)) }}</td>
