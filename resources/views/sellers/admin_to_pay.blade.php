@@ -65,7 +65,7 @@
                                 @php
                                     $product_detail = \App\Product::find($product->id);
                                 @endphp
-                                {{{{(isset($product_detail->name))?$product_detail->name:'Empty'}}}}
+                                {{(isset($product_detail->name))?$product_detail->name:'Empty'}}
                             </td>
                             <td>{{ $product->amount }}</td>
                             <td>{{ date('D d M Y',strtotime($product->created_at)) }}</td>
